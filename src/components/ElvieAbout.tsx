@@ -7,11 +7,11 @@ const ElvieAbout = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text */}
-          <div className="text-center md:text-left">
+          <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
               Where Every Moment
               <br />
-              <span className="text-elvie-navy">BECOMES A SHOWSTOPPER</span>
+              <span className="text-foreground font-extrabold">BECOMES A SHOWSTOPPER</span>
             </h2>
             <p className="mt-6 text-muted-foreground leading-relaxed text-sm">
               Elvie Events stands among the UAE's leading event management and production teams, known for delivering seamless, end-to-end experiences across corporate events, exhibitions, weddings, concerts, and fully project-managed activations.

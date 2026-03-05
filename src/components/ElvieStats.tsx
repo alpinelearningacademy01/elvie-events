@@ -9,22 +9,31 @@ const stats = [
 
 const ElvieStats = () => {
   return (
-    <section className="py-16 relative overflow-hidden">
-      {/* Diagonal background */}
+    <section className="relative py-0 overflow-hidden">
+      {/* Diagonal geometric background */}
       <div className="absolute inset-0">
+        {/* Main gray background */}
         <div className="absolute inset-0 bg-muted" />
+        {/* Top-left navy triangle */}
         <div
-          className="absolute top-0 left-0 right-0 h-24 bg-background"
-          style={{ clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 100%)" }}
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            background: "linear-gradient(to bottom right, hsl(222 62% 18%) 0%, hsl(222 62% 18%) 49.9%, transparent 50%)",
+            clipPath: "polygon(0 0, 60% 0, 0 100%)",
+          }}
         />
+        {/* Bottom-right navy triangle */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 bg-background"
-          style={{ clipPath: "polygon(0 100%, 100% 0%, 100% 100%, 0 100%)" }}
+          className="absolute top-0 left-0 w-full h-full"
+          style={{
+            background: "linear-gradient(to top left, hsl(222 62% 18%) 0%, hsl(222 62% 18%) 49.9%, transparent 50%)",
+            clipPath: "polygon(100% 0, 100% 100%, 40% 100%)",
+          }}
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="bg-elvie-navy rounded-xl py-12 px-8">
+      <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="bg-primary rounded-xl py-12 px-8 shadow-2xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col items-center">
