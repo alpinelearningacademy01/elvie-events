@@ -4,8 +4,6 @@ import { Shield, Monitor, Camera, FileCheck, Package, Briefcase } from "lucide-r
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
-import PageHeader from "@/components/PageHeader";
-import galleryHero from "@/assets/gallery-hero.webp";
 import aboutTeam from "@/assets/about-team.webp";
 
 const features = [
@@ -26,7 +24,9 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-background">
       <ElvieNavbar />
-      <PageHeader title="About Us" backgroundImage={galleryHero} />
+
+      {/* Gradient Header Area */}
+      <div className="elvie-gradient-diagonal h-28" />
 
       {/* Team + Features */}
       <section className="py-20 bg-background" ref={featRef}>

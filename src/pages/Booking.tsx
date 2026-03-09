@@ -27,8 +27,8 @@ const Booking = () => {
     <div className="min-h-screen bg-background">
       <ElvieNavbar />
 
-      {/* Navbar spacer */}
-      <div className="h-24" />
+      {/* Gradient Header Area - matches reference */}
+      <div className="elvie-gradient-diagonal h-28" />
 
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-2xl">
