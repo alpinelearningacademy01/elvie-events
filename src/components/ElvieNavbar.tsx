@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+
+const navLinks = [
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "/aboutus" },
+  { label: "GALLERY", href: "/gallery" },
+  { label: "BOOKING", href: "/booking" },
+];
 
 const ElvieNavbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -12,7 +21,9 @@ const ElvieNavbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = ["HOME", "ABOUT US", "GALLERY", "BOOKING"];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <motion.nav
@@ -24,28 +35,36 @@ const ElvieNavbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
-        <a href="#" className="flex flex-col items-center">
+        <Link to="/" className="flex flex-col items-center">
           <span className="text-2xl font-bold tracking-[0.3em] text-primary-foreground font-montserrat">
             EL<span className="text-elvie-blue-light">V</span>IE
           </span>
           <span className="text-[10px] tracking-[0.5em] text-primary-foreground/70 uppercase">
             Events
           </span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-1">
-          {links.map((link, i) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-              className="px-4 py-2 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground relative group transition-colors"
+          {navLinks.map((link, i) => (
+            <Link
+              key={link.label}
+              to={link.href}
+              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${
+                location.pathname === link.href
+                  ? "text-primary-foreground"
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
             >
-              {link}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-elvie-blue-light group-hover:w-3/4 transition-all duration-300 rounded-full" />
-              {i < links.length - 1 && (
+              {link.label}
+              <span
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${
+                  location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                }`}
+              />
+              {i < navLinks.length - 1 && (
                 <span className="ml-4 text-primary-foreground/30">|</span>
               )}
-            </a>
+            </Link>
           ))}
           <motion.a
             href="tel:+9715029137212"
@@ -75,18 +94,16 @@ const ElvieNavbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {links.map((link, i) => (
-              <motion.a
-                key={link}
-                href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
-                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-              >
-                {link}
-              </motion.a>
+            {navLinks.map((link, i) => (
+              <motion.div key={link.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
+                <Link
+                  to={link.href}
+                  className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
             <a
               href="tel:+9715029137212"
