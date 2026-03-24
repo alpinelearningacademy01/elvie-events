@@ -4,7 +4,7 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import logoImg from "../assets/Logo.png";
+import logoImg from "../assets/Logo.webp";
 
 const ElvieFooter = () => {
   const [email, setEmail] = useState("");

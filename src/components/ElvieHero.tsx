@@ -106,12 +106,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import heroVideo from "@/assets/COSMO VISION 2026.mp4";
-import logoImg from "@/assets/Logo.png";
+import logoImg from "@/assets/Logo.webp";
 
 const ElvieHero = () => {
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      
+
       {/* Background Video */}
       <motion.video
         autoPlay
@@ -127,7 +127,7 @@ const ElvieHero = () => {
         <source src={heroVideo} type="video/mp4" />
       </motion.video>
 
-      <div className="absolute inset-0 elvie-overlay" />
+      {/* <div className="absolute inset-0 elvie-overlay" /> */}
 
       {/* Floating particles */}
       {[...Array(5)].map((_, i) => (
@@ -147,7 +147,7 @@ const ElvieHero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4">
-        
+
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -158,6 +158,7 @@ const ElvieHero = () => {
             src={logoImg}
             alt="Elvie Events Logo"
             className="w-[260px] md:w-[400px] lg:w-[520px] xl:w-[580px] mx-auto object-contain"
+            // className="w-48 md:w-64 lg:w-80 xl:w-96 mx-auto object-contain"
             draggable={false}
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
