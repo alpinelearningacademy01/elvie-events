@@ -4,7 +4,7 @@ import { Shield, Monitor, Camera, FileCheck, Package, Briefcase } from "lucide-r
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
-import aboutTeam from "@/assets/about-team.webp";
+import aboutTeam from "@/assets/about-team.png";
 
 const features = [
   { icon: Briefcase, title: "End-to-End Delivery", desc: "Planning, production, and execution under one team." },

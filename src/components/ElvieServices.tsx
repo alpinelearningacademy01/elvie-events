@@ -7,7 +7,7 @@ import serviceLed from "@/assets/service-led.png";
 import servicePhoto from "@/assets/service-photo.png";
 import serviceMerch from "@/assets/service-merch.png";
 import serviceDigital from "@/assets/service-digital.png";
-import servicePermit from "@/assets/service-permit.jpg";
+import servicePermit from "@/assets/service-permit.webp";
 
 const services = [
   { title: "Event & Project Management", description: "End to end planning, coordination, and execution that ensures every detail is aligned, every timeline is met, and every event runs seamlessly from start to finish.", image: serviceEventMgmt, imagePosition: "left" as const },
@@ -34,11 +34,17 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       whileHover={{ scale: 1.02 }}
     >
       <div className="absolute inset-0 elvie-gradient" />
-      <img
-        src={service.image}
-        alt={service.title}
-        className={`absolute top-0 ${service.imagePosition === "left" ? "left-0" : "right-0"} h-full w-[35%] md:w-[30%] object-cover opacity-70 group-hover:opacity-100 group-hover:w-[42%] md:group-hover:w-[38%] transition-all duration-500`}
-      />
+      <div
+        className={`absolute top-0 ${service.imagePosition === "left" ? "left-0" : "right-0"} 
+  h-full w-[35%] md:w-[30%] flex items-center 
+  ${service.imagePosition === "left" ? "justify-start" : "justify-end"}`}
+      >
+        <img
+          src={service.image}
+          alt={service.title}
+          className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-500"
+        />
+      </div>
       <div className={`relative z-10 flex flex-col justify-center h-full px-8 transition-all duration-500 ${service.imagePosition === "left" ? "ml-[35%] md:ml-[30%] group-hover:ml-[42%] md:group-hover:ml-[38%]" : "mr-[35%] md:mr-[30%] group-hover:mr-[42%] md:group-hover:mr-[38%]"}`}>
         <h3 className="text-lg md:text-xl font-bold text-primary-foreground group-hover:text-elvie-blue-light transition-colors duration-300">
           {service.title}
