@@ -112,19 +112,24 @@ const ElvieHero = () => {
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
 
       {/* Background Video */}
-      <motion.video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster={heroBg}
-        className="absolute inset-0 w-full h-full object-cover"
+      <motion.div
+        className="absolute inset-0 w-full h-full"
         initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
         transition={{ duration: 8, ease: "easeOut" }}
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </motion.video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={heroBg}
+          className="w-full h-full object-cover"
+          preload="auto"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+      </motion.div>
 
       {/* <div className="absolute inset-0 elvie-overlay" /> */}
 
