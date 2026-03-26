@@ -9,6 +9,7 @@ const navLinks = [
   { label: "ABOUT US", href: "/aboutus" },
   { label: "GALLERY", href: "/gallery" },
   { label: "BOOKING", href: "/booking" },
+  { label: "CORPORATE GIFTS", href: "/corporate-gifts" },
 ];
 
 const ElvieNavbar = () => {
