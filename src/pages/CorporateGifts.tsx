@@ -382,6 +382,7 @@ const CorporateGifts = () => {
                   <div className="w-10 h-10 rounded-full elvie-gradient flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5 text-primary-foreground" />
                   </div>
+
                   <div>
                     <p className="text-xs text-muted-foreground">Call Us</p>
                     <a href="tel:+9715029137212" className="font-semibold text-foreground hover:text-accent transition-colors">+971 502 913 7212</a>
