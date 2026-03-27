@@ -236,7 +236,7 @@ const CorporateGifts = () => {
       <ElvieNavbar />
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="relative h-[75vh] min-h-[520px] flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-40 md:pt-48 pb-20">
         <img src={heroImg} alt="Corporate Gifts" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(222,72%,8%,0.92)] via-[hsl(222,62%,18%,0.8)] to-transparent" />
         <div className="relative z-10 container mx-auto px-4">
@@ -393,7 +393,7 @@ const CorporateGifts = () => {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Email Us</p>
-                    <a href="mailto:navazsherasiya0@gmail.com" className="font-semibold text-foreground hover:text-accent transition-colors">navazsherasiya0@gmail.com</a>
+                    <a href="mailto: elvieevents@gmail.com" className="font-semibold text-foreground hover:text-accent transition-colors">navazsherasiya0@gmail.com</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 rounded-lg bg-card border border-border">
