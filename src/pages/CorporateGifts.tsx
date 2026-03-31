@@ -13,13 +13,13 @@ import ScrollToTop from "@/components/ScrollToTop";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
-import heroImg from "@/assets/corporate-gifts-hero.jpg";
-import brandedImg from "@/assets/corporate-branded-packaging.jpg";
-import customImg from "@/assets/corporate-custom-gifts.jpg";
+import heroImg from "@/assets/corporate-gifts-hero-new.png";
+import brandedImg from "@/assets/corporate-branded-packaging-new.png";
+import customImg from "@/assets/corporate-custom-gifts-new.png";
 
 import giftHamper from "@/assets/gift-hamper.jpg";
-import giftOnboarding from "@/assets/gift-onboarding.jpg";
-import giftSustainable from "@/assets/gift-sustainable.jpg";
+import giftOnboarding from "@/assets/gift-onboarding-new.png";
+import giftSustainable from "@/assets/gift-sustainable-new.png";
 import giftDrinkware from "@/assets/gift-drinkware.jpg";
 import giftWriting from "@/assets/gift-writing.jpg";
 import giftGadgets from "@/assets/gift-gadgets.jpg";
@@ -30,7 +30,7 @@ import giftPlants from "@/assets/gift-plants.jpg";
 import giftBags from "@/assets/gift-bags.jpg";
 import giftTech from "@/assets/gift-tech.jpg";
 
-import trending1 from "@/assets/trending-1.jpg";
+import trending1 from "@/assets/trending-1-new.png";
 import trending2 from "@/assets/trending-2.jpg";
 import trending3 from "@/assets/trending-3.jpg";
 import trending4 from "@/assets/trending-4.jpg";
