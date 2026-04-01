@@ -194,39 +194,82 @@ const TestimonialCarousel = () => {
 /* ─── Main Page ─── */
 const CorporateGifts = () => {
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", company: "", giftType: "", quantity: "", budget: "", message: "",
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    giftType: "",
+    quantity: "",
+    budget: "",
+    message: "",
+    contactMethod: [] as string[],
   });
+
+  const handleCheckbox = (value: string) => {
+    setForm((prev) => ({
+      ...prev,
+      contactMethod: prev.contactMethod.includes(value)
+        ? prev.contactMethod.filter((v) => v !== value)
+        : [...prev.contactMethod, value],
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
 
-    if (serviceId === "YOUR_SERVICE_ID" || !publicKey) {
-      toast.info("Connecting to email service...");
-      setTimeout(() => {
-        toast.success("Thank you! We'll get back to you with a custom quote shortly.");
-        setForm({ name: "", email: "", phone: "", company: "", giftType: "", quantity: "", budget: "", message: "" });
-      }, 1000);
+    if (form.contactMethod.length === 0) {
+      toast.error("Please select at least one preferred method of contact.");
       return;
     }
 
-    toast.promise(
-      emailjs.send(serviceId, templateId, {
-        from_name: form.name, from_email: form.email, phone: form.phone,
-        company: form.company, gift_type: form.giftType, quantity: form.quantity,
-        budget: form.budget, message: form.message, to_email: "navazsherasiya0@gmail.com",
-      }, publicKey),
-      {
-        loading: "Sending your inquiry...",
-        success: () => {
-          setForm({ name: "", email: "", phone: "", company: "", giftType: "", quantity: "", budget: "", message: "" });
-          return "Your inquiry has been sent successfully!";
-        },
-        error: "Failed to send. Please try again later.",
-      }
-    );
+    const { name, email, phone, company, giftType, quantity, budget, message, contactMethod } = form;
+
+    // Helper to reset form
+    const resetForm = () => {
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        giftType: "",
+        quantity: "",
+        budget: "",
+        message: "",
+        contactMethod: [],
+      });
+    };
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = "template_jl4sw5m"; // Fixed template ID as requested
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Handle Email Submission
+    if (contactMethod.includes("Email")) {
+      const templateParams = {
+        name,
+        email,
+        phone,
+        company,
+        gift_type: giftType,
+        quantity,
+        budget,
+        message,
+        contact_method: "Email",
+        to_email: "navazsherasiya0@gmail.com",
+      };
+
+      toast.promise(
+        emailjs.send(serviceId, templateId, templateParams, publicKey),
+        {
+          loading: "Sending inquiry to email...",
+          success: () => {
+            resetForm();
+            return "Inquiry sent to Email successfully!";
+          },
+          error: "Failed to send inquiry via Email",
+        }
+      );
+    }
   };
 
   const inputClasses = "w-full border border-border rounded-lg px-4 py-3 text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-shadow";
@@ -459,16 +502,33 @@ const CorporateGifts = () => {
                     </select>
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Budget Range</label>
-                  <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className={inputClasses}>
-                    <option value="">Select budget per gift</option>
-                    <option value="under-100">Under AED 100</option>
-                    <option value="100-250">AED 100 – 250</option>
-                    <option value="250-500">AED 250 – 500</option>
-                    <option value="500-1000">AED 500 – 1,000</option>
-                    <option value="1000+">AED 1,000+</option>
-                  </select>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Budget Range</label>
+                    <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className={inputClasses}>
+                      <option value="">Select budget per gift</option>
+                      <option value="under-100">Under AED 100</option>
+                      <option value="100-250">AED 100 – 250</option>
+                      <option value="250-500">AED 250 – 500</option>
+                      <option value="500-1000">AED 500 – 1,000</option>
+                      <option value="1000+">AED 1,000+</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Preferred Contact</label>
+                    <div className="flex gap-4 h-[46px] items-center px-4 border border-border rounded-lg bg-background">
+                      <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-accent">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded border-border text-accent focus:ring-accent"
+                          onChange={() => setForm({ ...form, contactMethod: ["Email"] })}
+                          checked={true}
+                          readOnly
+                        />
+                        <span>Email</span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Message</label>
@@ -492,12 +552,12 @@ const CorporateGifts = () => {
       {/* ═══════════ TRENDING GIFTS ═══════════ */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
+          {/* <AnimatedSection>
             <div className="flex items-center justify-between mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Trending Gifts</h2>
               <a href="#inquiry" className="text-accent hover:underline font-semibold text-sm hidden sm:block">View All →</a>
             </div>
-          </AnimatedSection>
+          </AnimatedSection> */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
             {trendingGifts.map((gift, i) => (
               <AnimatedSection key={gift.title} delay={i * 0.06}>

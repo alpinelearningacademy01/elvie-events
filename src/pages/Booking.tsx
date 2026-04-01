@@ -65,7 +65,7 @@ const Booking = () => {
         designation: designation,
         phone: phone,
         email: email,
-        contact_method: contactMethod.join(", "),
+        contact_method: "Email",
         message: message,
         to_email: "navazsherasiya0@gmail.com",
       };
@@ -75,33 +75,12 @@ const Booking = () => {
         {
           loading: "Sending enquiry to email...",
           success: () => {
-            if (!contactMethod.includes("Phone")) resetForm();
+            resetForm();
             return "Enquiry sent to Email successfully!";
           },
           error: "Failed to send enquiry via Email",
         }
       );
-    }
-
-    // Handle Phone Submission (WhatsApp)
-    if (contactMethod.includes("Phone")) {
-      const whatsappNumber = "7984567218";
-      const whatsappText = 
-        `*New Enquiry*\n\n` +
-        `*Name:* ${fullName}\n` +
-        `*Company:* ${company || "N/A"}\n` +
-        `*Designation:* ${designation || "N/A"}\n` +
-        `*Phone:* ${phone}\n` +
-        `*Email:* ${email}\n` +
-        `*Message:* ${message}`;
-      
-      const encodedMessage = encodeURIComponent(whatsappText);
-      const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=${encodedMessage}`;
-      
-      window.open(whatsappUrl, "_blank");
-      toast.success("Opening WhatsApp for Phone enquiry...");
-      
-      if (!contactMethod.includes("Email")) resetForm();
     }
   };
 
@@ -198,17 +177,9 @@ const Booking = () => {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        onChange={() => handleCheckbox("Phone")}
-                        checked={form.contactMethod.includes("Phone")}
-                      />
-                      Phone
-                    </label>
-
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckbox("Email")}
-                        checked={form.contactMethod.includes("Email")}
+                        onChange={() => setForm({ ...form, contactMethod: ["Email"] })}
+                        checked={true}
+                        readOnly
                       />
                       Email
                     </label>
