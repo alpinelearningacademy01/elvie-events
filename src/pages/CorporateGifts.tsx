@@ -20,22 +20,22 @@ import customImg from "@/assets/corporate-custom-gifts-new.png";
 import giftHamper from "@/assets/gift-hamper.jpg";
 import giftOnboarding from "@/assets/gift-onboarding-new.png";
 import giftSustainable from "@/assets/gift-sustainable-new.png";
-import giftDrinkware from "@/assets/gift-drinkware.jpg";
-import giftWriting from "@/assets/gift-writing.jpg";
-import giftGadgets from "@/assets/gift-gadgets.jpg";
-import giftEmployee from "@/assets/gift-employee.jpg";
-import giftLaptopBag from "@/assets/gift-laptop-bag.jpg";
-import giftVip from "@/assets/gift-vip.jpg";
+import giftDrinkware from "@/assets/gift-drinkware.png";
+import giftWriting from "@/assets/gift-writing.png";
+import giftGadgets from "@/assets/gift-gadgets.png";
+import giftEmployee from "@/assets/gift-employee.png";
+import giftLaptopBag from "@/assets/gift-laptop-bag.png";
+import giftVip from "@/assets/gift-vip.png";
 import giftPlants from "@/assets/gift-plants.jpg";
-import giftBags from "@/assets/gift-bags.jpg";
-import giftTech from "@/assets/gift-tech.jpg";
+import giftBags from "@/assets/gift-bags.png";
+import giftTech from "@/assets/gift-tech.png";
 
 import trending1 from "@/assets/trending-1-new.png";
-import trending2 from "@/assets/trending-2.jpg";
+import trending2 from "@/assets/trending-2.png";
 import trending3 from "@/assets/trending-3.jpg";
-import trending4 from "@/assets/trending-4.jpg";
-import trending5 from "@/assets/trending-5.jpg";
-import trending6 from "@/assets/trending-6.jpg";
+import trending4 from "@/assets/trending-4.png";
+import trending5 from "@/assets/trending-5.png";
+import trending6 from "@/assets/trending-6.png";
 
 /* ─── Gift Categories ─── */
 const giftCategories = [
