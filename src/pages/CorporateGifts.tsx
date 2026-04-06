@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Gift, Package, Award, Briefcase, Leaf, Truck,
@@ -7,10 +7,11 @@ import {
   TreePine, ShoppingBag, Crown, Heart, Sparkles, Send,
   Phone, Mail, ChevronLeft, ChevronRight, Quote, MessageSquare, X
 } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams, useNavigate, useLocation } from "react-router-dom";
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
+import { triggerEnquiry } from "@/components/StickyEnquiry";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
@@ -115,6 +116,8 @@ const faqs = [
   { q: "How far in advance should I place my order?", a: "We recommend placing orders at least 5-7 business days in advance for customised gifts. Standard gifts can often be arranged with shorter lead times depending on availability." },
 ];
 
+const toSlug = (text: string) => text.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/[^\w-]/g, '');
+
 /* ─── Animated Section Wrapper ─── */
 const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
   const ref = useRef(null);
@@ -208,8 +211,66 @@ const TestimonialCarousel = () => {
 
 /* ─── Main Page ─── */
 const CorporateGifts = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const activeType = searchParams.get("type");
+  const { category: categoryParam, productId: productParam } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [activeType, setActiveType] = useState<string | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+
+  // Sync state with URL params
+  useEffect(() => {
+    if (productParam) {
+      const product = allGifts.find(g => toSlug(g.title) === productParam);
+      if (product) {
+        setSelectedProduct(product);
+        setActiveType(null);
+      }
+    } else if (categoryParam) {
+      const cat = giftCategories.find(c => toSlug(c.label) === categoryParam || toSlug(c.type) === categoryParam);
+      if (cat) {
+        setActiveType(cat.type);
+        setSelectedProduct(null);
+        
+        // Use a slight delay to allow layout to settle before scrolling
+        setTimeout(() => {
+          const section = document.getElementById('gifts-section');
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      } else {
+        // Fallback for direct activeType match
+        const typeMatch = giftCategories.find(c => c.type === categoryParam);
+        if (typeMatch) {
+          setActiveType(typeMatch.type);
+          setTimeout(() => {
+            document.getElementById('gifts-section')?.scrollIntoView({ behavior: 'smooth' });
+          }, 300);
+        }
+        setSelectedProduct(null);
+      }
+    } else {
+      setActiveType(null);
+      setSelectedProduct(null);
+      
+      // If navigated back to main corporate page from a sub-category, keep the section in focus
+      if (location.pathname.endsWith('/corporate') || location.pathname.endsWith('/corporate/')) {
+        setTimeout(() => {
+          document.getElementById('gifts-section')?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  }, [categoryParam, productParam]);
+
+  const handleProductClick = (product: any) => {
+    navigate(`/corporate/${categoryParam || 'gift'}/${toSlug(product.title)}`);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const handleCategoryClick = (type: string) => {
+    navigate(`/corporate/${toSlug(type)}`);
+    document.getElementById('gifts-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const [form, setForm] = useState({
     name: "",
@@ -292,6 +353,147 @@ const CorporateGifts = () => {
 
   const inputClasses = "w-full border border-border rounded-lg px-4 py-3 text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-shadow";
 
+  if (selectedProduct) {
+    return (
+      <div className="min-h-screen bg-background">
+        <ElvieNavbar />
+        <div className="pt-32 pb-16">
+          <div className="container mx-auto px-4">
+            {/* Breadcrumb based on image */}
+            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-6 select-none border-b border-border pb-4">
+              <span className="cursor-pointer hover:text-elvie-navy transition-colors" onClick={() => navigate('/corporate')}>Home</span>
+              <span className="text-slate-300">/</span>
+              <span className="cursor-pointer hover:text-elvie-navy transition-colors" onClick={() => navigate('/corporate')}>Corporate Gifting</span>
+              <span className="text-slate-300">/</span>
+              <span className="text-elvie-navy font-black">{selectedProduct.title}</span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start mb-16">
+              {/* Product Visual */}
+              {/* <div className="bg-gray-50/50 rounded-3xl border border-border p-4 md:p-8 group overflow-hidden shadow-sm flex items-center justify-center"> */}
+              <div className="group overflow-hidden flex items-center justify-center">
+                <img
+                  src={selectedProduct.img}
+                  alt={selectedProduct.title}
+                  className="w-full h-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700 max-h-[450px]"
+                />
+              </div>
+
+              {/* Product Info */}
+              <div className="space-y-5">
+                <div>
+                  <h1 className="text-3xl md:text-4xl font-black text-elvie-navy leading-tight mb-2 tracking-tight">
+                    {selectedProduct.title}
+                  </h1>
+                  <p className="text-2xl font-black text-elvie-navy/60 mb-5 leading-none">
+                    {selectedProduct.price}
+                  </p>
+
+                  <button
+                    onClick={() => triggerEnquiry()}
+                    className="px-10 py-3.5 bg-elvie-navy text-white font-bold rounded-full text-xs uppercase tracking-widest hover:bg-elvie-navy-deep transition-all shadow-[0_10px_30px_rgba(var(--elvie-navy),0.3)] transform hover:-translate-y-1 active:translate-y-0"
+                  >
+                    Enquire Now
+                  </button>
+                </div>
+
+                <div className="space-y-6 pt-5 border-t border-border">
+                  <div>
+                    <h3 className="text-base font-bold text-elvie-navy mb-2 flex items-center gap-3">
+                      <div className="w-1.5 h-5 bg-elvie-gold rounded-full" />
+                      Description
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed max-w-xl">
+                      An ideal gift set to make your workflow smooth and easy! This premium branded collection is perfect for employee appreciation, client onboarding, or as a thoughtful gesture for long-term partners. Crafted with precision and presented in our signature premium packaging.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-base font-bold text-elvie-navy mb-2 flex items-center gap-3">
+                      <div className="w-1.5 h-5 bg-elvie-gold rounded-full" />
+                      Product Details
+                    </h3>
+                    <ul className="text-muted-foreground text-sm space-y-3 list-none font-medium">
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-elvie-gold rounded-full" />
+                        Premium Branded Box Packaging
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-elvie-gold rounded-full" />
+                        Custom Logo Personalisation Included
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-elvie-gold rounded-full" />
+                        Signature Appreciation Insert Card
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-elvie-gold rounded-full" />
+                        Available for Bulk & Individual Orders
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Recommendations */}
+            <div className="border-t border-border pt-20 mb-10">
+              <div className="flex items-end justify-between mb-12">
+                <div>
+                  <h2 className="text-2xl font-bold text-elvie-navy mb-2">You may also like</h2>
+                  <div className="w-12 h-1 bg-elvie-gold rounded-full" />
+                </div>
+                <button
+                  onClick={() => {
+                    navigate('/corporate');
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                  }}
+                  className="text-elvie-navy text-sm font-bold hover:underline"
+                >
+                  View All Collections →
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                {allGifts.filter(g => g.title !== selectedProduct.title).slice(0, 4).map((gift, i) => (
+                  <motion.div
+                    key={i}
+                    className="group cursor-pointer"
+                    onClick={() => handleProductClick(gift)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-50 border border-border mb-4 group-hover:shadow-xl transition-all">
+                      <img src={gift.img} alt={gift.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    </div>
+                    <h4 className="text-sm font-bold text-foreground group-hover:text-elvie-navy transition-colors truncate mb-1">
+                      {gift.title}
+                    </h4>
+                    <p className="text-elvie-navy font-black text-xs">{gift.price}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="py-16 elvie-gradient-dark">
+            <div className="container mx-auto px-4 text-center">
+              <h3 className="text-sm font-bold tracking-widest text-elvie-gold mb-8 uppercase">Grateful to Work with Clients</h3>
+              <div className="flex flex-wrap items-center justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                {["Google", "Microsoft", "Amazon", "DAMAC", "Nakheel"].map(client => (
+                  <span key={client} className="text-primary-foreground font-black tracking-tighter text-2xl">{client}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <ElvieFooter />
+        <ScrollToTop />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <ElvieNavbar />
@@ -349,10 +551,10 @@ const CorporateGifts = () => {
       </section>
 
       {/* ═══════════ EXCLUSIVE GIFT CATEGORIES ═══════════ */}
-      <section className="py-20 bg-background scroll-mt-20" id="gifts-section">
+      <section className="py-12 bg-background scroll-mt-28" id="gifts-section">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className={`flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 ${!activeType && 'text-center'}`}>
+            <div className={`flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 ${!activeType && 'text-center'}`}>
               <div className={activeType ? "max-w-3xl" : "mx-auto max-w-3xl"}>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   {activeType ? activeType : "Exclusive Corporate Gifts"}
@@ -366,8 +568,8 @@ const CorporateGifts = () => {
               </div>
               {activeType && (
                 <button
-                  onClick={() => setSearchParams({})}
-                  className="flex items-center gap-2 text-accent font-bold hover:underline transition-all whitespace-nowrap"
+                  onClick={() => navigate('/corporate')}
+                  className="flex items-center gap-2 text-elvie-navy font-bold hover:underline transition-all whitespace-nowrap"
                 >
                   <X className="w-4 h-4" /> View All Gifts
                 </button>
@@ -385,18 +587,24 @@ const CorporateGifts = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="rounded-2xl border border-border bg-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                    className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
                   >
-                    <div className="relative aspect-[4/5] overflow-hidden">
-                      <img src={gift.img} alt={gift.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-primary-foreground elvie-gradient shadow-lg">
+                    <div 
+                      className="relative aspect-square overflow-hidden cursor-pointer flex items-center justify-center bg-gray-50/20"
+                      onClick={() => handleProductClick(gift)}
+                    >
+                      <img src={gift.img} alt={gift.title} className="w-full h-full object-contain mix-blend-multiply p-4 group-hover:scale-110 transition-transform duration-700" />
+                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-primary-foreground bg-elvie-navy border border-elvie-gold/30 shadow-lg">
                         {gift.tag}
                       </span>
                     </div>
-                    <div className="p-5">
-                      <h3 className="text-sm font-bold text-foreground mb-2 group-hover:text-accent transition-colors">{gift.title}</h3>
-                      <p className="text-accent font-black text-xl">{gift.price}</p>
-                      <button className="mt-4 w-full py-2.5 rounded-lg text-xs font-bold border border-border bg-secondary/50 hover:bg-accent hover:text-accent-foreground transition-all">ENQUIRE NOW</button>
+                    <div className="p-3 text-center">
+                      <h3 
+                        className="text-[13px] font-bold text-foreground group-hover:text-elvie-navy transition-colors cursor-pointer line-clamp-1"
+                        onClick={() => handleProductClick(gift)}
+                      >
+                        {gift.title}
+                      </h3>
                     </div>
                   </motion.div>
                 ))
@@ -404,7 +612,7 @@ const CorporateGifts = () => {
                 <div className="col-span-full py-24 text-center border-2 border-dashed border-border rounded-3xl">
                   <Package className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
                   <p className="text-xl font-bold text-muted-foreground mb-4">More collections for {activeType} are coming soon!</p>
-                  <button onClick={() => setSearchParams({})} className="text-accent font-bold hover:underline">Browse current collection</button>
+                  <button onClick={() => navigate('/corporate')} className="text-elvie-navy font-bold hover:underline">Browse current collection</button>
                 </div>
               )}
             </div>
@@ -421,14 +629,17 @@ const CorporateGifts = () => {
                 >
                   {[...trendingGifts, ...trendingGifts].map((gift, i) => (
                     <div key={`${gift.title}-${i}`} className="flex-shrink-0 w-48 md:w-56 lg:w-64">
-                      <motion.div className="rounded-xl border border-border bg-card overflow-hidden group cursor-pointer hover:shadow-xl transition-all" whileHover={{ y: -6 }}>
+                      <motion.div
+                        className="rounded-xl border border-border bg-card overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
+                        whileHover={{ y: -6 }}
+                        onClick={() => handleProductClick(gift)}
+                      >
                         <div className="relative aspect-square overflow-hidden">
                           <img src={gift.img} alt={gift.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" width={512} height={512} />
-                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide text-primary-foreground elvie-gradient">{gift.tag}</span>
+                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide text-primary-foreground bg-elvie-navy/80">{gift.tag}</span>
                         </div>
-                        <div className="p-3">
-                          <h3 className="text-xs font-bold text-foreground leading-tight mb-1">{gift.title}</h3>
-                          <p className="text-accent font-bold text-sm">{gift.price}</p>
+                        <div className="p-3 text-center">
+                          <h3 className="text-[11px] font-bold text-foreground leading-tight group-hover:text-elvie-navy transition-colors">{gift.title}</h3>
                         </div>
                       </motion.div>
                     </div>
@@ -440,10 +651,7 @@ const CorporateGifts = () => {
                 {giftCategories.map((cat, i) => (
                   <AnimatedSection key={cat.label} delay={i * 0.04}>
                     <motion.div
-                      onClick={() => {
-                        setSearchParams({ type: cat.type });
-                        document.getElementById('gifts-section')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
+                      onClick={() => handleCategoryClick(cat.label)}
                       className="flex flex-col items-center rounded-xl border border-border bg-card hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden"
                       whileHover={{ y: -8, scale: 1.02 }}
                     >

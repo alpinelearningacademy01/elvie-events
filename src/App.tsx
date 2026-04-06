@@ -12,6 +12,7 @@ import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
+import StickyEnquiry from "./components/StickyEnquiry";
 
 const queryClient = new QueryClient();
 
@@ -20,12 +21,16 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <StickyEnquiry />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/booking" element={<Booking />} />
+          <Route path="/corporate" element={<CorporateGifts />} />
+          <Route path="/corporate/:category" element={<CorporateGifts />} />
+          <Route path="/corporate/:category/:productId" element={<CorporateGifts />} />
           <Route path="/corporate-gifts" element={<CorporateGifts />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

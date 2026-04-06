@@ -64,12 +64,13 @@ const ElvieNavbar = () => {
   const handleCategoryClick = (type: string) => {
     setDropdownOpen(false);
     setMobileOpen(false);
-    navigate(`/corporate-gifts?type=${encodeURIComponent(type)}`);
+    const slug = type.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/[^\w-]/g, '');
+    navigate(`/corporate/${slug}`);
   };
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "elvie-gradient-dark shadow-2xl backdrop-blur-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || location.pathname.startsWith('/corporate') ? "elvie-gradient-dark shadow-2xl backdrop-blur-md" : "bg-transparent"
         }`}
       initial={{ y: -80 }}
       animate={{ y: 0 }}
@@ -108,15 +109,15 @@ const ElvieNavbar = () => {
           <div className="relative group" ref={dropdownRef}>
             <div className="flex items-center">
               <Link
-                to="/corporate-gifts"
-                className={`pl-4 pr-1 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/corporate-gifts"
+                to="/corporate"
+                className={`pl-4 pr-1 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname.startsWith("/corporate")
                   ? "text-primary-foreground"
                   : "text-primary-foreground/90 hover:text-primary-foreground"
                   }`}
               >
                 CORPORATE GIFTS BY TYPE
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/corporate-gifts" ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname.startsWith("/corporate") ? "w-3/4" : "w-0 group-hover:w-3/4"
                     }`}
                 />
               </Link>
