@@ -173,6 +173,26 @@ import SafetyItem7 from "@/assets/SafetyItem7.jpeg"
 import SafetyItem8 from "@/assets/SafetyItem8.jpeg"
 import SafetyItem9 from "@/assets/SafetyItem9.jpeg"
 import SafetyItem10 from "@/assets/SafetyItem10.jpeg"
+import OfficeGifts1 from "@/assets/OfficeGifts1.jpeg"
+import OfficeGifts2 from "@/assets/OfficeGifts2.jpeg"
+import OfficeGifts3 from "@/assets/OfficeGifts3.jpeg"
+import OfficeGifts4 from "@/assets/OfficeGifts4.jpeg"
+import OfficeGifts5 from "@/assets/OfficeGifts5.jpeg"
+import OfficeGifts6 from "@/assets/OfficeGifts6.png"
+import OfficeGifts7 from "@/assets/OfficeGifts7.png"
+import OfficeGifts8 from "@/assets/OfficeGifts8.png"
+import OfficeGifts9 from "@/assets/OfficeGifts9.png"
+import OfficeGifts10 from "@/assets/OfficeGifts10.png"
+import Drinkware1 from "@/assets/Drinkware1.png"
+import Drinkware2 from "@/assets/Drinkware2.png"
+import Drinkware3 from "@/assets/Drinkware3.png"
+import Drinkware4 from "@/assets/Drinkware4.png"
+import Drinkware5 from "@/assets/Drinkware5.png"
+import Drinkware6 from "@/assets/Drinkware6.png"
+import Drinkware7 from "@/assets/Drinkware7.png"
+import Drinkware8 from "@/assets/Drinkware8.png"
+import Drinkware9 from "@/assets/Drinkware9.png"
+import Drinkware10 from "@/assets/Drinkware10.png"
 import giftBags from "@/assets/gift-bags.png";
 import giftTech from "@/assets/gift-tech.png";
 import trending1 from "@/assets/trending-1-new.png";
@@ -379,6 +399,28 @@ const allGifts = [
   { img: SafetyItem8, title: "Corporate PPE Gift Bundle", price: "AED 179", tag: "VIP", category: "Outdoor & Safety Items" },
   { img: SafetyItem9, title: "Branded Safety Torch Set", price: "AED 109", tag: "Trendy", category: "Outdoor & Safety Items" },
   { img: SafetyItem10, title: "Eco Outdoor Wellness Kit", price: "AED 219", tag: "Eco", category: "Outdoor & Safety Items" },
+  // Office & Writing Gifts for Corporate
+  { img: OfficeGifts1, title: "Executive Notebook & Pen Set", price: "AED 149", tag: "Premium", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts2, title: "Smart Leather Desk Organizer", price: "AED 199", tag: "Popular", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts3, title: "Branded Metal Rollerball Pen", price: "AED 89", tag: "Bestseller", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts4, title: "Luxury Fountain Pen Set", price: "AED 299", tag: "Luxury", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts5, title: "Custom Engraved Bamboo Pen", price: "AED 59", tag: "Eco", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts6, title: "Premium A5 Leather Journal", price: "AED 129", tag: "Classic", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts7, title: "Corporate Desk Clock & Pen Stand", price: "AED 179", tag: "Elegant", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts8, title: "Executive Portfolio Manager", price: "AED 249", tag: "VIP", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts9, title: "Wireless Charging Mouse Pad", price: "AED 139", tag: "Tech", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts10, title: "Eco-Friendly Cork Notebook Set", price: "AED 99", tag: "New", category: "Office & Writing Gifts for Corporate" },
+  // Drinkware for Corporate Gifting
+  { img: Drinkware1, title: "Premium Thermal Hydration Flask", price: "AED 129", tag: "Premium", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware2, title: "Branded Smart Vacuum Cup", price: "AED 149", tag: "Popular", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware3, title: "Eco-Friendly Bamboo Mug", price: "AED 79", tag: "Bestseller", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware4, title: "Luxury Matte Black Tumbler", price: "AED 199", tag: "Luxury", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware5, title: "Custom Glass Infuser Bottle", price: "AED 89", tag: "Eco", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware6, title: "Classic Steel Travel Mug", price: "AED 95", tag: "Classic", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware7, title: "Corporate Insulated Coffee Cup", price: "AED 115", tag: "Elegant", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware8, title: "Executive Crystal Glass Set", price: "AED 249", tag: "VIP", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware9, title: "Smart Temperature Display Bottle", price: "AED 139", tag: "Tech", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware10, title: "Compact Collapsible Silicon Cup", price: "AED 69", tag: "New", category: "Drinkware for Corporate Gifting" },
 ];
 
 /* ─── Why Choose Us ─── */

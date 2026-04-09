@@ -10,12 +10,12 @@ import { toast } from "sonner";
 import { X } from "lucide-react";
 
 // Global trigger to open modal from anywhere
-let openGlobalEnquiry: () => void = () => {};
+let openGlobalEnquiry: () => void = () => { };
 export const triggerEnquiry = () => openGlobalEnquiry();
 
 const StickyEnquiry = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
     openGlobalEnquiry = () => setIsOpen(true);
   }, []);
@@ -33,7 +33,7 @@ const StickyEnquiry = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
@@ -55,19 +55,19 @@ const StickyEnquiry = () => {
       {/* Sticky Button - Updated to Website Theme (Navy) */}
       <motion.button
         onClick={() => setIsOpen(true)}
-        className="fixed left-0 top-[40%] -translate-y-1/2 z-50 bg-elvie-navy text-white font-medium py-10 px-2 rounded-r-md shadow-lg border-y border-r border-elvie-gold/30 group transition-all"
-        initial={{ x: -10 }}
+        className="fixed right-0 top-[40%] -translate-y-1/2 z-50 bg-elvie-navy text-white font-medium py-10 px-2 rounded-l-md shadow-lg border-y border-l border-elvie-gold/30 group transition-all"
+        initial={{ x: 10 }}
         animate={{ x: 0 }}
-        whileHover={{ x: 5 }}
+        whileHover={{ x: -5 }}
       >
-        <span 
+        <span
           className="uppercase tracking-[0.2em] whitespace-nowrap block text-[11px] font-bold text-elvie-gold"
-          style={{ 
-            writingMode: 'vertical-rl', 
+          style={{
+            writingMode: 'vertical-rl',
             transform: 'rotate(180deg)',
           }}
         >
-          ENQUIRE NOW
+          BOOK NOW
         </span>
       </motion.button>
 

@@ -162,7 +162,7 @@ const ElvieNavbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Phone className="w-4 h-4" />
-            CALL NOW!
+            BOOK NOW!
           </motion.a>
         </div>
 
