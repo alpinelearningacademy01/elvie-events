@@ -14,413 +14,82 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { triggerEnquiry } from "@/components/StickyEnquiry";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+// Import Modular Components and Data
+import {
+  allModularGifts,
+  CorporateApparel,
+  CorporateCakes,
+  CorporateChocolates,
+  CorporateCupcakes,
+  CorporateFlowers,
+  CorporatePlants,
+  CorporateTechGifts,
+  GeneralCorporateGifts,
+  LaptopBags,
+  OfficeGifts,
+  OnboardingGifts,
+  PersonalAccessories,
+  PromotionalGifts,
+  CorporateGiftHampers,
+  VipExecutiveGifts,
+  CorporateTravelBags,
+  OutdoorSafetyGifts,
+  DrinkwareGifts,
+  TrendingGifts,
+  // Data for thumbnails
+  apparelGifts,
+  cakesGifts,
+  chocolatesGifts,
+  cupcakesGifts,
+  flowersGifts,
+  plantsGifts,
+  techGifts,
+  generalGifts,
+  laptopBagsGifts,
+  officeGifts,
+  onboardingGifts,
+  personalAccessoriesGifts,
+  promotionalGifts,
+  hampersGifts,
+  vipGifts,
+  travelBagsGifts,
+  safetyGifts,
+  drinkwareGifts,
+  trendingGiftsData
+} from "@/components/corporate/categories";
 
 import heroImg from "@/assets/corporate-gifts-hero-new.png";
 import brandedImg from "@/assets/corporate-branded-packaging-new.png";
 import customImg from "@/assets/corporate-custom-gifts-new.png";
 
-import giftHamper from "@/assets/gift-hamper.jpg";
-import giftOnboarding from "@/assets/gift-onboarding-new.png";
-import Onboarding1 from "@/assets/Onboarding_Gifts1.png";
-import Onboarding2 from "@/assets/Onboarding_Gifts2.png";
-import Onboarding3 from "@/assets/Onboarding_Gifts3.png";
-import Onboarding4 from "@/assets/Onboarding_Gifts4.png";
-import Onboarding5 from "@/assets/Onboarding_Gifts5.png";
-import Onboarding6 from "@/assets/Onboarding_Gifts6.png";
-import Onboarding7 from "@/assets/Onboarding_Gifts7.jpg";
-import Onboarding8 from "@/assets/Onboarding_Gifts8.png";
-import Onboarding9 from "@/assets/Onboarding_Gifts9.png";
-import Onboarding10 from "@/assets/Onboarding_Gifts10.png";
-import giftSustainable from "@/assets/gift-sustainable-new.png";
-import giftDrinkware from "@/assets/gift-drinkware.png";
-import giftWriting from "@/assets/gift-writing.png";
-import giftGadgets from "@/assets/gift-gadgets.png";
-import giftEmployee from "@/assets/gift-employee.png";
-import giftLaptopBag from "@/assets/gift-laptop-bag.png";
-import giftVip from "@/assets/gift-vip.png";
-import giftPlants1 from "@/assets/gift-plants1.jpg";
-import giftPlants2 from "@/assets/gift-plants2.png";
-import giftPlants3 from "@/assets/gift-plants3.png";
-import giftPlants4 from "@/assets/gift-plants4.png";
-import giftPlants5 from "@/assets/gift-plants5.png";
-import giftPlants6 from "@/assets/gift-plants6.png";
-import giftPlants7 from "@/assets/gift-plants7.png";
-import giftPlants8 from "@/assets/gift-plants8.png";
-import giftPlants9 from "@/assets/gift-plants9.png";
-import giftPlants10 from "@/assets/gift-plants10.png";
-import gifttFlowes1 from "@/assets/gift-flower1.png";
-import gifttFlowes2 from "@/assets/gift-flower2.png";
-import gifttFlowes3 from "@/assets/gift-flower3.png";
-import gifttFlowes4 from "@/assets/gift-flower4.png";
-import gifttFlowes5 from "@/assets/gift-flower5.png";
-import gifttFlowes6 from "@/assets/gift-flower6.png";
-import gifttFlowes7 from "@/assets/gift-flower7.png";
-import gifttFlowes8 from "@/assets/gift-flower8.png";
-import gifttFlowes9 from "@/assets/gift-flower9.png";
-import gifttFlowes10 from "@/assets/gift-flower10.png";
-import cupcakes1 from "@/assets/cupcakes_1.png";
-import cupcakes2 from "@/assets/cupcakes_2.png";
-import cupcakes3 from "@/assets/cupcakes_3.png";
-import cupcakes4 from "@/assets/cupcakes_4.png";
-import cupcakes5 from "@/assets/cupcakes_5.png";
-import cupcakes6 from "@/assets/cupcakes_6.png";
-import cupcakes7 from "@/assets/cupcakes_7.png";
-import cupcakes8 from "@/assets/cupcakes_8.png";
-import cupcakes9 from "@/assets/cupcakes_9.png";
-import CorporateChocolate1 from "@/assets/corporateChocolate1.jpeg";
-import CorporateChocolate2 from "@/assets/corporateChocolate2.jpeg";
-import CorporateChocolate3 from "@/assets/corporateChocolate3.jpeg";
-import CorporateChocolate4 from "@/assets/corporateChocolate4.jpeg";
-import CorporateChocolate5 from "@/assets/corporateChocolate5.jpeg";
-import CorporateChocolate6 from "@/assets/corporateChocolate6.jpeg";
-import CorporateChocolate7 from "@/assets/corporateChocolate7.jpeg";
-import CorporateChocolate8 from "@/assets/corporateChocolate8.jpeg";
-import CorporateChocolate9 from "@/assets/corporateChocolate9.jpeg";
-import CorporateChocolate10 from "@/assets/corporateChocolate10.jpeg";
-import CorporateGift1 from "@/assets/CorporateGift1.jpeg";
-import CorporateGift2 from "@/assets/CorporateGift2.jpeg";
-import CorporateGift3 from "@/assets/CorporateGift3.jpeg";
-import CorporateGift4 from "@/assets/CorporateGift4.jpeg";
-import CorporateGift5 from "@/assets/CorporateGift5.jpeg";
-import CorporateGift6 from "@/assets/CorporateGift6.jpeg";
-import CorporateGift7 from "@/assets/CorporateGift7.jpeg";
-import CorporateGift8 from "@/assets/CorporateGift8.jpeg";
-import CorporateGift9 from "@/assets/CorporateGift9.jpeg";
-import CorporateGift10 from "@/assets/CorporateGift10.jpeg";
-import giftHampers1 from "@/assets/gift-hampers1.jpeg";
-import giftHampers2 from "@/assets/gift-hampers2.jpeg";
-import giftHampers3 from "@/assets/gift-hampers3.jpeg";
-import giftHampers4 from "@/assets/gift-hampers4.jpeg";
-import giftHampers5 from "@/assets/gift-hampers5.jpeg";
-import giftHampers6 from "@/assets/gift-hampers6.jpeg";
-import giftHampers7 from "@/assets/gift-hampers7.jpeg";
-import giftHampers8 from "@/assets/gift-hampers8.jpeg";
-import giftHampers9 from "@/assets/gift-hampers9.jpeg";
-import giftHampers10 from "@/assets/gift-hampers10.jpeg";
-import Apparel1 from "@/assets/Apparel1.png"
-import Apparel2 from "@/assets/Apparel2.png"
-import Apparel3 from "@/assets/Apparel3.png"
-import Apparel4 from "@/assets/Apparel4.png"
-import Apparel5 from "@/assets/Apparel5.png"
-import Apparel6 from "@/assets/Apparel6.png"
-import Apparel7 from "@/assets/Apparel7.png"
-import Apparel8 from "@/assets/Apparel8.png"
-import Apparel9 from "@/assets/Apparel9.png"
-import Apparel10 from "@/assets/Apparel10.png"
-import LaptopBags1 from "@/assets/LaptopBags1.png"
-import LaptopBags2 from "@/assets/LaptopBags2.png"
-import LaptopBags3 from "@/assets/LaptopBags3.png"
-import LaptopBags4 from "@/assets/LaptopBags4.png"
-import LaptopBags5 from "@/assets/LaptopBags5.png"
-import LaptopBags6 from "@/assets/LaptopBags6.png"
-import LaptopBags7 from "@/assets/LaptopBags7.png"
-import LaptopBags8 from "@/assets/LaptopBags8.png"
-import LaptopBags9 from "@/assets/LaptopBags9.png"
-import Accessories1 from "@/assets/Accessories1.png"
-import Accessories2 from "@/assets/Accessories2.png"
-import Accessories3 from "@/assets/Accessories3.png"
-import Accessories4 from "@/assets/Accessories4.png"
-import Accessories5 from "@/assets/Accessories5.png"
-import Accessories6 from "@/assets/Accessories6.png"
-import Accessories7 from "@/assets/Accessories7.png"
-import Accessories8 from "@/assets/Accessories8.png"
-import Accessories9 from "@/assets/Accessories9.jpg"
-import Promotional1 from "@/assets/Promotional1.png"
-import Promotional2 from "@/assets/Promotional2.png"
-import Promotional3 from "@/assets/Promotional3.png"
-import Promotional4 from "@/assets/Promotional4.png"
-import Promotional5 from "@/assets/Promotional5.png"
-import Promotional6 from "@/assets/Promotional6.png"
-import Promotional7 from "@/assets/Promotional7.png"
-import Promotional8 from "@/assets/Promotional8.png"
-import Promotional9 from "@/assets/Promotional9.png"
-import CorporateCakes1 from "@/assets/CorporateCakes1.jpeg"
-import CorporateCakes2 from "@/assets/CorporateCakes2.jpeg"
-import CorporateCakes3 from "@/assets/CorporateCakes3.jpeg"
-import CorporateCakes4 from "@/assets/CorporateCakes4.jpeg"
-import CorporateCakes5 from "@/assets/CorporateCakes5.jpeg"
-import CorporateCakes6 from "@/assets/CorporateCakes6.jpeg"
-import CorporateCakes8 from "@/assets/CorporateCakes8.jpeg"
-import CorporateCakes9 from "@/assets/CorporateCakes9.jpeg"
-import CorporateCakes10 from "@/assets/CorporateCakes10.jpeg"
-import Technology1 from "@/assets/Technology1.jpeg"
-import Technology2 from "@/assets/Technology2.jpeg"
-import Technology3 from "@/assets/Technology3.jpeg"
-import Technology4 from "@/assets/Technology4.jpeg"
-import Technology5 from "@/assets/Technology5.jpeg"
-import Technology6 from "@/assets/Technology6.jpeg"
-import Technology7 from "@/assets/Technology7.jpeg"
-import Technology8 from "@/assets/Technology8.jpeg"
-import Technology9 from "@/assets/Technology9.jpeg"
-import Technology10 from "@/assets/Technology10.jpeg"
-import CorporateBags1 from "@/assets/CorporateBags1.jpeg"
-import CorporateBags2 from "@/assets/CorporateBags2.jpeg"
-import CorporateBags3 from "@/assets/CorporateBags3.jpeg"
-import CorporateBags4 from "@/assets/CorporateBags4.jpeg"
-import CorporateBags5 from "@/assets/CorporateBags5.jpeg"
-import CorporateBags6 from "@/assets/CorporateBags6.jpeg"
-import CorporateBags7 from "@/assets/CorporateBags7.jpeg"
-import CorporateBags8 from "@/assets/CorporateBags8.jpeg"
-import CorporateBags9 from "@/assets/CorporateBags9.jpeg"
-import CorporateBags10 from "@/assets/CorporateBags10.jpeg"
-import SafetyItem1 from "@/assets/SafetyItem1.jpeg"
-import SafetyItem2 from "@/assets/SafetyItem2.jpeg"
-import SafetyItem3 from "@/assets/SafetyItem3.jpeg"
-import SafetyItem4 from "@/assets/SafetyItem4.jpeg"
-import SafetyItem5 from "@/assets/SafetyItem5.jpeg"
-import SafetyItem6 from "@/assets/SafetyItem6.jpeg"
-import SafetyItem7 from "@/assets/SafetyItem7.jpeg"
-import SafetyItem8 from "@/assets/SafetyItem8.jpeg"
-import SafetyItem9 from "@/assets/SafetyItem9.jpeg"
-import SafetyItem10 from "@/assets/SafetyItem10.jpeg"
-import OfficeGifts1 from "@/assets/OfficeGifts1.jpeg"
-import OfficeGifts2 from "@/assets/OfficeGifts2.jpeg"
-import OfficeGifts3 from "@/assets/OfficeGifts3.jpeg"
-import OfficeGifts4 from "@/assets/OfficeGifts4.jpeg"
-import OfficeGifts5 from "@/assets/OfficeGifts5.jpeg"
-import OfficeGifts6 from "@/assets/OfficeGifts6.png"
-import OfficeGifts7 from "@/assets/OfficeGifts7.png"
-import OfficeGifts8 from "@/assets/OfficeGifts8.png"
-import OfficeGifts9 from "@/assets/OfficeGifts9.png"
-import OfficeGifts10 from "@/assets/OfficeGifts10.png"
-import Drinkware1 from "@/assets/Drinkware1.png"
-import Drinkware2 from "@/assets/Drinkware2.png"
-import Drinkware3 from "@/assets/Drinkware3.png"
-import Drinkware4 from "@/assets/Drinkware4.png"
-import Drinkware5 from "@/assets/Drinkware5.png"
-import Drinkware6 from "@/assets/Drinkware6.png"
-import Drinkware7 from "@/assets/Drinkware7.png"
-import Drinkware8 from "@/assets/Drinkware8.png"
-import Drinkware9 from "@/assets/Drinkware9.png"
-import Drinkware10 from "@/assets/Drinkware10.png"
-import giftBags from "@/assets/gift-bags.png";
-import giftTech from "@/assets/gift-tech.png";
-import trending1 from "@/assets/trending-1-new.png";
-import trending2 from "@/assets/trending-2.png";
-import trending3 from "@/assets/trending-3.jpg";
-import trending4 from "@/assets/trending-4.png";
-import trending5 from "@/assets/trending-5.png";
-import trending6 from "@/assets/trending-6.png";
-
 /* ─── Gift Categories ─── */
 const giftCategories = [
-  { img: giftHamper, label: "Corporate Gift Hampers", type: "Corporate Gift Hampers" },
-  { img: Onboarding1, label: "Onboarding Gifts", type: "Onboarding Gifts" },
-  { img: gifttFlowes1, label: "Corporate Flowers", type: "Corporate Flowers" },
-  { img: cupcakes1, label: "Cupcakes for Corporate Events", type: "Cupcakes for Corporate Events" },
-  { img: giftWriting, label: "Office & Writing Gifts for Corporate", type: "Office & Writing Gifts for Corporate" },
-  { img: CorporateChocolate1, label: "Chocolates for Corporate Gifting", type: "Chocolates for Corporate Gifting" },
-  { img: CorporateGift1, label: "Corporate Gifts", type: "Corporate Gifts" },
-  { img: giftGadgets, label: "Corporate Technology Gifts", type: "Corporate Technology Gifts" },
-  { img: giftEmployee, label: "Gifts for Employees", type: "Gifts for Employees" },
-  { img: LaptopBags1, label: "Laptop Bags for Corporate Gifting", type: "Laptop Bags for Corporate Gifting" },
-  { img: Apparel1, label: "Apparel for Corporate Gifting", type: "Apparel for Corporate Gifting" },
-  { img: giftVip, label: "VIP & Executive", type: "VIP & Executive" },
-  { img: giftPlants1, label: "Corporate Plants", type: "Corporate Plants" },
-  { img: giftSustainable, label: "Sustainable Products", type: "Sustainable Products" },
-  { img: giftDrinkware, label: "Drinkware for Corporate Gifting", type: "Drinkware for Corporate Gifting" },
-  { img: CorporateBags1, label: "Corporate Bags & Travel Gifts", type: "Corporate Bags & Travel Gifts" },
-  { img: Technology1, label: "Corporate Technology Gifts", type: "Corporate Technology Gifts" },
-  { img: Accessories1, label: "Personal Accessories", type: "Personal Accessories" },
-  { img: Promotional1, label: "Corporate Promotional Gifts", type: "Corporate Promotional Gifts" },
-  { img: CorporateCakes1, label: "Corporate Cakes", type: "Corporate Cakes" },
-  { img: SafetyItem1, label: "Outdoor & Safety Items", type: "Outdoor & Safety Items" },
-];
-
-/* ─── Trending Products ─── */
-const trendingGifts = [
-  { img: trending1, title: "Executive Leather Set", price: "AED 350", tag: "Best Seller", category: "Office & Writing Gifts for Corporate" },
-  { img: trending2, title: "Luxury Chocolate Box", price: "AED 180", tag: "Popular", category: "Chocolates for Corporate Gifting" },
-  { img: trending3, title: "Wellness Hamper", price: "AED 420", tag: "New", category: "Corporate Gift Hampers" },
-  { img: trending4, title: "Branded Tech Kit", price: "AED 550", tag: "Premium", category: "Corporate Technology Gifts" },
-  { img: trending5, title: "Gourmet Food Hamper", price: "AED 290", tag: "Trending", category: "Corporate Gift Hampers" },
-  { img: trending6, title: "Desk Organizer Set", price: "AED 220", tag: "Popular", category: "Office & Writing Gifts for Corporate" },
+  { img: hampersGifts[0].img, label: "Corporate Gift Hampers", type: "Corporate Gift Hampers" },
+  { img: onboardingGifts[0].img, label: "Onboarding Gifts", type: "Onboarding Gifts" },
+  { img: flowersGifts[0].img, label: "Corporate Flowers", type: "Corporate Flowers" },
+  { img: cupcakesGifts[0].img, label: "Cupcakes for Corporate Events", type: "Cupcakes for Corporate Events" },
+  { img: officeGifts[0].img, label: "Office & Writing Gifts for Corporate", type: "Office & Writing Gifts for Corporate" },
+  { img: chocolatesGifts[0].img, label: "Chocolates for Corporate Gifting", type: "Chocolates for Corporate Gifting" },
+  { img: generalGifts[0].img, label: "Corporate Gifts", type: "Corporate Gifts" },
+  { img: techGifts[0].img, label: "Corporate Technology Gifts", type: "Corporate Technology Gifts" },
+  { img: generalGifts[1].img, label: "Gifts for Employees", type: "Gifts for Employees" },
+  { img: laptopBagsGifts[0].img, label: "Laptop Bags for Corporate Gifting", type: "Laptop Bags for Corporate Gifting" },
+  { img: apparelGifts[0].img, label: "Apparel for Corporate Gifting", type: "Apparel for Corporate Gifting" },
+  { img: vipGifts[0].img, label: "VIP & Executive", type: "VIP & Executive" },
+  { img: plantsGifts[0].img, label: "Corporate Plants", type: "Corporate Plants" },
+  { img: generalGifts[2].img, label: "Sustainable Products", type: "Sustainable Products" },
+  { img: drinkwareGifts[0].img, label: "Drinkware for Corporate Gifting", type: "Drinkware for Corporate Gifting" },
+  { img: travelBagsGifts[0].img, label: "Corporate Bags & Travel Gifts", type: "Corporate Bags & Travel Gifts" },
+  { img: personalAccessoriesGifts[0].img, label: "Personal Accessories", type: "Personal Accessories" },
+  { img: promotionalGifts[0].img, label: "Corporate Promotional Gifts", type: "Corporate Promotional Gifts" },
+  { img: cakesGifts[0].img, label: "Corporate Cakes", type: "Corporate Cakes" },
+  { img: safetyGifts[0].img, label: "Outdoor & Safety Items", type: "Outdoor & Safety Items" },
 ];
 
 /* ─── All Sample Gifting Items (for filter) ─── */
 const allGifts = [
-  ...trendingGifts,
-  { img: giftHampers1, title: "Executive Gourmet Celebration Hamper", price: "AED 549", tag: "Premium", category: "Corporate Gift Hampers" },
-  { img: giftHampers2, title: "Artisan Coffee & Treats Box", price: "AED 380", tag: "Popular", category: "Corporate Gift Hampers" },
-  { img: giftHampers3, title: "Luxury Wellness & Spa Set", price: "AED 420", tag: "Bestseller", category: "Corporate Gift Hampers" },
-  { img: giftHampers5, title: "Premium Dark Chocolate Selection", price: "AED 290", tag: "Gift", category: "Corporate Gift Hampers" },
-  { img: giftHampers6, title: "Office Energy Boost Kit", price: "AED 310", tag: "New", category: "Corporate Gift Hampers" },
-  { img: giftHampers7, title: "Signature Tea Party Hamper", price: "AED 450", tag: "Elegant", category: "Corporate Gift Hampers" },
-  { img: giftHampers8, title: "Gourmet Savory Retreat", price: "AED 390", tag: "Gourmet", category: "Corporate Gift Hampers" },
-  { img: giftHampers9, title: "Elite Executive Hamper V2", price: "AED 680", tag: "Elite", category: "Corporate Gift Hampers" },
-  { img: giftHampers10, title: "Employee Appreciation Basket", price: "AED 210", tag: "Value", category: "Corporate Gift Hampers" },
-  { img: giftHamper, title: "Deluxe Celebration Hamper", price: "AED 449", tag: "Bestseller", category: "Corporate Gift Hampers" },
-  { img: Onboarding1, title: "Welcome Kit - Series A", price: "AED 299", tag: "New", category: "Onboarding Gifts" },
-  { img: Onboarding2, title: "Premium Onboarding Hamper", price: "AED 419", tag: "Premium", category: "Onboarding Gifts" },
-  { img: Onboarding3, title: "Executive Starter Kit", price: "AED 549", tag: "Bestseller", category: "Onboarding Gifts" },
-  { img: Onboarding4, title: "Tech Welcome Pack", price: "AED 379", tag: "Tech", category: "Onboarding Gifts" },
-  { img: Onboarding5, title: "Eco-Friendly Welcome Box", price: "AED 349", tag: "Eco", category: "Onboarding Gifts" },
-  { img: Onboarding6, title: "Welcome Kit - Series B", price: "AED 299", tag: "New", category: "Onboarding Gifts" },
-  { img: Onboarding7, title: "Luxury Onboarding Hamper", price: "AED 419", tag: "Premium", category: "Onboarding Gifts" },
-  { img: Onboarding8, title: "Corporate Welcome Gift Set", price: "AED 419", tag: "Premium", category: "Onboarding Gifts" },
-  { img: Onboarding9, title: "Employee Welcome Kit V2", price: "AED 419", tag: "Premium", category: "Onboarding Gifts" },
-  { img: Onboarding10, title: "Elite Onboarding Package", price: "AED 419", tag: "Premium", category: "Onboarding Gifts" },
-  { img: giftPlants1, title: "Bonsai Zen Tree", price: "AED 119", tag: "Plants", category: "Corporate Plants" },
-  { img: giftPlants2, title: "Desktop Succulent Garden", price: "AED 145", tag: "Popular", category: "Corporate Plants" },
-  { img: giftPlants3, title: "Premium Snake Plant", price: "AED 180", tag: "Bestseller", category: "Corporate Plants" },
-  { img: giftPlants4, title: "Mini Money Tree", price: "AED 160", tag: "Prosperity", category: "Corporate Plants" },
-  { img: giftPlants5, title: "Office Aloe Vera Set", price: "AED 135", tag: "Purifying", category: "Corporate Plants" },
-  { img: giftPlants6, title: "Executive Peace Lily", price: "AED 220", tag: "Premium", category: "Corporate Plants" },
-  { img: giftPlants7, title: "Branded Bamboo Plant", price: "AED 195", tag: "Custom", category: "Corporate Plants" },
-  { img: giftPlants8, title: "Jade Plant Arrangement", price: "AED 175", tag: "Good Luck", category: "Corporate Plants" },
-  { img: giftPlants9, title: "Modern Ficus Bonsai", price: "AED 310", tag: "Luxury", category: "Corporate Plants" },
-  { img: giftPlants10, title: "Ceramic Pothos Bowl", price: "AED 150", tag: "New", category: "Corporate Plants" },
-  { img: gifttFlowes1, title: "Luxury Corporate Roses", price: "AED 350", tag: "Premium", category: "Corporate Flowers" },
-  { img: gifttFlowes2, title: "Elegant Orchid Arrangement", price: "AED 420", tag: "Bestseller", category: "Corporate Flowers" },
-  { img: gifttFlowes3, title: "Classic Mixed Bouquet", price: "AED 290", tag: "Popular", category: "Corporate Flowers" },
-  { img: gifttFlowes4, title: "Desktop Flower Vase", price: "AED 210", tag: "New", category: "Corporate Flowers" },
-  { img: gifttFlowes5, title: "Executive Hydrangeas", price: "AED 380", tag: "Luxury", category: "Corporate Flowers" },
-  { img: gifttFlowes6, title: "Corporate Event Centerpiece", price: "AED 450", tag: "Event", category: "Corporate Flowers" },
-  { img: gifttFlowes7, title: "Welcome Desk Arrangement", price: "AED 260", tag: "Classic", category: "Corporate Flowers" },
-  { img: gifttFlowes8, title: "Festive Flower Basket", price: "AED 340", tag: "Festive", category: "Corporate Flowers" },
-  { img: gifttFlowes9, title: "Premium Lily Collection", price: "AED 390", tag: "Premium", category: "Corporate Flowers" },
-  { img: gifttFlowes10, title: "Bespoke Floral Stand", price: "AED 550", tag: "Grand", category: "Corporate Flowers" },
-  { img: cupcakes1, title: "Logo Printed Cupcakes", price: "AED 180", tag: "Branded", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes2, title: "Premium Assorted Cupcakes", price: "AED 150", tag: "Bestseller", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes3, title: "Executive Event Cupcakes", price: "AED 220", tag: "VIP", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes4, title: "Celebration Cupcake Platter", price: "AED 250", tag: "Event", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes5, title: "Mini Diet Cupcakes", price: "AED 190", tag: "Healthy", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes6, title: "Elegant Gold Foil Cupcakes", price: "AED 320", tag: "Luxury", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes7, title: "Employee Birthday Cupcakes", price: "AED 140", tag: "Popular", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes8, title: "Festive Themed Cupcakes", price: "AED 210", tag: "Festive", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes9, title: "Custom Color Cupcakes", price: "AED 200", tag: "Custom", category: "Cupcakes for Corporate Events" },
-  { img: giftDrinkware, title: "Thermal Hydration Bottle", price: "AED 89", tag: "Premium", category: "Drinkware for Corporate Gifting" },
-  { img: giftWriting, title: "Signature Fountain Pen", price: "AED 209", tag: "Executive", category: "Office & Writing Gifts for Corporate" },
-  { img: giftLaptopBag, title: "Anti-Theft Commuter Bag", price: "AED 319", tag: "Popular", category: "Laptop Bags for Corporate Gifting" },
-  { img: trending2, title: "Belgian Truffles Box", price: "AED 149", tag: "Gift", category: "Chocolates for Corporate Gifting" },
-  { img: trending4, title: "Wireless Charging Pad", price: "AED 179", tag: "Tech", category: "Corporate Technology Gifts" },
-  { img: giftVip, title: "Crystal Award Plaque", price: "AED 849", tag: "VIP", category: "VIP & Executive" },
-  { img: CorporateChocolate1, title: "Signature Truffle Collection", price: "AED 120", tag: "Premium", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate2, title: "Luxury Dark Pralines", price: "AED 145", tag: "Popular", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate3, title: "Assorted Belgian Delights", price: "AED 180", tag: "Bestseller", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate4, title: "Artisan Milk Chocolate Box", price: "AED 95", tag: "Classic", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate5, title: "Gourmet Ganache Selection", price: "AED 210", tag: "Luxury", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate6, title: "Branded Logo Chocolates", price: "AED 165", tag: "Custom", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate7, title: "Elite Cocoa Collection", price: "AED 240", tag: "VIP", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate8, title: "Gold Foil Surprise Box", price: "AED 135", tag: "Festive", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate9, title: "Master Chocolatier Set", price: "AED 320", tag: "Grand", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate10, title: "Sweet Appreciation Hamper", price: "AED 155", tag: "New", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateGift1, title: "Premium Corporate Gift Set", price: "AED 349", tag: "VIP", category: "Corporate Gifts" },
-  { img: CorporateGift2, title: "Executive Office Essentials", price: "AED 280", tag: "Bestseller", category: "Corporate Gifts" },
-  { img: CorporateGift3, title: "Modern Workplace Kit", price: "AED 320", tag: "Popular", category: "Corporate Gifts" },
-  { img: CorporateGift4, title: "Luxe Career Milestone Gift", price: "AED 550", tag: "Premium", category: "Corporate Gifts" },
-  { img: CorporateGift5, title: "Signature Branded Hamper", price: "AED 190", tag: "Custom", category: "Corporate Gifts" },
-  { img: CorporateGift6, title: "Executive Harmony Collection", price: "AED 410", tag: "Elegant", category: "Corporate Gifts" },
-  { img: CorporateGift7, title: "Corporate Distinction Box", price: "AED 370", tag: "Distinguished", category: "Corporate Gifts" },
-  { img: CorporateGift8, title: "Strategic Partner Gift Set", price: "AED 620", tag: "Grand", category: "Corporate Gifts" },
-  { img: CorporateGift9, title: "Unity Performance Award", price: "AED 240", tag: "Special", category: "Corporate Gifts" },
-  { img: CorporateGift10, title: "Visionary Leader Ensemble", price: "AED 890", tag: "Elite", category: "Corporate Gifts" },
-  // Laptop Bags
-  { img: LaptopBags1, title: "Executive Laptop Bag I", price: "AED 249", tag: "Premium", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags2, title: "Slim Business Laptop Bag", price: "AED 199", tag: "Popular", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags3, title: "Branded Commuter Bag", price: "AED 279", tag: "Bestseller", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags4, title: "Anti-Theft Laptop Backpack", price: "AED 319", tag: "Secure", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags5, title: "Executive Leather Laptop Bag", price: "AED 399", tag: "Luxury", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags6, title: "Corporate Laptop Shoulder Bag", price: "AED 229", tag: "Classic", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags7, title: "Multi-Pocket Office Bag", price: "AED 259", tag: "Functional", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags8, title: "Waterproof Laptop Bag", price: "AED 289", tag: "Durable", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags9, title: "Eco-Friendly Laptop Bag", price: "AED 219", tag: "Eco", category: "Laptop Bags for Corporate Gifting" },
-  // Apparel
-  { img: Apparel1, title: "Branded Corporate Polo Shirt", price: "AED 89", tag: "Popular", category: "Apparel for Corporate Gifting" },
-  { img: Apparel2, title: "Premium Embroidered Hoodie", price: "AED 149", tag: "Bestseller", category: "Apparel for Corporate Gifting" },
-  { img: Apparel3, title: "Corporate Jacket with Logo", price: "AED 229", tag: "Premium", category: "Apparel for Corporate Gifting" },
-  { img: Apparel4, title: "Branded T-Shirt Collection", price: "AED 69", tag: "Classic", category: "Apparel for Corporate Gifting" },
-  { img: Apparel5, title: "Executive Vest with Branding", price: "AED 179", tag: "Elegant", category: "Apparel for Corporate Gifting" },
-  { img: Apparel6, title: "Custom Print Sweatshirt", price: "AED 119", tag: "Custom", category: "Apparel for Corporate Gifting" },
-  { img: Apparel7, title: "Corporate Cap & Hat Set", price: "AED 59", tag: "Trendy", category: "Apparel for Corporate Gifting" },
-  { img: Apparel8, title: "Branded Sports Jersey", price: "AED 139", tag: "Active", category: "Apparel for Corporate Gifting" },
-  { img: Apparel9, title: "Luxury Embroidered Shirt", price: "AED 199", tag: "Luxury", category: "Apparel for Corporate Gifting" },
-  { img: Apparel10, title: "Full Uniform Corporate Set", price: "AED 349", tag: "VIP", category: "Apparel for Corporate Gifting" },
-  // Personal Accessories
-  { img: Accessories1, title: "Premium Leather Wallet", price: "AED 149", tag: "Premium", category: "Personal Accessories" },
-  { img: Accessories2, title: "Executive Card Holder", price: "AED 99", tag: "Popular", category: "Personal Accessories" },
-  { img: Accessories3, title: "Branded Keychain Set", price: "AED 79", tag: "Bestseller", category: "Personal Accessories" },
-  { img: Accessories4, title: "Corporate Pen Set", price: "AED 120", tag: "Classic", category: "Personal Accessories" },
-  { img: Accessories5, title: "Luxury Watch Box Set", price: "AED 350", tag: "Luxury", category: "Personal Accessories" },
-  { img: Accessories6, title: "Branded Sunglasses Case", price: "AED 89", tag: "Trendy", category: "Personal Accessories" },
-  { img: Accessories7, title: "Elite Cufflink Set", price: "AED 199", tag: "Elegant", category: "Personal Accessories" },
-  { img: Accessories8, title: "Premium Belt Gift Box", price: "AED 249", tag: "VIP", category: "Personal Accessories" },
-  { img: Accessories9, title: "Signature Scarf Collection", price: "AED 175", tag: "New", category: "Personal Accessories" },
-  // Corporate Promotional Gifts
-  { img: Promotional1, title: "Branded Tote Bag", price: "AED 59", tag: "Popular", category: "Corporate Promotional Gifts" },
-  { img: Promotional2, title: "Custom Logo Mug Set", price: "AED 75", tag: "Bestseller", category: "Corporate Promotional Gifts" },
-  { img: Promotional3, title: "Promotional Pen Pack", price: "AED 45", tag: "Value", category: "Corporate Promotional Gifts" },
-  { img: Promotional4, title: "Corporate Notebook Set", price: "AED 89", tag: "Classic", category: "Corporate Promotional Gifts" },
-  { img: Promotional5, title: "Branded USB Drive", price: "AED 65", tag: "Tech", category: "Corporate Promotional Gifts" },
-  { img: Promotional6, title: "Custom Printed Cap", price: "AED 55", tag: "Trendy", category: "Corporate Promotional Gifts" },
-  { img: Promotional7, title: "Eco Promotional Kit", price: "AED 110", tag: "Eco", category: "Corporate Promotional Gifts" },
-  { img: Promotional8, title: "Event Giveaway Bundle", price: "AED 95", tag: "Event", category: "Corporate Promotional Gifts" },
-  { img: Promotional9, title: "Premium Promo Gift Set", price: "AED 135", tag: "Premium", category: "Corporate Promotional Gifts" },
-  // Corporate Cakes
-  { img: CorporateCakes1, title: "Luxury Branded Corporate Cake", price: "AED 299", tag: "Premium", category: "Corporate Cakes" },
-  { img: CorporateCakes2, title: "Logo Printed Celebration Cake", price: "AED 249", tag: "Branded", category: "Corporate Cakes" },
-  { img: CorporateCakes3, title: "Executive Tier Cake", price: "AED 399", tag: "Elegant", category: "Corporate Cakes" },
-  { img: CorporateCakes4, title: "Corporate Anniversary Cake", price: "AED 349", tag: "Bestseller", category: "Corporate Cakes" },
-  { img: CorporateCakes5, title: "Gold Foil Business Cake", price: "AED 450", tag: "Luxury", category: "Corporate Cakes" },
-  { img: CorporateCakes6, title: "Customised Office Party Cake", price: "AED 279", tag: "Custom", category: "Corporate Cakes" },
-  { img: CorporateCakes8, title: "Mini Corporate Cupcake Tower", price: "AED 380", tag: "Event", category: "Corporate Cakes" },
-  { img: CorporateCakes9, title: "Bespoke Milestone Cake", price: "AED 499", tag: "VIP", category: "Corporate Cakes" },
-  { img: CorporateCakes10, title: "Classic Branded Sponge Cake", price: "AED 219", tag: "New", category: "Corporate Cakes" },
-  // Corporate Technology Gifts
-  { img: Technology1, title: "Wireless Earbuds Gift Set", price: "AED 299", tag: "Premium", category: "Corporate Technology Gifts" },
-  { img: Technology2, title: "Smart Bluetooth Speaker", price: "AED 249", tag: "Popular", category: "Corporate Technology Gifts" },
-  { img: Technology3, title: "Branded Wireless Charger", price: "AED 179", tag: "Bestseller", category: "Corporate Technology Gifts" },
-  { img: Technology4, title: "Executive Power Bank", price: "AED 199", tag: "Essential", category: "Corporate Technology Gifts" },
-  { img: Technology5, title: "USB-C Hub Gift Box", price: "AED 229", tag: "Tech", category: "Corporate Technology Gifts" },
-  { img: Technology6, title: "Smart Watch Corporate Edition", price: "AED 549", tag: "Luxury", category: "Corporate Technology Gifts" },
-  { img: Technology7, title: "Branded Laptop Stand Kit", price: "AED 189", tag: "Elegant", category: "Corporate Technology Gifts" },
-  { img: Technology8, title: "Noise Cancelling Headphones", price: "AED 649", tag: "VIP", category: "Corporate Technology Gifts" },
-  { img: Technology9, title: "Corporate LED Desk Lamp", price: "AED 159", tag: "Classic", category: "Corporate Technology Gifts" },
-  { img: Technology10, title: "Smart Notebook & Stylus Set", price: "AED 219", tag: "New", category: "Corporate Technology Gifts" },
-  // Corporate Bags & Travel Gifts
-  { img: CorporateBags1, title: "Executive Leather Duffel Bag", price: "AED 349", tag: "Premium", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags2, title: "Branded Business Trolley", price: "AED 499", tag: "Bestseller", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags3, title: "Corporate Travel Backpack", price: "AED 279", tag: "Popular", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags4, title: "Luxury Weekend Holdall", price: "AED 429", tag: "Luxury", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags5, title: "Branded Passport Wallet Set", price: "AED 149", tag: "Classic", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags6, title: "Corporate Messenger Bag", price: "AED 229", tag: "Elegant", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags7, title: "Custom Printed Tote Bag", price: "AED 89", tag: "Trendy", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags8, title: "Executive Cabin Luggage", price: "AED 599", tag: "VIP", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags9, title: "Eco Travel Kit Bag", price: "AED 199", tag: "Eco", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags10, title: "Slim Tech Carry Bag", price: "AED 259", tag: "New", category: "Corporate Bags & Travel Gifts" },
-  // Outdoor & Safety Items
-  { img: SafetyItem1, title: "Premium Safety Vest Gift Set", price: "AED 129", tag: "Essential", category: "Outdoor & Safety Items" },
-  { img: SafetyItem2, title: "Branded First Aid Kit", price: "AED 99", tag: "Popular", category: "Outdoor & Safety Items" },
-  { img: SafetyItem3, title: "Corporate Outdoor Adventure Kit", price: "AED 249", tag: "Bestseller", category: "Outdoor & Safety Items" },
-  { img: SafetyItem4, title: "Reflective Safety Cap Set", price: "AED 79", tag: "Classic", category: "Outdoor & Safety Items" },
-  { img: SafetyItem5, title: "Emergency Roadside Kit", price: "AED 189", tag: "Safety", category: "Outdoor & Safety Items" },
-  { img: SafetyItem6, title: "Branded Hard Hat Collection", price: "AED 149", tag: "Custom", category: "Outdoor & Safety Items" },
-  { img: SafetyItem7, title: "Executive Outdoor Survival Kit", price: "AED 299", tag: "Premium", category: "Outdoor & Safety Items" },
-  { img: SafetyItem8, title: "Corporate PPE Gift Bundle", price: "AED 179", tag: "VIP", category: "Outdoor & Safety Items" },
-  { img: SafetyItem9, title: "Branded Safety Torch Set", price: "AED 109", tag: "Trendy", category: "Outdoor & Safety Items" },
-  { img: SafetyItem10, title: "Eco Outdoor Wellness Kit", price: "AED 219", tag: "Eco", category: "Outdoor & Safety Items" },
-  // Office & Writing Gifts for Corporate
-  { img: OfficeGifts1, title: "Executive Notebook & Pen Set", price: "AED 149", tag: "Premium", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts2, title: "Smart Leather Desk Organizer", price: "AED 199", tag: "Popular", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts3, title: "Branded Metal Rollerball Pen", price: "AED 89", tag: "Bestseller", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts4, title: "Luxury Fountain Pen Set", price: "AED 299", tag: "Luxury", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts5, title: "Custom Engraved Bamboo Pen", price: "AED 59", tag: "Eco", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts6, title: "Premium A5 Leather Journal", price: "AED 129", tag: "Classic", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts7, title: "Corporate Desk Clock & Pen Stand", price: "AED 179", tag: "Elegant", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts8, title: "Executive Portfolio Manager", price: "AED 249", tag: "VIP", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts9, title: "Wireless Charging Mouse Pad", price: "AED 139", tag: "Tech", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts10, title: "Eco-Friendly Cork Notebook Set", price: "AED 99", tag: "New", category: "Office & Writing Gifts for Corporate" },
-  // Drinkware for Corporate Gifting
-  { img: Drinkware1, title: "Premium Thermal Hydration Flask", price: "AED 129", tag: "Premium", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware2, title: "Branded Smart Vacuum Cup", price: "AED 149", tag: "Popular", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware3, title: "Eco-Friendly Bamboo Mug", price: "AED 79", tag: "Bestseller", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware4, title: "Luxury Matte Black Tumbler", price: "AED 199", tag: "Luxury", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware5, title: "Custom Glass Infuser Bottle", price: "AED 89", tag: "Eco", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware6, title: "Classic Steel Travel Mug", price: "AED 95", tag: "Classic", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware7, title: "Corporate Insulated Coffee Cup", price: "AED 115", tag: "Elegant", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware8, title: "Executive Crystal Glass Set", price: "AED 249", tag: "VIP", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware9, title: "Smart Temperature Display Bottle", price: "AED 139", tag: "Tech", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware10, title: "Compact Collapsible Silicon Cup", price: "AED 69", tag: "New", category: "Drinkware for Corporate Gifting" },
+  ...allModularGifts,
+  ...trendingGiftsData,
 ];
 
 /* ─── Why Choose Us ─── */
@@ -922,43 +591,75 @@ const CorporateGifts = () => {
           </AnimatedSection>
 
           {activeType ? (
-            /* ─── Filtered Collection View ─── */
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {allGifts.filter(g => g.category === activeType || (g as any).type === activeType).length > 0 ? (
-                allGifts.filter(g => g.category === activeType || (g as any).type === activeType).map((gift, i) => (
-                  <motion.div
-                    key={`${gift.title}-${i}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
-                  >
-                    <div
-                      className="relative aspect-square overflow-hidden cursor-pointer flex items-center justify-center bg-gray-50/20"
-                      onClick={() => handleProductClick(gift)}
-                    >
-                      <img src={gift.img} alt={gift.title} className="w-full h-full object-contain mix-blend-multiply p-4 group-hover:scale-110 transition-transform duration-700" />
-                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-primary-foreground bg-elvie-navy border border-elvie-gold/30 shadow-lg">
-                        {gift.tag}
-                      </span>
-                    </div>
-                    <div className="p-3 text-center">
-                      <h3
-                        className="text-[13px] font-bold text-foreground group-hover:text-elvie-navy transition-colors cursor-pointer line-clamp-1"
-                        onClick={() => handleProductClick(gift)}
-                      >
-                        {gift.title}
-                      </h3>
-                    </div>
-                  </motion.div>
-                ))
-              ) : (
-                <div className="col-span-full py-24 text-center border-2 border-dashed border-border rounded-3xl">
-                  <Package className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
-                  <p className="text-xl font-bold text-muted-foreground mb-4">More collections for {activeType} are coming soon!</p>
-                  <button onClick={() => navigate('/corporate')} className="text-elvie-navy font-bold hover:underline">Browse current collection</button>
-                </div>
-              )}
+            /* ─── Filtered Collection View (Modular Components) ─── */
+            <div className="w-full">
+              {activeType === "Apparel for Corporate Gifting" && <CorporateApparel onProductClick={handleProductClick} />}
+              {activeType === "Corporate Cakes" && <CorporateCakes onProductClick={handleProductClick} />}
+              {activeType === "Chocolates for Corporate Gifting" && <CorporateChocolates onProductClick={handleProductClick} />}
+              {activeType === "Cupcakes for Corporate Events" && <CorporateCupcakes onProductClick={handleProductClick} />}
+              {activeType === "Corporate Flowers" && <CorporateFlowers onProductClick={handleProductClick} />}
+              {activeType === "Corporate Plants" && <CorporatePlants onProductClick={handleProductClick} />}
+              {activeType === "Corporate Technology Gifts" && <CorporateTechGifts onProductClick={handleProductClick} />}
+              {activeType === "Corporate Gifts" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+              {activeType === "Corporate Gift Hampers" && <CorporateGiftHampers onProductClick={handleProductClick} />}
+              {activeType === "VIP & Executive" && <VipExecutiveGifts onProductClick={handleProductClick} />}
+              {activeType === "Corporate Bags & Travel Gifts" && <CorporateTravelBags onProductClick={handleProductClick} />}
+              {activeType === "Outdoor & Safety Items" && <OutdoorSafetyGifts onProductClick={handleProductClick} />}
+              {activeType === "Drinkware for Corporate Gifting" && <DrinkwareGifts onProductClick={handleProductClick} />}
+              {activeType === "Laptop Bags for Corporate Gifting" && <LaptopBags onProductClick={handleProductClick} />}
+              {activeType === "Office & Writing Gifts for Corporate" && <OfficeGifts onProductClick={handleProductClick} />}
+              {activeType === "Onboarding Gifts" && <OnboardingGifts onProductClick={handleProductClick} />}
+              {activeType === "Personal Accessories" && <PersonalAccessories onProductClick={handleProductClick} />}
+              {activeType === "Corporate Promotional Gifts" && <PromotionalGifts onProductClick={handleProductClick} />}
+              {activeType === "Gifts for Employees" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+              {activeType === "Sustainable Products" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+
+              {/* Fallback for categories without specific components yet or empty results */}
+              {!["Apparel for Corporate Gifting", "Corporate Cakes", "Chocolates for Corporate Gifting",
+                "Cupcakes for Corporate Events", "Corporate Flowers", "Corporate Plants",
+                "Corporate Technology Gifts", "Corporate Gifts", "Corporate Gift Hampers",
+                "Laptop Bags for Corporate Gifting", "Office & Writing Gifts for Corporate",
+                "Onboarding Gifts", "Personal Accessories", "Corporate Promotional Gifts",
+                "VIP & Executive", "Corporate Bags & Travel Gifts", "Outdoor & Safety Items",
+                "Drinkware for Corporate Gifting", "Gifts for Employees", "Sustainable Products"].includes(activeType) && (
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {allGifts.filter(g => g.category === activeType || (g as any).type === activeType).length > 0 ? (
+                      allGifts.filter(g => g.category === activeType || (g as any).type === activeType).map((gift, i) => (
+                        <motion.div
+                          key={`${gift.title}-${i}`}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        >
+                          <div
+                            className="relative aspect-square overflow-hidden cursor-pointer flex items-center justify-center bg-gray-50/20"
+                            onClick={() => handleProductClick(gift)}
+                          >
+                            <img src={gift.img} alt={gift.title} className="w-full h-full object-contain mix-blend-multiply p-4 group-hover:scale-110 transition-transform duration-700" />
+                            <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-primary-foreground bg-elvie-navy border border-elvie-gold/30 shadow-lg">
+                              {gift.tag}
+                            </span>
+                          </div>
+                          <div className="p-3 text-center">
+                            <h3
+                              className="text-[13px] font-bold text-foreground group-hover:text-elvie-navy transition-colors cursor-pointer line-clamp-1"
+                              onClick={() => handleProductClick(gift)}
+                            >
+                              {gift.title}
+                            </h3>
+                          </div>
+                        </motion.div>
+                      ))
+                    ) : (
+                      <div className="col-span-full py-24 text-center border-2 border-dashed border-border rounded-3xl">
+                        <Package className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
+                        <p className="text-xl font-bold text-muted-foreground mb-4">More collections for {activeType} are coming soon!</p>
+                        <button onClick={() => navigate('/corporate')} className="text-elvie-navy font-bold hover:underline">Browse current collection</button>
+                      </div>
+                    )}
+                  </div>
+                )}
             </div>
           ) : (
             /* ─── Default Home Overview ─── */
@@ -971,7 +672,7 @@ const CorporateGifts = () => {
                   whileHover={{ transition: { duration: 80 } }}
                   style={{ width: "fit-content" }}
                 >
-                  {[...trendingGifts, ...trendingGifts].map((gift, i) => (
+                  {[...trendingGiftsData, ...trendingGiftsData].map((gift, i) => (
                     <div key={`${gift.title}-${i}`} className="flex-shrink-0 w-48 md:w-56 lg:w-64">
                       <motion.div
                         className="rounded-xl border border-border bg-card overflow-hidden group cursor-pointer hover:shadow-xl transition-all"
