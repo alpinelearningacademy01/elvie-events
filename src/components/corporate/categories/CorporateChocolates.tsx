@@ -11,16 +11,16 @@ import CorporateChocolate9 from "@/assets/corporateChocolate9.jpeg";
 import CorporateChocolate10 from "@/assets/corporateChocolate10.jpeg";
 
 export const gifts = [
-  { img: CorporateChocolate1, title: "Signature Truffle Collection", price: "AED 120", tag: "Premium", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate2, title: "Luxury Dark Pralines", price: "AED 145", tag: "Popular", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate3, title: "Assorted Belgian Delights", price: "AED 180", tag: "Bestseller", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate4, title: "Artisan Milk Chocolate Box", price: "AED 95", tag: "Classic", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate5, title: "Gourmet Ganache Selection", price: "AED 210", tag: "Luxury", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate6, title: "Branded Logo Chocolates", price: "AED 165", tag: "Custom", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate7, title: "Elite Cocoa Collection", price: "AED 240", tag: "VIP", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate8, title: "Gold Foil Surprise Box", price: "AED 135", tag: "Festive", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate9, title: "Master Chocolatier Set", price: "AED 320", tag: "Grand", category: "Chocolates for Corporate Gifting" },
-  { img: CorporateChocolate10, title: "Sweet Appreciation Hamper", price: "AED 155", tag: "New", category: "Chocolates for Corporate Gifting" },
+  { img: CorporateChocolate1, title: "Signature Truffle Collection", price: "AED 120", tag: "Premium", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate2, title: "Luxury Dark Pralines", price: "AED 145", tag: "Popular", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate3, title: "Assorted Belgian Delights", price: "AED 180", tag: "Bestseller", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate4, title: "Artisan Milk Chocolate Box", price: "AED 95", tag: "Classic", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate5, title: "Gourmet Ganache Selection", price: "AED 210", tag: "Luxury", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate6, title: "Branded Logo Chocolates", price: "AED 165", tag: "Custom", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate7, title: "Elite Cocoa Collection", price: "AED 240", tag: "VIP", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate8, title: "Gold Foil Surprise Box", price: "AED 135", tag: "Festive", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate9, title: "Master Chocolatier Set", price: "AED 320", tag: "Grand", category: "Premium Chocolate Gifts" },
+  { img: CorporateChocolate10, title: "Sweet Appreciation Hamper", price: "AED 155", tag: "New", category: "Premium Chocolate Gifts" },
 ];
 
 interface CorporateChocolatesProps {

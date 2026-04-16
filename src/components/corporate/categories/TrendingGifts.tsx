@@ -7,12 +7,12 @@ import trending5 from "@/assets/trending-5.png";
 import trending6 from "@/assets/trending-6.png";
 
 export const gifts = [
-  { img: trending1, title: "Executive Leather Set", price: "AED 350", tag: "Best Seller", category: "Office & Writing Gifts for Corporate" },
-  { img: trending2, title: "Luxury Chocolate Box", price: "AED 180", tag: "Popular", category: "Chocolates for Corporate Gifting" },
-  { img: trending3, title: "Wellness Hamper", price: "AED 420", tag: "New", category: "Corporate Gift Hampers" },
-  { img: trending4, title: "Branded Tech Kit", price: "AED 550", tag: "Premium", category: "Corporate Technology Gifts" },
-  { img: trending5, title: "Gourmet Food Hamper", price: "AED 290", tag: "Trending", category: "Corporate Gift Hampers" },
-  { img: trending6, title: "Desk Organizer Set", price: "AED 220", tag: "Popular", category: "Office & Writing Gifts for Corporate" },
+  { img: trending1, title: "Executive Leather Set", price: "AED 350", tag: "Best Seller", category: "Office Stationery Gifts" },
+  { img: trending2, title: "Luxury Chocolate Box", price: "AED 180", tag: "Popular", category: "Premium Chocolate Gifts" },
+  { img: trending3, title: "Wellness Hamper", price: "AED 420", tag: "New", category: "Curated Gift Hampers" },
+  { img: trending4, title: "Branded Tech Kit", price: "AED 550", tag: "Premium", category: "Tech Gadgets for Gifting" },
+  { img: trending5, title: "Gourmet Food Hamper", price: "AED 290", tag: "Trending", category: "Curated Gift Hampers" },
+  { img: trending6, title: "Desk Organizer Set", price: "AED 220", tag: "Popular", category: "Office Stationery Gifts" },
 ];
 
 interface TrendingGiftsProps {

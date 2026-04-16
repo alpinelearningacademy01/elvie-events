@@ -11,16 +11,16 @@ import Drinkware9 from "@/assets/Drinkware9.png"
 import Drinkware10 from "@/assets/Drinkware10.png"
 
 export const gifts = [
-  { img: Drinkware1, title: "Premium Thermal Hydration Flask", price: "AED 129", tag: "Premium", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware2, title: "Branded Smart Vacuum Cup", price: "AED 149", tag: "Popular", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware3, title: "Eco-Friendly Bamboo Mug", price: "AED 79", tag: "Bestseller", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware4, title: "Luxury Matte Black Tumbler", price: "AED 199", tag: "Luxury", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware5, title: "Custom Glass Infuser Bottle", price: "AED 89", tag: "Eco", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware6, title: "Classic Steel Travel Mug", price: "AED 95", tag: "Classic", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware7, title: "Corporate Insulated Coffee Cup", price: "AED 115", tag: "Elegant", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware8, title: "Executive Crystal Glass Set", price: "AED 249", tag: "VIP", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware9, title: "Smart Temperature Display Bottle", price: "AED 139", tag: "Tech", category: "Drinkware for Corporate Gifting" },
-  { img: Drinkware10, title: "Compact Collapsible Silicon Cup", price: "AED 69", tag: "New", category: "Drinkware for Corporate Gifting" },
+  { img: Drinkware1, title: "Premium Thermal Hydration Flask", price: "AED 129", tag: "Premium", category: "Corporate Drinkware" },
+  { img: Drinkware2, title: "Branded Smart Vacuum Cup", price: "AED 149", tag: "Popular", category: "Corporate Drinkware" },
+  { img: Drinkware3, title: "Eco-Friendly Bamboo Mug", price: "AED 79", tag: "Bestseller", category: "Corporate Drinkware" },
+  { img: Drinkware4, title: "Luxury Matte Black Tumbler", price: "AED 199", tag: "Luxury", category: "Corporate Drinkware" },
+  { img: Drinkware5, title: "Custom Glass Infuser Bottle", price: "AED 89", tag: "Eco", category: "Corporate Drinkware" },
+  { img: Drinkware6, title: "Classic Steel Travel Mug", price: "AED 95", tag: "Classic", category: "Corporate Drinkware" },
+  { img: Drinkware7, title: "Corporate Insulated Coffee Cup", price: "AED 115", tag: "Elegant", category: "Corporate Drinkware" },
+  { img: Drinkware8, title: "Executive Crystal Glass Set", price: "AED 249", tag: "VIP", category: "Corporate Drinkware" },
+  { img: Drinkware9, title: "Smart Temperature Display Bottle", price: "AED 139", tag: "Tech", category: "Corporate Drinkware" },
+  { img: Drinkware10, title: "Compact Collapsible Silicon Cup", price: "AED 69", tag: "New", category: "Corporate Drinkware" },
 ];
 
 interface DrinkwareGiftsProps {

@@ -10,15 +10,15 @@ import CorporateCakes9 from "@/assets/CorporateCakes9.jpeg"
 import CorporateCakes10 from "@/assets/CorporateCakes10.jpeg"
 
 export const gifts = [
-  { img: CorporateCakes1, title: "Luxury Branded Corporate Cake", price: "AED 299", tag: "Premium", category: "Corporate Cakes" },
-  { img: CorporateCakes2, title: "Logo Printed Celebration Cake", price: "AED 249", tag: "Branded", category: "Corporate Cakes" },
-  { img: CorporateCakes3, title: "Executive Tier Cake", price: "AED 399", tag: "Elegant", category: "Corporate Cakes" },
-  { img: CorporateCakes4, title: "Corporate Anniversary Cake", price: "AED 349", tag: "Bestseller", category: "Corporate Cakes" },
-  { img: CorporateCakes5, title: "Gold Foil Business Cake", price: "AED 450", tag: "Luxury", category: "Corporate Cakes" },
-  { img: CorporateCakes6, title: "Customised Office Party Cake", price: "AED 279", tag: "Custom", category: "Corporate Cakes" },
-  { img: CorporateCakes8, title: "Mini Corporate Cupcake Tower", price: "AED 380", tag: "Event", category: "Corporate Cakes" },
-  { img: CorporateCakes9, title: "Bespoke Milestone Cake", price: "AED 499", tag: "VIP", category: "Corporate Cakes" },
-  { img: CorporateCakes10, title: "Classic Branded Sponge Cake", price: "AED 219", tag: "New", category: "Corporate Cakes" },
+  { img: CorporateCakes1, title: "Luxury Branded Corporate Cake", price: "AED 299", tag: "Premium", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes2, title: "Logo Printed Celebration Cake", price: "AED 249", tag: "Branded", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes3, title: "Executive Tier Cake", price: "AED 399", tag: "Elegant", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes4, title: "Corporate Anniversary Cake", price: "AED 349", tag: "Bestseller", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes5, title: "Gold Foil Business Cake", price: "AED 450", tag: "Luxury", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes6, title: "Customised Office Party Cake", price: "AED 279", tag: "Custom", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes8, title: "Mini Corporate Cupcake Tower", price: "AED 380", tag: "Event", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes9, title: "Bespoke Milestone Cake", price: "AED 499", tag: "VIP", category: "Celebration Cakes for Offices" },
+  { img: CorporateCakes10, title: "Classic Branded Sponge Cake", price: "AED 219", tag: "New", category: "Celebration Cakes for Offices" },
 ];
 
 interface CorporateCakesProps {

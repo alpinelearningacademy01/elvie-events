@@ -11,16 +11,16 @@ import CorporateGift9 from "@/assets/CorporateGift9.jpeg";
 import CorporateGift10 from "@/assets/CorporateGift10.jpeg";
 
 export const gifts = [
-  { img: CorporateGift1, title: "Premium Corporate Gift Set", price: "AED 349", tag: "VIP", category: "Corporate Gifts" },
-  { img: CorporateGift2, title: "Executive Office Essentials", price: "AED 280", tag: "Bestseller", category: "Corporate Gifts" },
-  { img: CorporateGift3, title: "Modern Workplace Kit", price: "AED 320", tag: "Popular", category: "Corporate Gifts" },
-  { img: CorporateGift4, title: "Luxe Career Milestone Gift", price: "AED 550", tag: "Premium", category: "Corporate Gifts" },
-  { img: CorporateGift5, title: "Signature Branded Hamper", price: "AED 190", tag: "Custom", category: "Corporate Gifts" },
-  { img: CorporateGift6, title: "Executive Harmony Collection", price: "AED 410", tag: "Elegant", category: "Corporate Gifts" },
-  { img: CorporateGift7, title: "Corporate Distinction Box", price: "AED 370", tag: "Distinguished", category: "Corporate Gifts" },
-  { img: CorporateGift8, title: "Strategic Partner Gift Set", price: "AED 620", tag: "Grand", category: "Corporate Gifts" },
-  { img: CorporateGift9, title: "Unity Performance Award", price: "AED 240", tag: "Special", category: "Corporate Gifts" },
-  { img: CorporateGift10, title: "Visionary Leader Ensemble", price: "AED 890", tag: "Elite", category: "Corporate Gifts" },
+  { img: CorporateGift1, title: "Premium Corporate Gift Set", price: "AED 349", tag: "VIP", category: "Business Gifting Solutions" },
+  { img: CorporateGift2, title: "Executive Office Essentials", price: "AED 280", tag: "Bestseller", category: "Business Gifting Solutions" },
+  { img: CorporateGift3, title: "Modern Workplace Kit", price: "AED 320", tag: "Popular", category: "Business Gifting Solutions" },
+  { img: CorporateGift4, title: "Luxe Career Milestone Gift", price: "AED 550", tag: "Premium", category: "Business Gifting Solutions" },
+  { img: CorporateGift5, title: "Signature Branded Hamper", price: "AED 190", tag: "Custom", category: "Business Gifting Solutions" },
+  { img: CorporateGift6, title: "Executive Harmony Collection", price: "AED 410", tag: "Elegant", category: "Business Gifting Solutions" },
+  { img: CorporateGift7, title: "Corporate Distinction Box", price: "AED 370", tag: "Distinguished", category: "Business Gifting Solutions" },
+  { img: CorporateGift8, title: "Strategic Partner Gift Set", price: "AED 620", tag: "Grand", category: "Business Gifting Solutions" },
+  { img: CorporateGift9, title: "Unity Performance Award", price: "AED 240", tag: "Special", category: "Business Gifting Solutions" },
+  { img: CorporateGift10, title: "Visionary Leader Ensemble", price: "AED 890", tag: "Elite", category: "Business Gifting Solutions" },
 ];
 
 interface GeneralCorporateGiftsProps {

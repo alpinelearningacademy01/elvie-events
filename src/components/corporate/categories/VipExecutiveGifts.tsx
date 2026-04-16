@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import giftVip from "@/assets/gift-vip.png";
 
 export const gifts = [
-  { img: giftVip, title: "Crystal Award Plaque", price: "AED 849", tag: "VIP", category: "VIP & Executive" },
-  { img: giftVip, title: "Executive Gold Watch", price: "AED 1200", tag: "Luxury", category: "VIP & Executive" },
-  { img: giftVip, title: "Premium Leather Desk Set", price: "AED 950", tag: "Executive", category: "VIP & Executive" },
+  { img: giftVip, title: "Crystal Award Plaque", price: "AED 849", tag: "VIP", category: "Executive Level Gifts" },
+  { img: giftVip, title: "Executive Gold Watch", price: "AED 1200", tag: "Luxury", category: "Executive Level Gifts" },
+  { img: giftVip, title: "Premium Leather Desk Set", price: "AED 950", tag: "Executive", category: "Executive Level Gifts" },
 ];
 
 interface VipExecutiveGiftsProps {

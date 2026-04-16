@@ -5,24 +5,24 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
 
 const giftTypes = [
-  "Onboarding Gifts",
-  "Corporate Plants",
-  "Corporate Flowers",
-  "Cupcakes for Corporate Events",
-  "Corporate Cakes",
-  "Chocolates for Corporate Gifting",
-  "Corporate Gifts",
-  "Corporate Gift Combos",
-  "Corporate Gift Hampers",
-  "Corporate Technology Gifts",
-  "Corporate Bags & Travel Gifts",
-  "Outdoor & Safety Items",
-  "Office & Writing Gifts for Corporate",
-  "Drinkware for Corporate Gifting",
-  "Personal Accessories",
-  "Corporate Promotional Gifts",
-  "Apparel for Corporate Gifting",
-  "Laptop Bags for Corporate Gifting"
+  "Employee Welcome Kits",
+  "Business Green Plants",
+  "Floral Arrangements for Businesses",
+  "Event Cupcake Treats",
+  "Celebration Cakes for Offices",
+  "Premium Chocolate Gifts",
+  "Business Gifting Solutions",
+  "Gift Combo Packages",
+  "Curated Gift Hampers",
+  "Tech Gadgets for Gifting",
+  "Travel & Utility Bags",
+  "Safety & Outdoor Essentials",
+  "Office Stationery Gifts",
+  "Corporate Drinkware",
+  "Lifestyle Accessories",
+  "Promotional Merchandise",
+  "Branded Apparel Gifts",
+  "Professional Laptop Bags"
 ];
 
 const navLinks = [
@@ -115,7 +115,7 @@ const ElvieNavbar = () => {
                   : "text-primary-foreground/90 hover:text-primary-foreground"
                   }`}
               >
-                CORPORATE GIFTS BY TYPE
+                BUSINESS GIFTS BY TYPE
                 <span
                   className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname.startsWith("/corporate") ? "w-3/4" : "w-0 group-hover:w-3/4"
                     }`}
@@ -202,7 +202,7 @@ const ElvieNavbar = () => {
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="flex items-center justify-between w-full text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground"
                 >
-                  CORPORATE GIFTS
+                  BUSINESS GIFTS
                   <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                 </button>
                 <AnimatePresence>

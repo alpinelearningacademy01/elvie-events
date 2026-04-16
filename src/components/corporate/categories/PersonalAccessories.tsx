@@ -10,15 +10,15 @@ import Accessories8 from "@/assets/Accessories8.png"
 import Accessories9 from "@/assets/Accessories9.jpg"
 
 export const gifts = [
-  { img: Accessories1, title: "Premium Leather Wallet", price: "AED 149", tag: "Premium", category: "Personal Accessories" },
-  { img: Accessories2, title: "Executive Card Holder", price: "AED 99", tag: "Popular", category: "Personal Accessories" },
-  { img: Accessories3, title: "Branded Keychain Set", price: "AED 79", tag: "Bestseller", category: "Personal Accessories" },
-  { img: Accessories4, title: "Corporate Pen Set", price: "AED 120", tag: "Classic", category: "Personal Accessories" },
-  { img: Accessories5, title: "Luxury Watch Box Set", price: "AED 350", tag: "Luxury", category: "Personal Accessories" },
-  { img: Accessories6, title: "Branded Sunglasses Case", price: "AED 89", tag: "Trendy", category: "Personal Accessories" },
-  { img: Accessories7, title: "Elite Cufflink Set", price: "AED 199", tag: "Elegant", category: "Personal Accessories" },
-  { img: Accessories8, title: "Premium Belt Gift Box", price: "AED 249", tag: "VIP", category: "Personal Accessories" },
-  { img: Accessories9, title: "Signature Scarf Collection", price: "AED 175", tag: "New", category: "Personal Accessories" },
+  { img: Accessories1, title: "Premium Leather Wallet", price: "AED 149", tag: "Premium", category: "Lifestyle Accessories" },
+  { img: Accessories2, title: "Executive Card Holder", price: "AED 99", tag: "Popular", category: "Lifestyle Accessories" },
+  { img: Accessories3, title: "Branded Keychain Set", price: "AED 79", tag: "Bestseller", category: "Lifestyle Accessories" },
+  { img: Accessories4, title: "Corporate Pen Set", price: "AED 120", tag: "Classic", category: "Lifestyle Accessories" },
+  { img: Accessories5, title: "Luxury Watch Box Set", price: "AED 350", tag: "Luxury", category: "Lifestyle Accessories" },
+  { img: Accessories6, title: "Branded Sunglasses Case", price: "AED 89", tag: "Trendy", category: "Lifestyle Accessories" },
+  { img: Accessories7, title: "Elite Cufflink Set", price: "AED 199", tag: "Elegant", category: "Lifestyle Accessories" },
+  { img: Accessories8, title: "Premium Belt Gift Box", price: "AED 249", tag: "VIP", category: "Lifestyle Accessories" },
+  { img: Accessories9, title: "Signature Scarf Collection", price: "AED 175", tag: "New", category: "Lifestyle Accessories" },
 ];
 
 interface PersonalAccessoriesProps {

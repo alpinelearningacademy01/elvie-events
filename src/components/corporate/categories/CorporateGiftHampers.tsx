@@ -12,17 +12,17 @@ import giftHampers10 from "@/assets/gift-hampers10.jpeg";
 import giftHamper from "@/assets/gift-hamper.jpg";
 
 export const gifts = [
-  { img: giftHampers1, title: "Executive Gourmet Celebration Hamper", price: "AED 549", tag: "Premium", category: "Corporate Gift Hampers" },
-  { img: giftHampers2, title: "Artisan Coffee & Treats Box", price: "AED 380", tag: "Popular", category: "Corporate Gift Hampers" },
-  { img: giftHampers3, title: "Luxury Wellness & Spa Set", price: "AED 420", tag: "Bestseller", category: "Corporate Gift Hampers" },
-  { img: giftHampers4, title: "Premium Dark Chocolate Selection", price: "AED 290", tag: "Gift", category: "Corporate Gift Hampers" },
-  { img: giftHampers5, title: "Office Energy Boost Kit", price: "AED 310", tag: "New", category: "Corporate Gift Hampers" },
-  { img: giftHampers6, title: "Signature Tea Party Hamper", price: "AED 450", tag: "Elegant", category: "Corporate Gift Hampers" },
-  { img: giftHampers7, title: "Gourmet Savory Retreat", price: "AED 390", tag: "Gourmet", category: "Corporate Gift Hampers" },
-  { img: giftHampers8, title: "Elite Executive Hamper V2", price: "AED 680", tag: "Elite", category: "Corporate Gift Hampers" },
-  { img: giftHampers9, title: "Employee Appreciation Basket", price: "AED 210", tag: "Value", category: "Corporate Gift Hampers" },
-  { img: giftHampers10, title: "Seasonal Celebration Hamper", price: "AED 449", tag: "Bestseller", category: "Corporate Gift Hampers" },
-  { img: giftHamper, title: "Deluxe Celebration Hamper", price: "AED 449", tag: "Bestseller", category: "Corporate Gift Hampers" },
+  { img: giftHampers1, title: "Executive Gourmet Celebration Hamper", price: "AED 549", tag: "Premium", category: "Curated Gift Hampers" },
+  { img: giftHampers2, title: "Artisan Coffee & Treats Box", price: "AED 380", tag: "Popular", category: "Curated Gift Hampers" },
+  { img: giftHampers3, title: "Luxury Wellness & Spa Set", price: "AED 420", tag: "Bestseller", category: "Curated Gift Hampers" },
+  { img: giftHampers4, title: "Premium Dark Chocolate Selection", price: "AED 290", tag: "Gift", category: "Curated Gift Hampers" },
+  { img: giftHampers5, title: "Office Energy Boost Kit", price: "AED 310", tag: "New", category: "Curated Gift Hampers" },
+  { img: giftHampers6, title: "Signature Tea Party Hamper", price: "AED 450", tag: "Elegant", category: "Curated Gift Hampers" },
+  { img: giftHampers7, title: "Gourmet Savory Retreat", price: "AED 390", tag: "Gourmet", category: "Curated Gift Hampers" },
+  { img: giftHampers8, title: "Elite Executive Hamper V2", price: "AED 680", tag: "Elite", category: "Curated Gift Hampers" },
+  { img: giftHampers9, title: "Employee Appreciation Basket", price: "AED 210", tag: "Value", category: "Curated Gift Hampers" },
+  { img: giftHampers10, title: "Seasonal Celebration Hamper", price: "AED 449", tag: "Bestseller", category: "Curated Gift Hampers" },
+  { img: giftHamper, title: "Deluxe Celebration Hamper", price: "AED 449", tag: "Bestseller", category: "Curated Gift Hampers" },
 ];
 
 interface CorporateGiftHampersProps {

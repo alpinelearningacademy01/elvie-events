@@ -11,16 +11,16 @@ import giftPlants9 from "@/assets/gift-plants9.png";
 import giftPlants10 from "@/assets/gift-plants10.png";
 
 export const gifts = [
-  { img: giftPlants1, title: "Bonsai Zen Tree", price: "AED 119", tag: "Plants", category: "Corporate Plants" },
-  { img: giftPlants2, title: "Desktop Succulent Garden", price: "AED 145", tag: "Popular", category: "Corporate Plants" },
-  { img: giftPlants3, title: "Premium Snake Plant", price: "AED 180", tag: "Bestseller", category: "Corporate Plants" },
-  { img: giftPlants4, title: "Mini Money Tree", price: "AED 160", tag: "Prosperity", category: "Corporate Plants" },
-  { img: giftPlants5, title: "Office Aloe Vera Set", price: "AED 135", tag: "Purifying", category: "Corporate Plants" },
-  { img: giftPlants6, title: "Executive Peace Lily", price: "AED 220", tag: "Premium", category: "Corporate Plants" },
-  { img: giftPlants7, title: "Branded Bamboo Plant", price: "AED 195", tag: "Custom", category: "Corporate Plants" },
-  { img: giftPlants8, title: "Jade Plant Arrangement", price: "AED 175", tag: "Good Luck", category: "Corporate Plants" },
-  { img: giftPlants9, title: "Modern Ficus Bonsai", price: "AED 310", tag: "Luxury", category: "Corporate Plants" },
-  { img: giftPlants10, title: "Ceramic Pothos Bowl", price: "AED 150", tag: "New", category: "Corporate Plants" },
+  { img: giftPlants1, title: "Bonsai Zen Tree", price: "AED 119", tag: "Plants", category: "Business Green Plants" },
+  { img: giftPlants2, title: "Desktop Succulent Garden", price: "AED 145", tag: "Popular", category: "Business Green Plants" },
+  { img: giftPlants3, title: "Premium Snake Plant", price: "AED 180", tag: "Bestseller", category: "Business Green Plants" },
+  { img: giftPlants4, title: "Mini Money Tree", price: "AED 160", tag: "Prosperity", category: "Business Green Plants" },
+  { img: giftPlants5, title: "Office Aloe Vera Set", price: "AED 135", tag: "Purifying", category: "Business Green Plants" },
+  { img: giftPlants6, title: "Executive Peace Lily", price: "AED 220", tag: "Premium", category: "Business Green Plants" },
+  { img: giftPlants7, title: "Branded Bamboo Plant", price: "AED 195", tag: "Custom", category: "Business Green Plants" },
+  { img: giftPlants8, title: "Jade Plant Arrangement", price: "AED 175", tag: "Good Luck", category: "Business Green Plants" },
+  { img: giftPlants9, title: "Modern Ficus Bonsai", price: "AED 310", tag: "Luxury", category: "Business Green Plants" },
+  { img: giftPlants10, title: "Ceramic Pothos Bowl", price: "AED 150", tag: "New", category: "Business Green Plants" },
 ];
 
 interface CorporatePlantsProps {

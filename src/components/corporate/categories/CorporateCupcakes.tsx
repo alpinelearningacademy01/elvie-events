@@ -10,15 +10,15 @@ import cupcakes8 from "@/assets/cupcakes_8.png";
 import cupcakes9 from "@/assets/cupcakes_9.png";
 
 export const gifts = [
-  { img: cupcakes1, title: "Logo Printed Cupcakes", price: "AED 180", tag: "Branded", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes2, title: "Premium Assorted Cupcakes", price: "AED 150", tag: "Bestseller", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes3, title: "Executive Event Cupcakes", price: "AED 220", tag: "VIP", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes4, title: "Celebration Cupcake Platter", price: "AED 250", tag: "Event", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes5, title: "Mini Diet Cupcakes", price: "AED 190", tag: "Healthy", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes6, title: "Elegant Gold Foil Cupcakes", price: "AED 320", tag: "Luxury", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes7, title: "Employee Birthday Cupcakes", price: "AED 140", tag: "Popular", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes8, title: "Festive Themed Cupcakes", price: "AED 210", tag: "Festive", category: "Cupcakes for Corporate Events" },
-  { img: cupcakes9, title: "Custom Color Cupcakes", price: "AED 200", tag: "Custom", category: "Cupcakes for Corporate Events" },
+  { img: cupcakes1, title: "Logo Printed Cupcakes", price: "AED 180", tag: "Branded", category: "Event Cupcake Treats" },
+  { img: cupcakes2, title: "Premium Assorted Cupcakes", price: "AED 150", tag: "Bestseller", category: "Event Cupcake Treats" },
+  { img: cupcakes3, title: "Executive Event Cupcakes", price: "AED 220", tag: "VIP", category: "Event Cupcake Treats" },
+  { img: cupcakes4, title: "Celebration Cupcake Platter", price: "AED 250", tag: "Event", category: "Event Cupcake Treats" },
+  { img: cupcakes5, title: "Mini Diet Cupcakes", price: "AED 190", tag: "Healthy", category: "Event Cupcake Treats" },
+  { img: cupcakes6, title: "Elegant Gold Foil Cupcakes", price: "AED 320", tag: "Luxury", category: "Event Cupcake Treats" },
+  { img: cupcakes7, title: "Employee Birthday Cupcakes", price: "AED 140", tag: "Popular", category: "Event Cupcake Treats" },
+  { img: cupcakes8, title: "Festive Themed Cupcakes", price: "AED 210", tag: "Festive", category: "Event Cupcake Treats" },
+  { img: cupcakes9, title: "Custom Color Cupcakes", price: "AED 200", tag: "Custom", category: "Event Cupcake Treats" },
 ];
 
 interface CorporateCupcakesProps {

@@ -10,15 +10,15 @@ import LaptopBags8 from "@/assets/LaptopBags8.png"
 import LaptopBags9 from "@/assets/LaptopBags9.png"
 
 export const gifts = [
-  { img: LaptopBags1, title: "Executive Laptop Bag I", price: "AED 249", tag: "Premium", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags2, title: "Slim Business Laptop Bag", price: "AED 199", tag: "Popular", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags3, title: "Branded Commuter Bag", price: "AED 279", tag: "Bestseller", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags4, title: "Anti-Theft Laptop Backpack", price: "AED 319", tag: "Secure", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags5, title: "Executive Leather Laptop Bag", price: "AED 399", tag: "Luxury", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags6, title: "Corporate Laptop Shoulder Bag", price: "AED 229", tag: "Classic", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags7, title: "Multi-Pocket Office Bag", price: "AED 259", tag: "Functional", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags8, title: "Waterproof Laptop Bag", price: "AED 289", tag: "Durable", category: "Laptop Bags for Corporate Gifting" },
-  { img: LaptopBags9, title: "Eco-Friendly Laptop Bag", price: "AED 219", tag: "Eco", category: "Laptop Bags for Corporate Gifting" },
+  { img: LaptopBags1, title: "Executive Laptop Bag I", price: "AED 249", tag: "Premium", category: "Professional Laptop Bags" },
+  { img: LaptopBags2, title: "Slim Business Laptop Bag", price: "AED 199", tag: "Popular", category: "Professional Laptop Bags" },
+  { img: LaptopBags3, title: "Branded Commuter Bag", price: "AED 279", tag: "Bestseller", category: "Professional Laptop Bags" },
+  { img: LaptopBags4, title: "Anti-Theft Laptop Backpack", price: "AED 319", tag: "Secure", category: "Professional Laptop Bags" },
+  { img: LaptopBags5, title: "Executive Leather Laptop Bag", price: "AED 399", tag: "Luxury", category: "Professional Laptop Bags" },
+  { img: LaptopBags6, title: "Corporate Laptop Shoulder Bag", price: "AED 229", tag: "Classic", category: "Professional Laptop Bags" },
+  { img: LaptopBags7, title: "Multi-Pocket Office Bag", price: "AED 259", tag: "Functional", category: "Professional Laptop Bags" },
+  { img: LaptopBags8, title: "Waterproof Laptop Bag", price: "AED 289", tag: "Durable", category: "Professional Laptop Bags" },
+  { img: LaptopBags9, title: "Eco-Friendly Laptop Bag", price: "AED 219", tag: "Eco", category: "Professional Laptop Bags" },
 ];
 
 interface LaptopBagsProps {

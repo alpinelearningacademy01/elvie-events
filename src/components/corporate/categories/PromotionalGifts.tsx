@@ -10,15 +10,15 @@ import Promotional8 from "@/assets/Promotional8.png"
 import Promotional9 from "@/assets/Promotional9.png"
 
 export const gifts = [
-  { img: Promotional1, title: "Branded Tote Bag", price: "AED 59", tag: "Popular", category: "Corporate Promotional Gifts" },
-  { img: Promotional2, title: "Custom Logo Mug Set", price: "AED 75", tag: "Bestseller", category: "Corporate Promotional Gifts" },
-  { img: Promotional3, title: "Promotional Pen Pack", price: "AED 45", tag: "Value", category: "Corporate Promotional Gifts" },
-  { img: Promotional4, title: "Corporate Notebook Set", price: "AED 89", tag: "Classic", category: "Corporate Promotional Gifts" },
-  { img: Promotional5, title: "Branded USB Drive", price: "AED 65", tag: "Tech", category: "Corporate Promotional Gifts" },
-  { img: Promotional6, title: "Custom Printed Cap", price: "AED 55", tag: "Trendy", category: "Corporate Promotional Gifts" },
-  { img: Promotional7, title: "Eco Promotional Kit", price: "AED 110", tag: "Eco", category: "Corporate Promotional Gifts" },
-  { img: Promotional8, title: "Event Giveaway Bundle", price: "AED 95", tag: "Event", category: "Corporate Promotional Gifts" },
-  { img: Promotional9, title: "Premium Promo Gift Set", price: "AED 135", tag: "Premium", category: "Corporate Promotional Gifts" },
+  { img: Promotional1, title: "Branded Tote Bag", price: "AED 59", tag: "Popular", category: "Promotional Merchandise" },
+  { img: Promotional2, title: "Custom Logo Mug Set", price: "AED 75", tag: "Bestseller", category: "Promotional Merchandise" },
+  { img: Promotional3, title: "Promotional Pen Pack", price: "AED 45", tag: "Value", category: "Promotional Merchandise" },
+  { img: Promotional4, title: "Corporate Notebook Set", price: "AED 89", tag: "Classic", category: "Promotional Merchandise" },
+  { img: Promotional5, title: "Branded USB Drive", price: "AED 65", tag: "Tech", category: "Promotional Merchandise" },
+  { img: Promotional6, title: "Custom Printed Cap", price: "AED 55", tag: "Trendy", category: "Promotional Merchandise" },
+  { img: Promotional7, title: "Eco Promotional Kit", price: "AED 110", tag: "Eco", category: "Promotional Merchandise" },
+  { img: Promotional8, title: "Event Giveaway Bundle", price: "AED 95", tag: "Event", category: "Promotional Merchandise" },
+  { img: Promotional9, title: "Premium Promo Gift Set", price: "AED 135", tag: "Premium", category: "Promotional Merchandise" },
 ];
 
 interface PromotionalGiftsProps {

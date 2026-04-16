@@ -11,16 +11,16 @@ import CorporateBags9 from "@/assets/CorporateBags9.jpeg"
 import CorporateBags10 from "@/assets/CorporateBags10.jpeg"
 
 export const gifts = [
-  { img: CorporateBags1, title: "Executive Leather Duffel Bag", price: "AED 349", tag: "Premium", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags2, title: "Branded Business Trolley", price: "AED 499", tag: "Bestseller", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags3, title: "Corporate Travel Backpack", price: "AED 279", tag: "Popular", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags4, title: "Luxury Weekend Holdall", price: "AED 429", tag: "Luxury", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags5, title: "Branded Passport Wallet Set", price: "AED 149", tag: "Classic", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags6, title: "Corporate Messenger Bag", price: "AED 229", tag: "Elegant", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags7, title: "Custom Printed Tote Bag", price: "AED 89", tag: "Trendy", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags8, title: "Executive Cabin Luggage", price: "AED 599", tag: "VIP", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags9, title: "Eco Travel Kit Bag", price: "AED 199", tag: "Eco", category: "Corporate Bags & Travel Gifts" },
-  { img: CorporateBags10, title: "Slim Tech Carry Bag", price: "AED 259", tag: "New", category: "Corporate Bags & Travel Gifts" },
+  { img: CorporateBags1, title: "Executive Leather Duffel Bag", price: "AED 349", tag: "Premium", category: "Travel & Utility Bags" },
+  { img: CorporateBags2, title: "Branded Business Trolley", price: "AED 499", tag: "Bestseller", category: "Travel & Utility Bags" },
+  { img: CorporateBags3, title: "Corporate Travel Backpack", price: "AED 279", tag: "Popular", category: "Travel & Utility Bags" },
+  { img: CorporateBags4, title: "Luxury Weekend Holdall", price: "AED 429", tag: "Luxury", category: "Travel & Utility Bags" },
+  { img: CorporateBags5, title: "Branded Passport Wallet Set", price: "AED 149", tag: "Classic", category: "Travel & Utility Bags" },
+  { img: CorporateBags6, title: "Corporate Messenger Bag", price: "AED 229", tag: "Elegant", category: "Travel & Utility Bags" },
+  { img: CorporateBags7, title: "Custom Printed Tote Bag", price: "AED 89", tag: "Trendy", category: "Travel & Utility Bags" },
+  { img: CorporateBags8, title: "Executive Cabin Luggage", price: "AED 599", tag: "VIP", category: "Travel & Utility Bags" },
+  { img: CorporateBags9, title: "Eco Travel Kit Bag", price: "AED 199", tag: "Eco", category: "Travel & Utility Bags" },
+  { img: CorporateBags10, title: "Slim Tech Carry Bag", price: "AED 259", tag: "New", category: "Travel & Utility Bags" },
 ];
 
 interface CorporateTravelBagsProps {

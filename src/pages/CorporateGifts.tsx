@@ -64,26 +64,26 @@ import customImg from "@/assets/corporate-custom-gifts-new.png";
 
 /* ─── Gift Categories ─── */
 const giftCategories = [
-  { img: hampersGifts[0].img, label: "Corporate Gift Hampers", type: "Corporate Gift Hampers" },
-  { img: onboardingGifts[0].img, label: "Onboarding Gifts", type: "Onboarding Gifts" },
-  { img: flowersGifts[0].img, label: "Corporate Flowers", type: "Corporate Flowers" },
-  { img: cupcakesGifts[0].img, label: "Cupcakes for Corporate Events", type: "Cupcakes for Corporate Events" },
-  { img: officeGifts[0].img, label: "Office & Writing Gifts for Corporate", type: "Office & Writing Gifts for Corporate" },
-  { img: chocolatesGifts[0].img, label: "Chocolates for Corporate Gifting", type: "Chocolates for Corporate Gifting" },
-  { img: generalGifts[0].img, label: "Corporate Gifts", type: "Corporate Gifts" },
-  { img: techGifts[0].img, label: "Corporate Technology Gifts", type: "Corporate Technology Gifts" },
-  { img: generalGifts[1].img, label: "Gifts for Employees", type: "Gifts for Employees" },
-  { img: laptopBagsGifts[0].img, label: "Laptop Bags for Corporate Gifting", type: "Laptop Bags for Corporate Gifting" },
-  { img: apparelGifts[0].img, label: "Apparel for Corporate Gifting", type: "Apparel for Corporate Gifting" },
-  { img: vipGifts[0].img, label: "VIP & Executive", type: "VIP & Executive" },
-  { img: plantsGifts[0].img, label: "Corporate Plants", type: "Corporate Plants" },
-  { img: generalGifts[2].img, label: "Sustainable Products", type: "Sustainable Products" },
-  { img: drinkwareGifts[0].img, label: "Drinkware for Corporate Gifting", type: "Drinkware for Corporate Gifting" },
-  { img: travelBagsGifts[0].img, label: "Corporate Bags & Travel Gifts", type: "Corporate Bags & Travel Gifts" },
-  { img: personalAccessoriesGifts[0].img, label: "Personal Accessories", type: "Personal Accessories" },
-  { img: promotionalGifts[0].img, label: "Corporate Promotional Gifts", type: "Corporate Promotional Gifts" },
-  { img: cakesGifts[0].img, label: "Corporate Cakes", type: "Corporate Cakes" },
-  { img: safetyGifts[0].img, label: "Outdoor & Safety Items", type: "Outdoor & Safety Items" },
+  { img: hampersGifts[0].img, label: "Curated Gift Hampers", type: "Curated Gift Hampers" },
+  { img: onboardingGifts[0].img, label: "Employee Welcome Kits", type: "Employee Welcome Kits" },
+  { img: flowersGifts[0].img, label: "Floral Arrangements for Businesses", type: "Floral Arrangements for Businesses" },
+  { img: cupcakesGifts[0].img, label: "Event Cupcake Treats", type: "Event Cupcake Treats" },
+  { img: officeGifts[0].img, label: "Office Stationery Gifts", type: "Office Stationery Gifts" },
+  { img: chocolatesGifts[0].img, label: "Premium Chocolate Gifts", type: "Premium Chocolate Gifts" },
+  { img: generalGifts[0].img, label: "Business Gifting Solutions", type: "Business Gifting Solutions" },
+  { img: techGifts[0].img, label: "Tech Gadgets for Gifting", type: "Tech Gadgets for Gifting" },
+  { img: generalGifts[1].img, label: "Employee Appreciation Gifts", type: "Employee Appreciation Gifts" },
+  { img: laptopBagsGifts[0].img, label: "Professional Laptop Bags", type: "Professional Laptop Bags" },
+  { img: apparelGifts[0].img, label: "Branded Apparel Gifts", type: "Branded Apparel Gifts" },
+  { img: vipGifts[0].img, label: "Executive Level Gifts", type: "Executive Level Gifts" },
+  { img: plantsGifts[0].img, label: "Business Green Plants", type: "Business Green Plants" },
+  { img: generalGifts[2].img, label: "Eco-Friendly Business Solutions", type: "Eco-Friendly Business Solutions" },
+  { img: drinkwareGifts[0].img, label: "Corporate Drinkware", type: "Corporate Drinkware" },
+  { img: travelBagsGifts[0].img, label: "Travel & Utility Bags", type: "Travel & Utility Bags" },
+  { img: personalAccessoriesGifts[0].img, label: "Lifestyle Accessories", type: "Lifestyle Accessories" },
+  { img: promotionalGifts[0].img, label: "Promotional Merchandise", type: "Promotional Merchandise" },
+  { img: cakesGifts[0].img, label: "Celebration Cakes for Offices", type: "Celebration Cakes for Offices" },
+  { img: safetyGifts[0].img, label: "Safety & Outdoor Essentials", type: "Safety & Outdoor Essentials" },
 ];
 
 /* ─── All Sample Gifting Items (for filter) ─── */
@@ -127,6 +127,24 @@ const faqs = [
   { q: "What is a good gift for a corporate employee?", a: "Good corporate employee gifts balance thoughtfulness and practicality. Options like gourmet hampers, plants, desk organisers, wellness sets, or tech accessories boost morale and express appreciation." },
   { q: "Do you deliver across all Emirates?", a: "Yes, we deliver corporate gifts to all Emirates including Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain with timely service." },
   { q: "How far in advance should I place my order?", a: "We recommend placing orders at least 5-7 business days in advance for customised gifts. Standard gifts can often be arranged with shorter lead times depending on availability." },
+];
+
+const countries = [
+  { code: "+971", iso: "ae", name: "UAE", native: "(الإمارات العربية المتحدة)" },
+  { code: "+966", iso: "sa", name: "Saudi Arabia", native: "(المملكة العربية السعودية)" },
+  { code: "+974", iso: "qa", name: "Qatar", native: "(قطر)" },
+  { code: "+965", iso: "kw", name: "Kuwait", native: "(الكويت)" },
+  { code: "+968", iso: "om", name: "Oman", native: "(عمان)" },
+  { code: "+973", iso: "bh", name: "Bahrain", native: "(البحرين)" },
+  { code: "+91", iso: "in", name: "India", native: "(भारत)" },
+  { code: "+92", iso: "pk", name: "Pakistan", native: "(پاکستان)" },
+  { code: "+44", iso: "gb", name: "United Kingdom", native: "" },
+  { code: "+1", iso: "us", name: "United States", native: "" },
+  { code: "+962", iso: "jo", name: "Jordan", native: "(الأردن)" },
+  { code: "+961", iso: "lb", name: "Lebanon", native: "(لبنان)" },
+  { code: "+20", iso: "eg", name: "Egypt", native: "(مصر)" },
+  { code: "+90", iso: "tr", name: "Turkey", native: "(Türkiye)" },
+  { code: "+65", iso: "sg", name: "Singapore", native: "" },
 ];
 
 const toSlug = (text: string) => text.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/[^\w-]/g, '');
@@ -229,6 +247,22 @@ const CorporateGifts = () => {
   const location = useLocation();
   const [activeType, setActiveType] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Custom Dropdown click-outside logic
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isDropdownOpen]);
 
   // Sync state with URL params
   useEffect(() => {
@@ -273,7 +307,7 @@ const CorporateGifts = () => {
         }, 300);
       }
     }
-  }, [categoryParam, productParam]);
+  }, [categoryParam, productParam, location.pathname]);
 
   const handleProductClick = (product: any) => {
     navigate(`/corporate/${categoryParam || 'gift'}/${toSlug(product.title)}`);
@@ -288,13 +322,14 @@ const CorporateGifts = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    countryCode: "+971",
     phone: "",
     company: "",
     giftType: "",
     quantity: "",
     budget: "",
     message: "",
-    contactMethod: [] as string[],
+    contactMethod: ["Email"],
   });
 
   const handleCheckbox = (value: string) => {
@@ -321,13 +356,14 @@ const CorporateGifts = () => {
       setForm({
         name: "",
         email: "",
+        countryCode: "+971",
         phone: "",
         company: "",
         giftType: "",
         quantity: "",
         budget: "",
         message: "",
-        contactMethod: [],
+        contactMethod: ["Email"],
       });
     };
 
@@ -528,7 +564,7 @@ const CorporateGifts = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              CORPORATE GIFTING SOLUTIONS
+              BUSINESS GIFTING SOLUTIONS
             </motion.span>
             <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6">
               Premium Rewards for{" "}
@@ -538,7 +574,7 @@ const CorporateGifts = () => {
               Motivate. Appreciate. Celebrate.
             </p>
             <p className="text-primary-foreground/65 text-base mb-8 leading-relaxed max-w-lg">
-              Elevate your corporate gifting with bespoke solutions crafted to leave lasting impressions on clients, partners, and team members.
+              Elevate your business gifting with bespoke solutions crafted to leave lasting impressions on clients, partners, and team members.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.a
@@ -570,7 +606,7 @@ const CorporateGifts = () => {
             <div className={`flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 ${!activeType && 'text-center'}`}>
               <div className={activeType ? "max-w-3xl" : "mx-auto max-w-3xl"}>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  {activeType ? activeType : "Exclusive Corporate Gifts"}
+                  {activeType ? activeType : "Exclusive Business Gifts"}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   {activeType
@@ -593,35 +629,35 @@ const CorporateGifts = () => {
           {activeType ? (
             /* ─── Filtered Collection View (Modular Components) ─── */
             <div className="w-full">
-              {activeType === "Apparel for Corporate Gifting" && <CorporateApparel onProductClick={handleProductClick} />}
-              {activeType === "Corporate Cakes" && <CorporateCakes onProductClick={handleProductClick} />}
-              {activeType === "Chocolates for Corporate Gifting" && <CorporateChocolates onProductClick={handleProductClick} />}
-              {activeType === "Cupcakes for Corporate Events" && <CorporateCupcakes onProductClick={handleProductClick} />}
-              {activeType === "Corporate Flowers" && <CorporateFlowers onProductClick={handleProductClick} />}
-              {activeType === "Corporate Plants" && <CorporatePlants onProductClick={handleProductClick} />}
-              {activeType === "Corporate Technology Gifts" && <CorporateTechGifts onProductClick={handleProductClick} />}
-              {activeType === "Corporate Gifts" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
-              {activeType === "Corporate Gift Hampers" && <CorporateGiftHampers onProductClick={handleProductClick} />}
-              {activeType === "VIP & Executive" && <VipExecutiveGifts onProductClick={handleProductClick} />}
-              {activeType === "Corporate Bags & Travel Gifts" && <CorporateTravelBags onProductClick={handleProductClick} />}
-              {activeType === "Outdoor & Safety Items" && <OutdoorSafetyGifts onProductClick={handleProductClick} />}
-              {activeType === "Drinkware for Corporate Gifting" && <DrinkwareGifts onProductClick={handleProductClick} />}
-              {activeType === "Laptop Bags for Corporate Gifting" && <LaptopBags onProductClick={handleProductClick} />}
-              {activeType === "Office & Writing Gifts for Corporate" && <OfficeGifts onProductClick={handleProductClick} />}
-              {activeType === "Onboarding Gifts" && <OnboardingGifts onProductClick={handleProductClick} />}
-              {activeType === "Personal Accessories" && <PersonalAccessories onProductClick={handleProductClick} />}
-              {activeType === "Corporate Promotional Gifts" && <PromotionalGifts onProductClick={handleProductClick} />}
-              {activeType === "Gifts for Employees" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
-              {activeType === "Sustainable Products" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+              {activeType === "Branded Apparel Gifts" && <CorporateApparel onProductClick={handleProductClick} />}
+              {activeType === "Celebration Cakes for Offices" && <CorporateCakes onProductClick={handleProductClick} />}
+              {activeType === "Premium Chocolate Gifts" && <CorporateChocolates onProductClick={handleProductClick} />}
+              {activeType === "Event Cupcake Treats" && <CorporateCupcakes onProductClick={handleProductClick} />}
+              {activeType === "Floral Arrangements for Businesses" && <CorporateFlowers onProductClick={handleProductClick} />}
+              {activeType === "Business Green Plants" && <CorporatePlants onProductClick={handleProductClick} />}
+              {activeType === "Tech Gadgets for Gifting" && <CorporateTechGifts onProductClick={handleProductClick} />}
+              {activeType === "Business Gifting Solutions" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+              {activeType === "Curated Gift Hampers" && <CorporateGiftHampers onProductClick={handleProductClick} />}
+              {activeType === "Executive Level Gifts" && <VipExecutiveGifts onProductClick={handleProductClick} />}
+              {activeType === "Travel & Utility Bags" && <CorporateTravelBags onProductClick={handleProductClick} />}
+              {activeType === "Safety & Outdoor Essentials" && <OutdoorSafetyGifts onProductClick={handleProductClick} />}
+              {activeType === "Corporate Drinkware" && <DrinkwareGifts onProductClick={handleProductClick} />}
+              {activeType === "Professional Laptop Bags" && <LaptopBags onProductClick={handleProductClick} />}
+               {activeType === "Office Stationery Gifts" && <OfficeGifts onProductClick={handleProductClick} />}
+              {activeType === "Employee Welcome Kits" && <OnboardingGifts onProductClick={handleProductClick} />}
+              {activeType === "Lifestyle Accessories" && <PersonalAccessories onProductClick={handleProductClick} />}
+              {activeType === "Promotional Merchandise" && <PromotionalGifts onProductClick={handleProductClick} />}
+              {activeType === "Employee Appreciation Gifts" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
+              {activeType === "Eco-Friendly Business Solutions" && <GeneralCorporateGifts onProductClick={handleProductClick} />}
 
               {/* Fallback for categories without specific components yet or empty results */}
-              {!["Apparel for Corporate Gifting", "Corporate Cakes", "Chocolates for Corporate Gifting",
-                "Cupcakes for Corporate Events", "Corporate Flowers", "Corporate Plants",
-                "Corporate Technology Gifts", "Corporate Gifts", "Corporate Gift Hampers",
-                "Laptop Bags for Corporate Gifting", "Office & Writing Gifts for Corporate",
-                "Onboarding Gifts", "Personal Accessories", "Corporate Promotional Gifts",
-                "VIP & Executive", "Corporate Bags & Travel Gifts", "Outdoor & Safety Items",
-                "Drinkware for Corporate Gifting", "Gifts for Employees", "Sustainable Products"].includes(activeType) && (
+              {!["Branded Apparel Gifts", "Celebration Cakes for Offices", "Premium Chocolate Gifts",
+                "Event Cupcake Treats", "Floral Arrangements for Businesses", "Business Green Plants",
+                "Tech Gadgets for Gifting", "Business Gifting Solutions", "Curated Gift Hampers",
+                "Professional Laptop Bags", "Office Stationery Gifts",
+                "Employee Welcome Kits", "Lifestyle Accessories", "Promotional Merchandise",
+                "Executive Level Gifts", "Travel & Utility Bags", "Safety & Outdoor Essentials",
+                "Corporate Drinkware", "Employee Appreciation Gifts", "Eco-Friendly Business Solutions"].includes(activeType) && (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {allGifts.filter(g => g.category === activeType || (g as any).type === activeType).length > 0 ? (
                       allGifts.filter(g => g.category === activeType || (g as any).type === activeType).map((gift, i) => (
@@ -814,7 +850,76 @@ const CorporateGifts = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Phone <span className="text-destructive">*</span></label>
-                    <input type="tel" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+971 50 XXX XXXX" className={inputClasses} />
+                    <div className="flex border border-border rounded-lg bg-background focus-within:ring-2 focus-within:ring-accent/20 transition-all h-[46px] relative">
+                      <div 
+                        className="relative border-r border-border min-w-[100px] cursor-pointer rounded-l-lg" 
+                        ref={dropdownRef}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsDropdownOpen(!isDropdownOpen);
+                        }}
+                      >
+                        <div
+                          className="flex items-center justify-center gap-1.5 h-full px-2 bg-secondary/20 hover:bg-secondary/30 transition-colors rounded-l-lg"
+                        >
+                          <div className="w-5 h-3.5 overflow-hidden shadow-sm flex-shrink-0">
+                            <img
+                              src={`https://flagcdn.com/w40/${countries.find(c => c.code === form.countryCode)?.iso}.png`}
+                              alt="Flag"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <span className="text-xs font-bold text-foreground">{form.countryCode}</span>
+                          <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        </div>
+
+                        {/* Custom Dropdown Content */}
+                        <AnimatePresence>
+                          {isDropdownOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              className="absolute top-full left-0 mt-1 w-[300px] bg-white border border-gray-200 shadow-xl z-50 py-1 max-h-[250px] overflow-y-auto rounded-lg"
+                            >
+                              {countries.map((c) => (
+                                <div
+                                  key={c.code + c.name}
+                                  className={`flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors ${form.countryCode === c.code ? 'bg-blue-600 text-white' : 'text-gray-700'
+                                    }`}
+                                  onClick={() => {
+                                    setForm({ ...form, countryCode: c.code });
+                                    setIsDropdownOpen(false);
+                                  }}
+                                >
+                                  <div className="w-6 h-4 overflow-hidden border border-gray-100 flex-shrink-0">
+                                    <img
+                                      src={`https://flagcdn.com/w40/${c.iso}.png`}
+                                      alt={c.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                  <div className="flex flex-1 items-center justify-between gap-2 overflow-hidden">
+                                    <span className="text-sm truncate font-medium">
+                                      {c.name} {c.native}
+                                    </span>
+                                    <span className="text-sm opacity-70 flex-shrink-0">{c.code}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                      <input
+                        type="tel"
+                        required
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        placeholder="Phone Number"
+                        className="flex-1 px-4 py-2 text-sm bg-transparent outline-none"
+                      />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Company</label>
@@ -868,13 +973,12 @@ const CorporateGifts = () => {
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Preferred Contact</label>
                     <div className="flex gap-4 h-[46px] items-center px-4 border border-border rounded-lg bg-background">
-                      <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-accent">
+                      <label className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-accent" onClick={() => handleCheckbox("Email")}>
                         <input
                           type="checkbox"
                           className="w-4 h-4 rounded border-border text-accent focus:ring-accent"
-                          onChange={() => setForm({ ...form, contactMethod: ["Email"] })}
-                          checked={true}
-                          readOnly
+                          checked={form.contactMethod.includes("Email")}
+                          onChange={() => { }} // Logic handled by label click
                         />
                         <span>Email</span>
                       </label>

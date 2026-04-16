@@ -11,16 +11,16 @@ import Apparel9 from "@/assets/Apparel9.png"
 import Apparel10 from "@/assets/Apparel10.png"
 
 export const gifts = [
-  { img: Apparel1, title: "Branded Corporate Polo Shirt", price: "AED 89", tag: "Popular", category: "Apparel for Corporate Gifting" },
-  { img: Apparel2, title: "Premium Embroidered Hoodie", price: "AED 149", tag: "Bestseller", category: "Apparel for Corporate Gifting" },
-  { img: Apparel3, title: "Corporate Jacket with Logo", price: "AED 229", tag: "Premium", category: "Apparel for Corporate Gifting" },
-  { img: Apparel4, title: "Branded T-Shirt Collection", price: "AED 69", tag: "Classic", category: "Apparel for Corporate Gifting" },
-  { img: Apparel5, title: "Executive Vest with Branding", price: "AED 179", tag: "Elegant", category: "Apparel for Corporate Gifting" },
-  { img: Apparel6, title: "Custom Print Sweatshirt", price: "AED 119", tag: "Custom", category: "Apparel for Corporate Gifting" },
-  { img: Apparel7, title: "Corporate Cap & Hat Set", price: "AED 59", tag: "Trendy", category: "Apparel for Corporate Gifting" },
-  { img: Apparel8, title: "Branded Sports Jersey", price: "AED 139", tag: "Active", category: "Apparel for Corporate Gifting" },
-  { img: Apparel9, title: "Luxury Embroidered Shirt", price: "AED 199", tag: "Luxury", category: "Apparel for Corporate Gifting" },
-  { img: Apparel10, title: "Full Uniform Corporate Set", price: "AED 349", tag: "VIP", category: "Apparel for Corporate Gifting" },
+  { img: Apparel1, title: "Branded Corporate Polo Shirt", price: "AED 89", tag: "Popular", category: "Branded Apparel Gifts" },
+  { img: Apparel2, title: "Premium Embroidered Hoodie", price: "AED 149", tag: "Bestseller", category: "Branded Apparel Gifts" },
+  { img: Apparel3, title: "Corporate Jacket with Logo", price: "AED 229", tag: "Premium", category: "Branded Apparel Gifts" },
+  { img: Apparel4, title: "Branded T-Shirt Collection", price: "AED 69", tag: "Classic", category: "Branded Apparel Gifts" },
+  { img: Apparel5, title: "Executive Vest with Branding", price: "AED 179", tag: "Elegant", category: "Branded Apparel Gifts" },
+  { img: Apparel6, title: "Custom Print Sweatshirt", price: "AED 119", tag: "Custom", category: "Branded Apparel Gifts" },
+  { img: Apparel7, title: "Corporate Cap & Hat Set", price: "AED 59", tag: "Trendy", category: "Branded Apparel Gifts" },
+  { img: Apparel8, title: "Branded Sports Jersey", price: "AED 139", tag: "Active", category: "Branded Apparel Gifts" },
+  { img: Apparel9, title: "Luxury Embroidered Shirt", price: "AED 199", tag: "Luxury", category: "Branded Apparel Gifts" },
+  { img: Apparel10, title: "Full Uniform Corporate Set", price: "AED 349", tag: "VIP", category: "Branded Apparel Gifts" },
 ];
 
 interface CorporateApparelProps {

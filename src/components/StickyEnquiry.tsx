@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -7,26 +7,59 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 
 // Global trigger to open modal from anywhere
 let openGlobalEnquiry: () => void = () => { };
 export const triggerEnquiry = () => openGlobalEnquiry();
 
+const countries = [
+  { code: "+971", iso: "ae", name: "UAE", native: "(الإمارات العربية المتحدة)" },
+  { code: "+966", iso: "sa", name: "Saudi Arabia", native: "(المملكة العربية السعودية)" },
+  { code: "+974", iso: "qa", name: "Qatar", native: "(قطر)" },
+  { code: "+965", iso: "kw", name: "Kuwait", native: "(الكويت)" },
+  { code: "+968", iso: "om", name: "Oman", native: "(عمان)" },
+  { code: "+973", iso: "bh", name: "Bahrain", native: "(البحرين)" },
+  { code: "+91", iso: "in", name: "India", native: "(भारत)" },
+  { code: "+92", iso: "pk", name: "Pakistan", native: "(پاکستان)" },
+  { code: "+44", iso: "gb", name: "United Kingdom", native: "" },
+  { code: "+1", iso: "us", name: "United States", native: "" },
+  { code: "+962", iso: "jo", name: "Jordan", native: "(الأردن)" },
+  { code: "+961", iso: "lb", name: "Lebanon", native: "(لبنان)" },
+  { code: "+20", iso: "eg", name: "Egypt", native: "(مصر)" },
+  { code: "+90", iso: "tr", name: "Turkey", native: "(Türkiye)" },
+  { code: "+65", iso: "sg", name: "Singapore", native: "" },
+];
+
 const StickyEnquiry = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     openGlobalEnquiry = () => setIsOpen(true);
-  }, []);
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isDropdownOpen]);
 
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    countryCode: "+971",
     email: "",
     lookingFor: "",
     quantity: "",
-    companyName: ""
+    companyName: "",
+    details: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -41,14 +74,19 @@ const StickyEnquiry = () => {
       setForm({
         name: "",
         phone: "",
+        countryCode: "+971",
         email: "",
         lookingFor: "",
         quantity: "",
-        companyName: ""
+        companyName: "",
+        details: ""
       });
       setIsOpen(false);
+      setIsDropdownOpen(false);
     }, 1500);
   };
+
+  const selectedCountry = countries.find(c => c.code === form.countryCode) || countries[0];
 
   return (
     <>
@@ -67,13 +105,13 @@ const StickyEnquiry = () => {
             transform: 'rotate(180deg)',
           }}
         >
-          BOOK NOW
+          Request a Quote
         </span>
       </motion.button>
 
       {/* Modal - Website Theme (Navy & Gold) */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[420px] bg-white border-none rounded-none p-0 overflow-hidden shadow-2xl">
+        <DialogContent className="sm:max-w-[420px] bg-white border-none rounded-none p-0 shadow-2xl">
           <div className="p-6 relative">
             <DialogHeader className="mb-4">
               <DialogTitle className="text-[11px] font-black text-elvie-gold uppercase tracking-[0.15em] border-b border-gray-100 pb-4">
@@ -92,20 +130,70 @@ const StickyEnquiry = () => {
                   placeholder="Your Name"
                 />
 
-                {/* Phone simulated with UAE flag */}
-                <div className="flex border border-gray-300 focus-within:border-elvie-navy transition-colors">
-                  <div className="flex items-center gap-2 px-3 bg-gray-50 border-r border-gray-300 pointer-events-none">
-                    <span className="text-lg">🇦🇪</span>
-                    <span className="text-sm font-medium">+971</span>
-                    <span className="text-[10px] text-gray-400">▼</span>
+                {/* Phone with Custom Country Dropdown */}
+                <div className="flex border border-gray-300 focus-within:border-elvie-navy transition-colors relative">
+                  <div
+                    ref={dropdownRef}
+                    className="flex items-center gap-2 px-3 bg-gray-50 border-r border-gray-300 h-10 min-w-[100px] cursor-pointer hover:bg-gray-100 transition-colors"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  >
+                    <div className="w-5 h-3.5 overflow-hidden shadow-sm flex-shrink-0">
+                      <img
+                        src={`https://flagcdn.com/w40/${selectedCountry.iso}.png`}
+                        alt="Flag"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <span className="text-sm font-medium">{form.countryCode}</span>
+                    <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+
+                    {/* Dropdown Options */}
+                    <AnimatePresence>
+                      {isDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-0 mt-1 w-[300px] bg-white border border-gray-200 shadow-xl z-[60] py-1 max-h-[300px] overflow-y-auto rounded-sm"
+                        >
+                          {countries.map((c) => (
+                            <div
+                              key={c.code + c.name}
+                              className={`flex items-center gap-3 px-4 py-2.5 hover:bg-blue-600 hover:text-white cursor-pointer transition-colors ${form.countryCode === c.code ? 'bg-blue-600 text-white' : 'text-gray-700'
+                                }`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setForm({ ...form, countryCode: c.code });
+                                setIsDropdownOpen(false);
+                              }}
+                            >
+                              <div className="w-6 h-4 overflow-hidden border border-gray-100 flex-shrink-0">
+                                <img
+                                  src={`https://flagcdn.com/w40/${c.iso}.png`}
+                                  alt={c.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div className="flex flex-1 items-center justify-between gap-2 overflow-hidden">
+                                <span className="text-sm truncate font-medium">
+                                  {c.name} {c.native}
+                                </span>
+                                <span className="text-sm opacity-70 flex-shrink-0">{c.code}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
+
                   <input
                     required
                     type="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     className="flex-1 px-4 py-2.5 text-sm outline-none"
-                    placeholder="5x xxx xxxx"
+                    placeholder="Enter Phone Number"
                   />
                 </div>
 
@@ -127,21 +215,32 @@ const StickyEnquiry = () => {
                   placeholder="I am looking for"
                 />
 
-                {/* Quantity */}
-                <input
-                  type="number"
-                  value={form.quantity}
-                  onChange={(e) => setForm({ ...form, quantity: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 text-sm outline-none focus:border-elvie-navy focus:ring-1 focus:ring-elvie-gold/20"
-                  placeholder="Quantity"
-                />
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Quantity */}
+                  <input
+                    type="number"
+                    value={form.quantity}
+                    onChange={(e) => setForm({ ...form, quantity: e.target.value })}
+                    className="w-full px-4 py-2.5 border border-gray-300 text-sm outline-none focus:border-elvie-navy focus:ring-1 focus:ring-elvie-gold/20"
+                    placeholder="Quantity"
+                  />
 
-                {/* Company Name */}
-                <input
-                  value={form.companyName}
-                  onChange={(e) => setForm({ ...form, companyName: e.target.value })}
-                  className="w-full px-4 py-2.5 border border-gray-300 text-sm outline-none focus:border-elvie-navy focus:ring-1 focus:ring-elvie-gold/20"
-                  placeholder="Company Name"
+                  {/* Company Name */}
+                  <input
+                    value={form.companyName}
+                    onChange={(e) => setForm({ ...form, companyName: e.target.value })}
+                    className="w-full px-4 py-2.5 border border-gray-300 text-sm outline-none focus:border-elvie-navy focus:ring-1 focus:ring-elvie-gold/20"
+                    placeholder="Company Name"
+                  />
+                </div>
+
+                {/* Details Field */}
+                <textarea
+                  value={form.details}
+                  onChange={(e) => setForm({ ...form, details: e.target.value })}
+                  rows={3}
+                  className="w-full px-4 py-2.5 border border-gray-300 text-sm outline-none focus:border-elvie-navy focus:ring-1 focus:ring-elvie-gold/20 resize-none"
+                  placeholder="Additional Details / Requirements"
                 />
               </div>
 

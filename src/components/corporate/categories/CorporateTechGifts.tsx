@@ -11,16 +11,16 @@ import Technology9 from "@/assets/Technology9.jpeg";
 import Technology10 from "@/assets/Technology10.jpeg";
 
 export const gifts = [
-  { img: Technology1, title: "Wireless Earbuds Gift Set", price: "AED 299", tag: "Premium", category: "Corporate Technology Gifts" },
-  { img: Technology2, title: "Smart Bluetooth Speaker", price: "AED 249", tag: "Popular", category: "Corporate Technology Gifts" },
-  { img: Technology3, title: "Branded Wireless Charger", price: "AED 179", tag: "Bestseller", category: "Corporate Technology Gifts" },
-  { img: Technology4, title: "Executive Power Bank", price: "AED 199", tag: "Essential", category: "Corporate Technology Gifts" },
-  { img: Technology5, title: "USB-C Hub Gift Box", price: "AED 229", tag: "Tech", category: "Corporate Technology Gifts" },
-  { img: Technology6, title: "Smart Watch Corporate Edition", price: "AED 549", tag: "Luxury", category: "Corporate Technology Gifts" },
-  { img: Technology7, title: "Branded Laptop Stand Kit", price: "AED 189", tag: "Elegant", category: "Corporate Technology Gifts" },
-  { img: Technology8, title: "Noise Cancelling Headphones", price: "AED 649", tag: "VIP", category: "Corporate Technology Gifts" },
-  { img: Technology9, title: "Corporate LED Desk Lamp", price: "AED 159", tag: "Classic", category: "Corporate Technology Gifts" },
-  { img: Technology10, title: "Smart Notebook & Stylus Set", price: "AED 219", tag: "New", category: "Corporate Technology Gifts" },
+  { img: Technology1, title: "Wireless Earbuds Gift Set", price: "AED 299", tag: "Premium", category: "Tech Gadgets for Gifting" },
+  { img: Technology2, title: "Smart Bluetooth Speaker", price: "AED 249", tag: "Popular", category: "Tech Gadgets for Gifting" },
+  { img: Technology3, title: "Branded Wireless Charger", price: "AED 179", tag: "Bestseller", category: "Tech Gadgets for Gifting" },
+  { img: Technology4, title: "Executive Power Bank", price: "AED 199", tag: "Essential", category: "Tech Gadgets for Gifting" },
+  { img: Technology5, title: "USB-C Hub Gift Box", price: "AED 229", tag: "Tech", category: "Tech Gadgets for Gifting" },
+  { img: Technology6, title: "Smart Watch Corporate Edition", price: "AED 549", tag: "Luxury", category: "Tech Gadgets for Gifting" },
+  { img: Technology7, title: "Branded Laptop Stand Kit", price: "AED 189", tag: "Elegant", category: "Tech Gadgets for Gifting" },
+  { img: Technology8, title: "Noise Cancelling Headphones", price: "AED 649", tag: "VIP", category: "Tech Gadgets for Gifting" },
+  { img: Technology9, title: "Corporate LED Desk Lamp", price: "AED 159", tag: "Classic", category: "Tech Gadgets for Gifting" },
+  { img: Technology10, title: "Smart Notebook & Stylus Set", price: "AED 219", tag: "New", category: "Tech Gadgets for Gifting" },
 ];
 
 interface CorporateTechGiftsProps {

@@ -11,16 +11,16 @@ import OfficeGifts9 from "@/assets/OfficeGifts9.png";
 import OfficeGifts10 from "@/assets/OfficeGifts10.png";
 
 export const gifts = [
-  { img: OfficeGifts1, title: "Executive Notebook & Pen Set", price: "AED 149", tag: "Premium", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts2, title: "Smart Leather Desk Organizer", price: "AED 199", tag: "Popular", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts3, title: "Branded Metal Rollerball Pen", price: "AED 89", tag: "Bestseller", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts4, title: "Luxury Fountain Pen Set", price: "AED 299", tag: "Luxury", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts5, title: "Custom Engraved Bamboo Pen", price: "AED 59", tag: "Eco", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts6, title: "Premium A5 Leather Journal", price: "AED 129", tag: "Classic", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts7, title: "Corporate Desk Clock & Pen Stand", price: "AED 179", tag: "Elegant", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts8, title: "Executive Portfolio Manager", price: "AED 249", tag: "VIP", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts9, title: "Wireless Charging Mouse Pad", price: "AED 139", tag: "Tech", category: "Office & Writing Gifts for Corporate" },
-  { img: OfficeGifts10, title: "Eco-Friendly Cork Notebook Set", price: "AED 99", tag: "New", category: "Office & Writing Gifts for Corporate" },
+  { img: OfficeGifts1, title: "Executive Notebook & Pen Set", price: "AED 149", tag: "Premium", category: "Office Stationery Gifts" },
+  { img: OfficeGifts2, title: "Smart Leather Desk Organizer", price: "AED 199", tag: "Popular", category: "Office Stationery Gifts" },
+  { img: OfficeGifts3, title: "Branded Metal Rollerball Pen", price: "AED 89", tag: "Bestseller", category: "Office Stationery Gifts" },
+  { img: OfficeGifts4, title: "Luxury Fountain Pen Set", price: "AED 299", tag: "Luxury", category: "Office Stationery Gifts" },
+  { img: OfficeGifts5, title: "Custom Engraved Bamboo Pen", price: "AED 59", tag: "Eco", category: "Office Stationery Gifts" },
+  { img: OfficeGifts6, title: "Premium A5 Leather Journal", price: "AED 129", tag: "Classic", category: "Office Stationery Gifts" },
+  { img: OfficeGifts7, title: "Corporate Desk Clock & Pen Stand", price: "AED 179", tag: "Elegant", category: "Office Stationery Gifts" },
+  { img: OfficeGifts8, title: "Executive Portfolio Manager", price: "AED 249", tag: "VIP", category: "Office Stationery Gifts" },
+  { img: OfficeGifts9, title: "Wireless Charging Mouse Pad", price: "AED 139", tag: "Tech", category: "Office Stationery Gifts" },
+  { img: OfficeGifts10, title: "Eco-Friendly Cork Notebook Set", price: "AED 99", tag: "New", category: "Office Stationery Gifts" },
 ];
 
 interface OfficeGiftsProps {

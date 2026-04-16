@@ -11,16 +11,16 @@ import SafetyItem9 from "@/assets/SafetyItem9.jpeg"
 import SafetyItem10 from "@/assets/SafetyItem10.jpeg"
 
 export const gifts = [
-  { img: SafetyItem1, title: "Premium Safety Vest Gift Set", price: "AED 129", tag: "Essential", category: "Outdoor & Safety Items" },
-  { img: SafetyItem2, title: "Branded First Aid Kit", price: "AED 99", tag: "Popular", category: "Outdoor & Safety Items" },
-  { img: SafetyItem3, title: "Corporate Outdoor Adventure Kit", price: "AED 249", tag: "Bestseller", category: "Outdoor & Safety Items" },
-  { img: SafetyItem4, title: "Reflective Safety Cap Set", price: "AED 79", tag: "Classic", category: "Outdoor & Safety Items" },
-  { img: SafetyItem5, title: "Emergency Roadside Kit", price: "AED 189", tag: "Safety", category: "Outdoor & Safety Items" },
-  { img: SafetyItem6, title: "Branded Hard Hat Collection", price: "AED 149", tag: "Custom", category: "Outdoor & Safety Items" },
-  { img: SafetyItem7, title: "Executive Outdoor Survival Kit", price: "AED 299", tag: "Premium", category: "Outdoor & Safety Items" },
-  { img: SafetyItem8, title: "Corporate PPE Gift Bundle", price: "AED 179", tag: "VIP", category: "Outdoor & Safety Items" },
-  { img: SafetyItem9, title: "Branded Safety Torch Set", price: "AED 109", tag: "Trendy", category: "Outdoor & Safety Items" },
-  { img: SafetyItem10, title: "Eco Outdoor Wellness Kit", price: "AED 219", tag: "Eco", category: "Outdoor & Safety Items" },
+  { img: SafetyItem1, title: "Premium Safety Vest Gift Set", price: "AED 129", tag: "Essential", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem2, title: "Branded First Aid Kit", price: "AED 99", tag: "Popular", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem3, title: "Corporate Outdoor Adventure Kit", price: "AED 249", tag: "Bestseller", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem4, title: "Reflective Safety Cap Set", price: "AED 79", tag: "Classic", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem5, title: "Emergency Roadside Kit", price: "AED 189", tag: "Safety", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem6, title: "Branded Hard Hat Collection", price: "AED 149", tag: "Custom", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem7, title: "Executive Outdoor Survival Kit", price: "AED 299", tag: "Premium", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem8, title: "Corporate PPE Gift Bundle", price: "AED 179", tag: "VIP", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem9, title: "Branded Safety Torch Set", price: "AED 109", tag: "Trendy", category: "Safety & Outdoor Essentials" },
+  { img: SafetyItem10, title: "Eco Outdoor Wellness Kit", price: "AED 219", tag: "Eco", category: "Safety & Outdoor Essentials" },
 ];
 
 interface OutdoorSafetyGiftsProps {
