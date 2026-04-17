@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, ChevronDown, LogIn, LayoutDashboard } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, LogIn, LayoutDashboard, Building2 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
 import { useAuth } from "@/context/AuthContext";
@@ -159,11 +159,11 @@ const ElvieNavbar = () => {
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="ml-3">
             <Link
-              to={isAuthenticated ? "/dashboard" : "/login"}
+              to={isAuthenticated ? "/dashboard" : "/venue-partners"}
               className="flex items-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded-lg px-3 py-2 text-xs font-semibold hover:bg-elvie-gold/10 transition-colors"
             >
-              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <LogIn className="w-4 h-4" />}
-              {isAuthenticated ? "DASHBOARD" : "LOGIN"}
+              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
+              {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
             </Link>
           </motion.div>
 
@@ -241,12 +241,12 @@ const ElvieNavbar = () => {
             </motion.div>
 
             <Link
-              to={isAuthenticated ? "/dashboard" : "/login"}
+              to={isAuthenticated ? "/dashboard" : "/venue-partners"}
               onClick={() => setMobileOpen(false)}
               className="mx-6 mt-2 flex items-center justify-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded px-4 py-2 text-sm font-semibold"
             >
-              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <LogIn className="w-4 h-4" />}
-              {isAuthenticated ? "DASHBOARD" : "LOGIN"}
+              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
+              {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
             </Link>
 
             <a
