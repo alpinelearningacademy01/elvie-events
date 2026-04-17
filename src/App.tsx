@@ -14,6 +14,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import StickyEnquiry from "./components/StickyEnquiry";
 import Login from "./pages/Login";
+import VenuePartners from "./pages/VenuePartners";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Inbox from "./pages/dashboard/Inbox";
 import Properties from "./pages/dashboard/Properties";
