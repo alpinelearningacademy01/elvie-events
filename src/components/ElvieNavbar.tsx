@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, LogIn, LayoutDashboard } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
+import { useAuth } from "@/context/AuthContext";
 
 const giftTypes = [
   "Employee Welcome Kits",
@@ -39,6 +40,7 @@ const ElvieNavbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -155,9 +157,19 @@ const ElvieNavbar = () => {
             </AnimatePresence>
           </div>
 
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="ml-3">
+            <Link
+              to={isAuthenticated ? "/dashboard" : "/login"}
+              className="flex items-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded-lg px-3 py-2 text-xs font-semibold hover:bg-elvie-gold/10 transition-colors"
+            >
+              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <LogIn className="w-4 h-4" />}
+              {isAuthenticated ? "DASHBOARD" : "LOGIN"}
+            </Link>
+          </motion.div>
+
           <motion.a
             href="tel:+971521327081"
-            className="ml-4 flex items-center gap-2 border border-primary-foreground/50 rounded-lg px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
+            className="ml-2 flex items-center gap-2 border border-primary-foreground/50 rounded-lg px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -227,6 +239,15 @@ const ElvieNavbar = () => {
                 </AnimatePresence>
               </div>
             </motion.div>
+
+            <Link
+              to={isAuthenticated ? "/dashboard" : "/login"}
+              onClick={() => setMobileOpen(false)}
+              className="mx-6 mt-2 flex items-center justify-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded px-4 py-2 text-sm font-semibold"
+            >
+              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <LogIn className="w-4 h-4" />}
+              {isAuthenticated ? "DASHBOARD" : "LOGIN"}
+            </Link>
 
             <a
               href="tel:+971521327081"
