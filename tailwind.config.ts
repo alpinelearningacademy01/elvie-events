@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
+        archivo: ["Archivo", "system-ui", "sans-serif"],
+        "archivo-black": ["'Archivo Black'", "Archivo", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -58,6 +60,11 @@ export default {
           "blue-light": "hsl(var(--elvie-blue-light))",
           gold: "hsl(var(--elvie-gold))",
         },
+        /* VenueWise palette — ink-black + lime-yellow */
+        "vw-ink": "hsl(0 0% 6%)",
+        "vw-ink-foreground": "hsl(0 0% 98%)",
+        "vw-lime": "hsl(70 95% 52%)",
+        "vw-lime-dark": "hsl(0 0% 6%)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -91,12 +98,29 @@ export default {
           "0%": { opacity: "0", transform: "translateX(-50px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        /* VenueWise keyframes */
+        "vw-fade-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "vw-fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "vw-slow-zoom": {
+          "0%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1.12)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "slide-in-left": "slide-in-left 0.8s ease-out forwards",
+        /* VenueWise animations */
+        "vw-fade-up": "vw-fade-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) both",
+        "vw-fade-in": "vw-fade-in 0.6s ease-out both",
+        "vw-slow-zoom": "vw-slow-zoom 18s ease-out both",
       },
     },
   },

@@ -106,16 +106,16 @@ const Login = () => {
             </motion.button>
           </form>
 
-          <div className="mt-6 p-3 bg-elvie-gold/10 border border-elvie-gold/30 rounded-lg flex items-start gap-2">
+          {/* <div className="mt-6 p-3 bg-elvie-gold/10 border border-elvie-gold/30 rounded-lg flex items-start gap-2">
             <Sparkles className="w-4 h-4 text-elvie-gold mt-0.5 flex-shrink-0" />
             <div className="text-xs text-foreground/80">
               <p className="font-semibold mb-1">Demo credentials</p>
               <p className="font-mono text-[11px]">demo@elvie.com / demo123</p>
             </div>
-          </div>
+          </div> */}
 
           <p className="text-center text-xs text-muted-foreground mt-6">
-            <Link to="/" className="hover:text-foreground">← Back to homepage</Link>
+            <Link to="/venue-partners" className="hover:text-foreground">← Back to homepage</Link>
           </p>
         </div>
       </motion.div>

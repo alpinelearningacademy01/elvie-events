@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -92,4 +92,20 @@
   .text-elvie-gold {
     color: hsl(var(--elvie-gold));
   }
+
+  /* ───────────────────────────────────────────────────────
+     VenueWise design system utilities (scoped, non-breaking)
+  ─────────────────────────────────────────────────────── */
+  .vw-ink { background-color: hsl(0 0% 6%); }
+  .vw-text-ink { color: hsl(0 0% 6%); }
+  .vw-text-ink-foreground { color: hsl(0 0% 98%); }
+  .vw-gradient-hero { background-image: linear-gradient(180deg, hsl(0 0% 4% / 0.2) 0%, hsl(0 0% 4% / 0.65) 60%, hsl(0 0% 4% / 0.9) 100%); }
+  .vw-shadow-soft { box-shadow: 0 10px 40px -10px hsl(0 0% 0% / 0.25); }
+  .vw-shadow-card { box-shadow: 0 4px 24px -6px hsl(0 0% 0% / 0.12); }
+  .vw-shadow-glow { box-shadow: 0 0 60px hsl(70 95% 52% / 0.35); }
+  .vw-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .vw-font-display { font-family: 'Archivo Black', 'Archivo', sans-serif; letter-spacing: -0.02em; line-height: 0.95; }
+  .vw-font-body { font-family: 'Archivo', system-ui, sans-serif; }
+  .vw-container { margin-inline: auto; width: 100%; max-width: 1400px; padding-inline: 1.25rem; }
+  @media (min-width: 768px) { .vw-container { padding-inline: 2rem; } }
 }

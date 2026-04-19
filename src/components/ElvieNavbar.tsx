@@ -160,7 +160,8 @@ const ElvieNavbar = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="ml-3">
             <Link
               to={isAuthenticated ? "/dashboard" : "/venue-partners"}
-              className="flex items-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded-lg px-3 py-2 text-xs font-semibold hover:bg-elvie-gold/10 transition-colors"
+              className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-bold text-xs tracking-wider text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-[0_4px_14px_rgba(200,150,50,0.3)]"
+              style={{ background: "linear-gradient(135deg, hsl(40 80% 55%) 0%, hsl(35 90% 45%) 100%)" }}
             >
               {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
               {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
@@ -243,7 +244,8 @@ const ElvieNavbar = () => {
             <Link
               to={isAuthenticated ? "/dashboard" : "/venue-partners"}
               onClick={() => setMobileOpen(false)}
-              className="mx-6 mt-2 flex items-center justify-center gap-2 border border-elvie-gold/60 text-elvie-gold rounded px-4 py-2 text-sm font-semibold"
+              className="mx-6 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-bold text-sm tracking-wider text-primary-foreground transition-all shadow-[0_4px_14px_rgba(200,150,50,0.3)]"
+              style={{ background: "linear-gradient(135deg, hsl(40 80% 55%) 0%, hsl(35 90% 45%) 100%)" }}
             >
               {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
               {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
