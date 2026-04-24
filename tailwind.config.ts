@@ -63,6 +63,8 @@ export default {
         /* VenueWise palette — ink-black + lime-yellow */
         "vw-ink": "hsl(0 0% 6%)",
         "vw-ink-foreground": "hsl(0 0% 98%)",
+        ink: "hsl(0 0% 6%)",
+        "ink-foreground": "hsl(0 0% 98%)",
         "vw-lime": "hsl(70 95% 52%)",
         "vw-lime-dark": "hsl(0 0% 6%)",
         sidebar: {

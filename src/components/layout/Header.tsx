@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 type Variant = "dark" | "light";
 
 const Logo = ({ variant }: { variant: Variant }) => (
-  <Link to="/" className="flex items-center gap-2" aria-label="VenueWise home">
+  <Link to="/" className="flex items-center gap-2" aria-label="Venue Partner home">
     <div
       className={`flex h-9 w-9 items-center justify-center rounded-md font-display text-lg ${
         variant === "dark" ? "bg-white text-ink" : "bg-ink text-ink-foreground"
@@ -17,7 +17,7 @@ const Logo = ({ variant }: { variant: Variant }) => (
     <span className={`font-display text-base leading-none tracking-tight ${variant === "dark" ? "text-white" : "text-ink"}`}>
       VENUE
       <br />
-      WISE
+      PARTNER
     </span>
   </Link>
 );

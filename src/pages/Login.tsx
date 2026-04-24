@@ -1,124 +1,171 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Lock, LogIn, Sparkles } from "lucide-react";
+import { 
+  Eye, 
+  EyeOff, 
+  Sparkles,
+  Lock,
+  Mail
+} from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import { toast } from "@/hooks/use-toast";
-import logoImg from "@/assets/Logo.webp";
+import { toast } from "sonner";
+import { VwHeader, VwFooter } from "@/components/VwLayoutComponents";
+import heroImage from "@/assets/hero-venue.jpg";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("demo@elvie.com");
   const [password, setPassword] = useState("demo123");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!email) newErrors.email = "Please enter your email";
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Invalid email format";
+    if (!password) newErrors.password = "Please enter password";
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
+
     setLoading(true);
     setTimeout(() => {
       const ok = login(email, password);
       setLoading(false);
       if (ok) {
-        toast({ title: "Welcome back!", description: "Login successful." });
+        toast.success("Welcome back!");
         navigate("/dashboard");
       } else {
-        toast({
-          title: "Invalid credentials",
-          description: "Try demo@elvie.com / demo123",
-          variant: "destructive",
-        });
+        toast.error("Invalid credentials. Try demo@elvie.com / demo123");
       }
-    }, 600);
+    }, 1000);
   };
 
   return (
-    <div className="min-h-screen elvie-gradient-dark flex items-center justify-center p-4 relative overflow-hidden">
-      {/* decorative blobs */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-elvie-blue-light/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-elvie-gold/20 rounded-full blur-3xl" />
+    <div className="min-h-screen font-montserrat bg-white">
+      <VwHeader />
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative w-full max-w-md"
-      >
-        <div className="bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border p-8">
-          <Link to="/" className="flex justify-center mb-6">
-            <img src={logoImg} alt="Elvie Events" className="h-16 w-auto" />
-          </Link>
+      <main className="relative isolate overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center py-20 px-4">
+        {/* Background Overlay with Landing Page Assets */}
+        <div className="absolute inset-0 -z-10 bg-elvie-navy-deep">
+          <img 
+            src={heroImage} 
+            alt="Venue background" 
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 vw-gradient-hero" />
+          
+          {/* Landing Page Glow Effects */}
+          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-elvie-gold/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-20 -right-20 w-80 h-80 bg-elvie-gold/10 rounded-full blur-[100px]" />
+        </div>
 
-          <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-foreground mb-1">Welcome Back</h1>
-            <p className="text-sm text-muted-foreground">Sign in to your dashboard</p>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-[440px] bg-white rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.4)] overflow-hidden relative z-10 p-6 md:p-10 border border-blue-50/10 -mt-20"
+        >
+          <div className="text-center mb-8">
+             <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-elvie-gold/10 text-elvie-gold text-[10px] font-bold uppercase tracking-widest mb-3">
+                <Lock className="w-3 h-3" /> Secure Access
+             </div>
+            <h1 className="text-3xl md:text-4xl font-playfair font-bold text-elvie-navy-deep mb-2 capitalize">Welcome Back</h1>
+            <p className="text-gray-500 text-sm font-medium">Log in to manage your venues and inquiries</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 block">
-                Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full pl-10 pr-4 py-3 bg-muted/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-elvie-blue text-sm"
-                  placeholder="you@example.com"
-                />
-              </div>
+            {/* Email Address */}
+            <div className="space-y-1.5">
+               <label className="text-xs font-bold text-elvie-navy-deep uppercase tracking-wider ml-1">Email Address</label>
+               <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="email"
+                    placeholder="you@company.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`w-full pl-11 pr-5 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-gray-300 ${
+                       errors.email ? "border-red-500 bg-red-50/30" : "border-gray-100 bg-gray-50 focus:bg-white focus:border-elvie-gold focus:ring-1 focus:ring-elvie-gold/20"
+                    }`}
+                  />
+               </div>
+               {errors.email && <p className="text-[11px] text-red-500 font-bold ml-1">{errors.email}</p>}
             </div>
 
-            <div>
-              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 block">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="w-full pl-10 pr-4 py-3 bg-muted/50 border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-elvie-blue text-sm"
-                  placeholder="••••••••"
-                />
-              </div>
+            {/* Password */}
+            <div className="space-y-1.5">
+               <div className="flex justify-between items-center ml-1">
+                  <label className="text-xs font-bold text-elvie-navy-deep uppercase tracking-wider">Password</label>
+                  <button type="button" className="text-xs font-bold text-elvie-navy-deep/60 hover:text-elvie-gold transition-colors">Forgot?</button>
+               </div>
+               <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`w-full pl-11 pr-12 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-gray-300 ${
+                       errors.password ? "border-red-500 bg-red-50/30" : "border-gray-100 bg-gray-50 focus:bg-white focus:border-elvie-gold focus:ring-1 focus:ring-elvie-gold/20"
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-elvie-navy-deep transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+               </div>
+               {errors.password && <p className="text-[11px] text-red-500 font-bold ml-1">{errors.password}</p>}
             </div>
 
-            <motion.button
+            {/* Keep Logged In */}
+            <div className="flex items-center gap-2 px-1">
+              <input
+                id="remember"
+                type="checkbox"
+                className="w-4 h-4 rounded border-gray-300 text-elvie-gold focus:ring-elvie-gold"
+              />
+              <label htmlFor="remember" className="text-xs text-gray-500 font-medium">
+                Keep me logged in
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button
               type="submit"
               disabled={loading}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="w-full elvie-gradient-dark text-primary-foreground py-3 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-60 border border-elvie-blue-light/30"
+              className="w-full py-3.5 rounded-2xl text-elvie-navy-deep font-bold text-lg vw-transition hover:opacity-90 active:scale-[0.98] disabled:opacity-50 shadow-lg"
+              style={{ backgroundColor: "hsl(var(--elvie-gold))" }}
             >
-              {loading ? (
-                "Signing in..."
-              ) : (
-                <>
-                  <LogIn className="w-4 h-4" /> Sign In
-                </>
-              )}
-            </motion.button>
-          </form>
+              {loading ? "Signing in..." : "Access Dashboard"}
+            </button>
 
-          {/* <div className="mt-6 p-3 bg-elvie-gold/10 border border-elvie-gold/30 rounded-lg flex items-start gap-2">
-            <Sparkles className="w-4 h-4 text-elvie-gold mt-0.5 flex-shrink-0" />
-            <div className="text-xs text-foreground/80">
-              <p className="font-semibold mb-1">Demo credentials</p>
-              <p className="font-mono text-[11px]">demo@elvie.com / demo123</p>
+            {/* Switch to Signup */}
+            <div className="text-center pt-2">
+               <p className="text-sm text-gray-500">
+                  New to Venue Partner?{" "}
+                  <Link to="/signup" className="text-elvie-navy-deep font-bold hover:text-elvie-gold transition-colors underline underline-offset-4 decoration-elvie-gold/30">
+                     Create account
+                  </Link>
+               </p>
             </div>
-          </div> */}
+          </form>
+        </motion.div>
+      </main>
 
-          <p className="text-center text-xs text-muted-foreground mt-6">
-            <Link to="/venue-partners" className="hover:text-foreground">← Back to homepage</Link>
-          </p>
-        </div>
-      </motion.div>
+      <VwFooter />
+      <ScrollToTop />
     </div>
   );
 };

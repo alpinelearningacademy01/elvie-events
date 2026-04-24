@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { ChevronDown, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 // Global trigger to open modal from anywhere
 let openGlobalEnquiry: () => void = () => { };
@@ -32,9 +33,16 @@ const countries = [
 ];
 
 const StickyEnquiry = () => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Hide on Venue Partner specific pages
+  const isVenuePartnerPage =
+    location.pathname === "/venue-partners" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
 
   useEffect(() => {
     openGlobalEnquiry = () => setIsOpen(true);
@@ -87,6 +95,8 @@ const StickyEnquiry = () => {
   };
 
   const selectedCountry = countries.find(c => c.code === form.countryCode) || countries[0];
+
+  if (isVenuePartnerPage) return null;
 
   return (
     <>

@@ -10,7 +10,7 @@ const Footer = () => (
             Find your <span className="text-primary">perfect venue</span>.
           </h3>
           <p className="mt-4 max-w-md text-sm text-white/70">
-            VenueWise connects organizers with the GCC's largest curated network of venues — fast, transparent, and free to use.
+            Venue Partner connects organizers with the GCC's largest curated network of venues — fast, transparent, and free to use.
           </p>
         </div>
         <div>
@@ -24,7 +24,7 @@ const Footer = () => (
         <div>
           <h4 className="text-xs font-bold uppercase tracking-widest text-white/50">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> support@venuewise.com</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> support@venuepartner.com</li>
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +971 52 137 7986</li>
           </ul>
           <div className="mt-6 flex gap-3">
@@ -38,7 +38,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center">
-        <p>© {new Date().getFullYear()} VenueWise. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Venue Partner. All rights reserved.</p>
         <div className="flex gap-6">
           <a href="#" className="hover:text-white">Privacy</a>
           <a href="#" className="hover:text-white">Terms</a>

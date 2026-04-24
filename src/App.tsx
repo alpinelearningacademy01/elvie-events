@@ -14,6 +14,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import StickyEnquiry from "./components/StickyEnquiry";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import VenuePartners from "./pages/VenuePartners";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Inbox from "./pages/dashboard/Inbox";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/venue-partners" element={<VenuePartners />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route
               path="/dashboard"
               element={
