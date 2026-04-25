@@ -4,11 +4,11 @@ import gifttFlowes2 from "@/assets/gift-flower2.png";
 import gifttFlowes3 from "@/assets/gift-flower3.png";
 import gifttFlowes4 from "@/assets/gift-flower4.png";
 import gifttFlowes5 from "@/assets/gift-flower5.png";
-import gifttFlowes6 from "@/assets/gift-flower6.png";
-import gifttFlowes7 from "@/assets/gift-flower7.png";
-import gifttFlowes8 from "@/assets/gift-flower8.png";
-import gifttFlowes9 from "@/assets/gift-flower9.png";
-import gifttFlowes10 from "@/assets/gift-flower10.png";
+// import gifttFlowes6 from "@/assets/gift-flower6.png";
+// import gifttFlowes7 from "@/assets/gift-flower7.png";
+// import gifttFlowes8 from "@/assets/gift-flower8.png";
+// import gifttFlowes9 from "@/assets/gift-flower9.png";
+// import gifttFlowes10 from "@/assets/gift-flower10.png";
 
 export const gifts = [
   { img: gifttFlowes1, title: "Luxury Corporate Roses", price: "AED 350", tag: "Premium", category: "Floral Arrangements for Businesses" },
@@ -16,11 +16,11 @@ export const gifts = [
   { img: gifttFlowes3, title: "Classic Mixed Bouquet", price: "AED 290", tag: "Popular", category: "Floral Arrangements for Businesses" },
   { img: gifttFlowes4, title: "Desktop Flower Vase", price: "AED 210", tag: "New", category: "Floral Arrangements for Businesses" },
   { img: gifttFlowes5, title: "Executive Hydrangeas", price: "AED 380", tag: "Luxury", category: "Floral Arrangements for Businesses" },
-  { img: gifttFlowes6, title: "Corporate Event Centerpiece", price: "AED 450", tag: "Event", category: "Floral Arrangements for Businesses" },
-  { img: gifttFlowes7, title: "Welcome Desk Arrangement", price: "AED 260", tag: "Classic", category: "Floral Arrangements for Businesses" },
-  { img: gifttFlowes8, title: "Festive Flower Basket", price: "AED 340", tag: "Festive", category: "Floral Arrangements for Businesses" },
-  { img: gifttFlowes9, title: "Premium Lily Collection", price: "AED 390", tag: "Premium", category: "Floral Arrangements for Businesses" },
-  { img: gifttFlowes10, title: "Bespoke Floral Stand", price: "AED 550", tag: "Grand", category: "Floral Arrangements for Businesses" },
+  // { img: gifttFlowes6, title: "Corporate Event Centerpiece", price: "AED 450", tag: "Event", category: "Floral Arrangements for Businesses" },
+  // { img: gifttFlowes7, title: "Welcome Desk Arrangement", price: "AED 260", tag: "Classic", category: "Floral Arrangements for Businesses" },
+  // { img: gifttFlowes8, title: "Festive Flower Basket", price: "AED 340", tag: "Festive", category: "Floral Arrangements for Businesses" },
+  // { img: gifttFlowes9, title: "Premium Lily Collection", price: "AED 390", tag: "Premium", category: "Floral Arrangements for Businesses" },
+  // { img: gifttFlowes10, title: "Bespoke Floral Stand", price: "AED 550", tag: "Grand", category: "Floral Arrangements for Businesses" },
 ];
 
 interface CorporateFlowersProps {

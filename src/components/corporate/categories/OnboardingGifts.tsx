@@ -3,24 +3,24 @@ import Onboarding1 from "@/assets/Onboarding_Gifts1.png";
 import Onboarding2 from "@/assets/Onboarding_Gifts2.png";
 import Onboarding3 from "@/assets/Onboarding_Gifts3.png";
 import Onboarding4 from "@/assets/Onboarding_Gifts4.png";
-import Onboarding5 from "@/assets/Onboarding_Gifts5.png";
-import Onboarding6 from "@/assets/Onboarding_Gifts6.png";
-import Onboarding7 from "@/assets/Onboarding_Gifts7.jpg";
-import Onboarding8 from "@/assets/Onboarding_Gifts8.png";
-import Onboarding9 from "@/assets/Onboarding_Gifts9.png";
-import Onboarding10 from "@/assets/Onboarding_Gifts10.png";
+// import Onboarding5 from "@/assets/Onboarding_Gifts5.png";
+// import Onboarding6 from "@/assets/Onboarding_Gifts6.png";
+// import Onboarding7 from "@/assets/Onboarding_Gifts7.jpg";
+// import Onboarding8 from "@/assets/Onboarding_Gifts8.png";
+// import Onboarding9 from "@/assets/Onboarding_Gifts9.png";
+// import Onboarding10 from "@/assets/Onboarding_Gifts10.png";
 
 export const gifts = [
   { img: Onboarding1, title: "Welcome Kit - Series A", price: "AED 299", tag: "New", category: "Employee Welcome Kits" },
   { img: Onboarding2, title: "Premium Onboarding Hamper", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
   { img: Onboarding3, title: "Executive Starter Kit", price: "AED 549", tag: "Bestseller", category: "Employee Welcome Kits" },
   { img: Onboarding4, title: "Tech Welcome Pack", price: "AED 379", tag: "Tech", category: "Employee Welcome Kits" },
-  { img: Onboarding5, title: "Eco-Friendly Welcome Box", price: "AED 349", tag: "Eco", category: "Employee Welcome Kits" },
-  { img: Onboarding6, title: "Welcome Kit - Series B", price: "AED 299", tag: "New", category: "Employee Welcome Kits" },
-  { img: Onboarding7, title: "Luxury Onboarding Hamper", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
-  { img: Onboarding8, title: "Corporate Welcome Gift Set", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
-  { img: Onboarding9, title: "Employee Welcome Kit V2", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
-  { img: Onboarding10, title: "Elite Onboarding Package", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
+  // { img: Onboarding5, title: "Eco-Friendly Welcome Box", price: "AED 349", tag: "Eco", category: "Employee Welcome Kits" },
+  // { img: Onboarding6, title: "Welcome Kit - Series B", price: "AED 299", tag: "New", category: "Employee Welcome Kits" },
+  // { img: Onboarding7, title: "Luxury Onboarding Hamper", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
+  // { img: Onboarding8, title: "Corporate Welcome Gift Set", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
+  // { img: Onboarding9, title: "Employee Welcome Kit V2", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
+  // { img: Onboarding10, title: "Elite Onboarding Package", price: "AED 419", tag: "Premium", category: "Employee Welcome Kits" },
 ];
 
 interface OnboardingGiftsProps {
