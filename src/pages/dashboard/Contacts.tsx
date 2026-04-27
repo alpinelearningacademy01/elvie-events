@@ -21,14 +21,14 @@ const Contacts = () => {
 
   const field = (label: string, key: keyof typeof form, type = "text") => (
     <div>
-      <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">
         {label}
       </label>
       <input
         type={type}
         value={form[key]}
         onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
-        className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-elvie-blue"
+        className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-shadow placeholder:text-slate-600"
       />
     </div>
   );
@@ -36,13 +36,13 @@ const Contacts = () => {
   return (
     <DashboardLayout>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-1">Contact Information</h1>
-        <p className="text-sm text-muted-foreground mb-6">
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Contact Information</h1>
+        <p className="text-sm text-slate-400 mb-8">
           This information is shown to potential clients on your listing.
         </p>
 
-        <form onSubmit={handleSave} className="bg-card rounded-xl border border-border p-6 space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form onSubmit={handleSave} className="bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-6 sm:p-8 space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {field("Contact Name", "contactName")}
             {field("Role", "role")}
             {field("Email", "email", "email")}
@@ -52,12 +52,14 @@ const Contacts = () => {
           </div>
           {field("Address", "address")}
 
-          <button
-            type="submit"
-            className="elvie-gradient-dark text-primary-foreground px-5 py-3 rounded-lg font-semibold text-sm flex items-center gap-2"
-          >
-            <Save className="w-4 h-4" /> Save Changes
-          </button>
+          <div className="pt-4 mt-6 border-t border-white/[0.05] flex justify-end">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
+            >
+              <Save className="w-4 h-4" /> Save Changes
+            </button>
+          </div>
         </form>
       </div>
     </DashboardLayout>

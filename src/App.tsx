@@ -24,6 +24,7 @@ import Contacts from "./pages/dashboard/Contacts";
 import Plans from "./pages/dashboard/Plans";
 import Transactions from "./pages/dashboard/Transactions";
 import Profile from "./pages/dashboard/Profile";
+import AddProperty from "./pages/dashboard/AddProperty";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/dashboard/ProtectedRoute";
 
@@ -73,6 +74,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Properties />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/properties/add"
+              element={
+                <ProtectedRoute>
+                  <AddProperty />
                 </ProtectedRoute>
               }
             />

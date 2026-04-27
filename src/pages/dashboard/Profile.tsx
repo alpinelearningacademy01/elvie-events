@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { useAuth } from "@/context/AuthContext";
-import { Save, Camera } from "lucide-react";
+import { Save, Camera, Sparkles } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const Profile = () => {
@@ -23,106 +23,118 @@ const Profile = () => {
   return (
     <DashboardLayout>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-6">My Profile</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-8">My Profile</h1>
 
-        <div className="bg-card rounded-xl border border-border p-6 mb-5">
-          <div className="flex items-center gap-4">
+        <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-6 sm:p-8 mb-6 relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-5">
+             <Sparkles className="w-32 h-32 text-amber-500" />
+          </div>
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
             <div className="relative">
-              <div className="w-20 h-20 rounded-full elvie-gradient-dark text-primary-foreground flex items-center justify-center text-3xl font-bold border-2 border-elvie-gold">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-4xl font-bold border-4 border-white/[0.05] shadow-xl">
                 {form.name[0]}
               </div>
-              <button className="absolute -bottom-1 -right-1 bg-elvie-gold text-elvie-navy-deep p-2 rounded-full">
-                <Camera className="w-3.5 h-3.5" />
+              <button className="absolute bottom-0 right-0 bg-blue-500 text-white p-2.5 rounded-full hover:bg-blue-600 transition-colors shadow-lg border-2 border-[#070c18]">
+                <Camera className="w-4 h-4" />
               </button>
             </div>
-            <div>
-              <h2 className="text-xl font-bold text-foreground">{form.name}</h2>
-              <p className="text-sm text-muted-foreground">{form.email}</p>
-              <span className="inline-block mt-1 text-[10px] font-bold bg-elvie-gold/15 text-elvie-gold px-2 py-0.5 rounded-full">
-                PREMIUM MEMBER
+            <div className="text-center sm:text-left mt-2 sm:mt-0">
+              <h2 className="text-2xl font-bold text-white">{form.name}</h2>
+              <p className="text-sm text-slate-400 mb-3">{form.email}</p>
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1.5 rounded-full tracking-wider">
+                <Sparkles className="w-3 h-3" /> PREMIUM MEMBER
               </span>
             </div>
           </div>
         </div>
 
-        <form onSubmit={save} className="bg-card rounded-xl border border-border p-6 space-y-4">
-          <h3 className="font-bold text-foreground">Personal Info</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                Full Name
-              </label>
-              <input
-                value={form.name}
-                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-elvie-blue"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                Email
-              </label>
-              <input
-                type="email"
-                value={form.email}
-                disabled
-                className="w-full px-4 py-2.5 bg-muted/30 border border-border rounded-lg text-sm text-muted-foreground"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                Company
-              </label>
-              <input
-                value={form.company}
-                onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-                className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-elvie-blue"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5 block">
-                Bio
-              </label>
-              <textarea
-                value={form.bio}
-                onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
-                rows={3}
-                className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-elvie-blue resize-none"
-              />
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-border space-y-3">
-            <h3 className="font-bold text-foreground">Notifications</h3>
-            {[
-              { key: "notifyEmail" as const, label: "Email notifications" },
-              { key: "notifySMS" as const, label: "SMS notifications" },
-            ].map((n) => (
-              <label key={n.key} className="flex items-center justify-between cursor-pointer">
-                <span className="text-sm text-foreground">{n.label}</span>
-                <button
-                  type="button"
-                  onClick={() => setForm((f) => ({ ...f, [n.key]: !f[n.key] }))}
-                  className={`relative w-11 h-6 rounded-full transition-colors ${
-                    form[n.key] ? "bg-elvie-gold" : "bg-muted"
-                  }`}
-                >
-                  <span
-                    className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
-                      form[n.key] ? "translate-x-5" : "translate-x-0.5"
-                    }`}
+        <form onSubmit={save} className="bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-6 sm:p-8 space-y-8">
+          <div>
+             <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-6">Personal Information</h3>
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+                    Full Name
+                  </label>
+                  <input
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-shadow"
                   />
-                </button>
-              </label>
-            ))}
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    disabled
+                    className="w-full px-4 py-3 bg-white/[0.01] border border-white/[0.02] rounded-xl text-sm text-slate-500 cursor-not-allowed"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+                    Company
+                  </label>
+                  <input
+                    value={form.company}
+                    onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+                    className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-shadow"
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2 block">
+                    Bio
+                  </label>
+                  <textarea
+                    value={form.bio}
+                    onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
+                    rows={4}
+                    className="w-full px-4 py-3 bg-white/[0.02] border border-white/[0.05] rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-shadow resize-none"
+                  />
+                </div>
+             </div>
           </div>
 
-          <button
-            type="submit"
-            className="elvie-gradient-dark text-primary-foreground px-5 py-3 rounded-lg font-semibold text-sm flex items-center gap-2"
-          >
-            <Save className="w-4 h-4" /> Save Changes
-          </button>
+          <div className="pt-8 border-t border-white/[0.05]">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-6">Notifications</h3>
+            <div className="space-y-4">
+               {[
+                 { key: "notifyEmail" as const, label: "Email notifications", desc: "Receive updates via email" },
+                 { key: "notifySMS" as const, label: "SMS notifications", desc: "Receive updates via SMS" },
+               ].map((n) => (
+                 <label key={n.key} className="flex items-center justify-between cursor-pointer p-4 rounded-xl border border-white/[0.02] hover:bg-white/[0.02] transition-colors">
+                   <div>
+                      <span className="text-sm font-semibold text-white block">{n.label}</span>
+                      <span className="text-xs text-slate-500">{n.desc}</span>
+                   </div>
+                   <button
+                     type="button"
+                     onClick={() => setForm((f) => ({ ...f, [n.key]: !f[n.key] }))}
+                     className={`relative w-12 h-6 rounded-full transition-colors ${
+                       form[n.key] ? "bg-blue-500" : "bg-white/[0.1]"
+                     }`}
+                   >
+                     <span
+                       className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${
+                         form[n.key] ? "translate-x-7" : "translate-x-1"
+                       }`}
+                     />
+                   </button>
+                 </label>
+               ))}
+            </div>
+          </div>
+
+          <div className="pt-4 flex justify-end">
+             <button
+               type="submit"
+               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
+             >
+               <Save className="w-4 h-4" /> Save Changes
+             </button>
+          </div>
         </form>
       </div>
     </DashboardLayout>
