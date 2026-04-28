@@ -90,6 +90,7 @@
     --vp-shadow-card: 0 4px 24px -6px hsla(0,0%,0%,0.5);
     --vp-shadow-soft: 0 12px 40px -10px hsla(0,0%,0%,0.6);
   }
+}
 
 @layer base {
   * {
