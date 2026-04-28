@@ -67,6 +67,17 @@ export default {
         "ink-foreground": "hsl(0 0% 98%)",
         "vw-lime": "hsl(70 95% 52%)",
         "vw-lime-dark": "hsl(0 0% 6%)",
+        /* Venue Partner tokens (light/dark aware via .dark class) */
+        "vp-background": "hsl(var(--vp-background))",
+        "vp-surface": "hsl(var(--vp-surface))",
+        "vp-surface-alt": "hsl(var(--vp-surface-alt))",
+        "vp-surface-elev": "hsl(var(--vp-surface-elev))",
+        "vp-foreground": "hsl(var(--vp-foreground))",
+        "vp-muted": "hsl(var(--vp-muted))",
+        "vp-border": "hsl(var(--vp-border))",
+        "vp-border-strong": "hsl(var(--vp-border-strong))",
+        "vp-gold": "hsl(var(--vp-gold))",
+        "vp-gold-foreground": "hsl(var(--vp-gold-foreground))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

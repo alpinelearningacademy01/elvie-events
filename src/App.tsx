@@ -26,18 +26,20 @@ import Transactions from "./pages/dashboard/Transactions";
 import Profile from "./pages/dashboard/Profile";
 import AddProperty from "./pages/dashboard/AddProperty";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import ProtectedRoute from "./components/dashboard/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <StickyEnquiry />
+    <ThemeProvider defaultTheme="light">
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AuthProvider>
+            <StickyEnquiry />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/aboutus" element={<AboutUs />} />
@@ -130,7 +132,8 @@ const App = () => (
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-    </TooltipProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
