@@ -55,8 +55,41 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* ─── Venue Partner scoped tokens (LIGHT mode) ─── */
+    --vp-background: 0 0% 100%;             /* page bg */
+    --vp-surface: 0 0% 100%;                /* cards / nav */
+    --vp-surface-alt: 220 20% 97%;          /* section break bg */
+    --vp-surface-elev: 0 0% 100%;           /* elevated card */
+    --vp-foreground: 222 72% 10%;           /* primary text */
+    --vp-muted: 220 10% 46%;                /* secondary text */
+    --vp-border: 220 20% 88%;               /* dividers */
+    --vp-border-strong: 220 15% 75%;
+    --vp-gold: 40 80% 55%;
+    --vp-gold-foreground: 222 72% 10%;
+    --vp-hero-overlay: linear-gradient(180deg, hsla(222,72%,10%,0.35) 0%, hsla(222,72%,10%,0.8) 100%);
+    --vp-ring: 40 80% 55%;
+    --vp-shadow-card: 0 4px 24px -6px hsla(222,40%,10%,0.10);
+    --vp-shadow-soft: 0 12px 40px -10px hsla(222,40%,10%,0.18);
   }
-}
+
+  /* ─── Venue Partner scoped tokens (DARK mode) ─── */
+  .dark {
+    --vp-background: 222 40% 6%;
+    --vp-surface: 222 35% 10%;
+    --vp-surface-alt: 222 35% 8%;
+    --vp-surface-elev: 222 30% 13%;
+    --vp-foreground: 210 20% 96%;
+    --vp-muted: 220 10% 65%;
+    --vp-border: 222 25% 18%;
+    --vp-border-strong: 222 20% 28%;
+    --vp-gold: 40 85% 60%;
+    --vp-gold-foreground: 222 72% 8%;
+    --vp-hero-overlay: linear-gradient(180deg, hsla(222,40%,4%,0.55) 0%, hsla(222,40%,4%,0.92) 100%);
+    --vp-ring: 40 85% 60%;
+    --vp-shadow-card: 0 4px 24px -6px hsla(0,0%,0%,0.5);
+    --vp-shadow-soft: 0 12px 40px -10px hsla(0,0%,0%,0.6);
+  }
 
 @layer base {
   * {
