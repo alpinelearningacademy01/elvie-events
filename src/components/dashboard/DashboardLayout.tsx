@@ -19,7 +19,7 @@ import {
   Search,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import ThemeToggle from "@/components/ThemeToggle";
+
 import logoImg from "@/assets/Logo.webp";
 
 const navSections = [
@@ -100,7 +100,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               Premium
             </div>
 
-            <ThemeToggle />
+
 
             <button className="relative w-9 h-9 rounded-xl flex items-center justify-center text-vp-muted hover:text-vp-foreground hover:bg-vp-surface-alt transition-colors">
               <Bell className="w-4 h-4" />

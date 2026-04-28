@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Search, Mail, Phone, Instagram, Linkedin, X as XIcon, Menu, X } from "lucide-react";
 import { useState } from "react";
-import ThemeToggle from "@/components/ThemeToggle";
+
 import { useAuth } from "@/context/AuthContext";
 
 export const VwHeader = () => {
@@ -54,7 +54,7 @@ export const VwHeader = () => {
 
         {/* Actions */}
         <div className="ml-auto flex items-center gap-2 md:gap-3">
-          <ThemeToggle />
+
           <Link
             to={isAuthenticated ? "/dashboard" : "/login"}
             className="hidden sm:inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-vp-gold-foreground transition-transform hover:scale-[1.02]"

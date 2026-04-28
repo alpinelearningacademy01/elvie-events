@@ -6,20 +6,17 @@ type ThemeContextValue = { theme: Theme; toggleTheme: () => void; setTheme: (t: 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 const STORAGE_KEY = "vp-theme";
 
-export const ThemeProvider = ({ children, defaultTheme = "light" }: { children: ReactNode; defaultTheme?: Theme }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === "undefined") return defaultTheme;
-    return (localStorage.getItem(STORAGE_KEY) as Theme) || defaultTheme;
-  });
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme] = useState<Theme>("dark");
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle("dark", theme === "dark");
-    localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+    root.classList.add("dark");
+    localStorage.setItem(STORAGE_KEY, "dark");
+  }, []);
 
-  const setTheme = (t: Theme) => setThemeState(t);
-  const toggleTheme = () => setThemeState((p) => (p === "dark" ? "light" : "dark"));
+  const setTheme = () => {};
+  const toggleTheme = () => {};
 
   return <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>{children}</ThemeContext.Provider>;
 };
