@@ -151,17 +151,17 @@ const VenuePartners = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="max-w-4xl"
+            className="max-w-5xl"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider backdrop-blur">
               <Sparkles className="h-3 w-3" style={{ color: "hsl(var(--vp-gold))" }} />
-              GCC's largest venue partner network
+              Elvie Events – Premium Venue Partnerships
             </div>
 
-            <h1 className="font-playfair font-bold text-5xl md:text-7xl lg:text-8xl text-balance leading-[1.05]">
-              GCC's Largest{" "}
-              <span style={{ color: "hsl(var(--vp-gold))" }}>Venue Sourcing</span>{" "}
-              Platform
+            <h1 className="font-playfair font-bold text-3xl md:text-5xl lg:text-6xl text-balance leading-[1.1]">
+              Elvie Events –{" "}
+              <span style={{ color: "hsl(var(--vp-gold))" }}>Curated Venue Partnerships</span>{" "}
+              for Premium Brands & Experiences
             </h1>
 
             <p className="mt-6 text-lg text-white/80 max-w-2xl">
