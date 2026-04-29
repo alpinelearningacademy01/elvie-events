@@ -9,13 +9,13 @@ const Properties = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">My Properties</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Venue Portfolio</h1>
             <p className="text-sm text-slate-400">
               Manage your venues, listings, and availability in one place.
             </p>
           </div>
           <Link 
-            to="/dashboard/properties/add"
+            to="/dashboard/venue-portfolio/add"
             className="bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 hover:from-amber-400 hover:to-amber-500 transition-all shadow-[0_0_20px_rgba(245,158,11,0.2)] hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]"
           >
             <Plus className="w-5 h-5" /> Add New Property

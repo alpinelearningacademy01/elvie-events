@@ -24,7 +24,7 @@ const Inquiries = () => {
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Inquiries</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Opportunities</h1>
         <p className="text-sm text-slate-400 mb-8">
           Manage and respond to all customer inquiries seamlessly.
         </p>

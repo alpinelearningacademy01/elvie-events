@@ -36,7 +36,7 @@ const Contacts = () => {
   return (
     <DashboardLayout>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Contact Information</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Client Directory</h1>
         <p className="text-sm text-slate-400 mb-8">
           This information is shown to potential clients on your listing.
         </p>

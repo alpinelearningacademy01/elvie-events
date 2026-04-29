@@ -23,7 +23,7 @@ const Profile = () => {
   return (
     <DashboardLayout>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-8">My Profile</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-8">Account Profile</h1>
 
         <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-6 sm:p-8 mb-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 opacity-5">

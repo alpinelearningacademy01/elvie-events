@@ -64,7 +64,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/inbox"
+              path="/dashboard/communications"
               element={
                 <ProtectedRoute>
                   <Inbox />
@@ -72,7 +72,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/properties"
+              path="/dashboard/venue-portfolio"
               element={
                 <ProtectedRoute>
                   <Properties />
@@ -80,7 +80,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/properties/add"
+              path="/dashboard/venue-portfolio/add"
               element={
                 <ProtectedRoute>
                   <AddProperty />
@@ -88,7 +88,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/inquiries"
+              path="/dashboard/opportunities"
               element={
                 <ProtectedRoute>
                   <Inquiries />
@@ -96,7 +96,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/contacts"
+              path="/dashboard/client-directory"
               element={
                 <ProtectedRoute>
                   <Contacts />
@@ -104,7 +104,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/plans"
+              path="/dashboard/subscription-plans"
               element={
                 <ProtectedRoute>
                   <Plans />
@@ -112,7 +112,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/transactions"
+              path="/dashboard/financial-overview"
               element={
                 <ProtectedRoute>
                   <Transactions />
@@ -120,7 +120,7 @@ const App = () => (
               }
             />
             <Route
-              path="/dashboard/profile"
+              path="/dashboard/account-profile"
               element={
                 <ProtectedRoute>
                   <Profile />

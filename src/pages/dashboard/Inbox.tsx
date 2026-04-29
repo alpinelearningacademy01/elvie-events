@@ -11,7 +11,7 @@ const Inbox = () => {
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-6">
-          <h1 className="text-2xl lg:text-3xl font-bold text-white">Inbox</h1>
+          <h1 className="text-2xl lg:text-3xl font-bold text-white">Communications</h1>
           {unread > 0 && (
             <span className="bg-amber-500 text-amber-950 text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.3)]">
               {unread}

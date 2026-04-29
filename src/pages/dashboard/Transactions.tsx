@@ -10,7 +10,7 @@ const Transactions = () => {
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Transactions</h1>
+        <h1 className="text-2xl lg:text-3xl font-bold text-white mb-2">Financial Overview</h1>
         <p className="text-sm text-slate-400 mb-8">
           View and download your billing history and invoices.
         </p>

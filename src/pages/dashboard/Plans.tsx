@@ -8,7 +8,7 @@ const Plans = () => {
     <DashboardLayout>
       <div className="max-w-6xl mx-auto py-8">
         <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Choose your plan</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Subscription Plans</h1>
           <p className="text-sm text-slate-400 max-w-xl mx-auto">
             Boost your visibility and reach more customers with our subscription packages.
           </p>

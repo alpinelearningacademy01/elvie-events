@@ -160,7 +160,7 @@ const Dashboard = () => {
 
             <div className="flex items-center gap-3">
               <Link
-                to="/dashboard/plans"
+                to="/dashboard/subscription-plans"
                 className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] transition-all duration-200"
               >
                 <Sparkles className="w-4 h-4" /> Boost Visibility
@@ -341,7 +341,7 @@ const Dashboard = () => {
                 </p>
               </div>
               <Link
-                to="/dashboard/inquiries"
+                to="/dashboard/opportunities"
                 className="text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1 transition-colors"
               >
                 View all <ChevronRight className="w-3.5 h-3.5" />
@@ -447,7 +447,7 @@ const Dashboard = () => {
                   Venues on featured placement receive up to 10× more inquiries per month.
                 </p>
                 <Link
-                  to="/dashboard/plans"
+                  to="/dashboard/subscription-plans"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-xl text-xs font-bold hover:opacity-90 transition-opacity shadow-lg shadow-amber-500/20"
                 >
                   <Target className="w-3.5 h-3.5" /> Explore Packages <ArrowRight className="w-3.5 h-3.5" />
@@ -464,7 +464,7 @@ const Dashboard = () => {
               <h2 className="text-white font-bold text-base">My Venues</h2>
               <p className="text-slate-400 text-xs mt-0.5">Your listed properties</p>
             </div>
-            <Link to="/dashboard/properties" className="text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
+            <Link to="/dashboard/venue-portfolio" className="text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
               Manage all <ChevronRight className="w-3.5 h-3.5" />
             </Link>
           </div>

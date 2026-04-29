@@ -26,28 +26,28 @@ const navSections = [
   {
     label: "MAIN",
     items: [
-      { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, end: true },
-      { to: "/dashboard/inbox", label: "Inbox", icon: Inbox, badge: 1 },
+      { to: "/dashboard", label: "Executive Dashboard", icon: LayoutDashboard, end: true },
+      { to: "/dashboard/communications", label: "Communications", icon: Inbox, badge: 1 },
     ],
   },
   {
     label: "MANAGE",
     items: [
-      { to: "/dashboard/properties", label: "My Properties", icon: Building2 },
-      { to: "/dashboard/inquiries", label: "Inquiries", icon: MessageSquare },
-      { to: "/dashboard/contacts", label: "Contact Info", icon: Contact },
+      { to: "/dashboard/venue-portfolio", label: "Venue Portfolio", icon: Building2 },
+      { to: "/dashboard/opportunities", label: "Opportunities", icon: MessageSquare },
+      { to: "/dashboard/client-directory", label: "Client Directory", icon: Contact },
     ],
   },
   {
     label: "BILLING",
     items: [
-      { to: "/dashboard/plans", label: "Plans", icon: Megaphone },
-      { to: "/dashboard/transactions", label: "Transactions", icon: RefreshCw },
+      { to: "/dashboard/subscription-plans", label: "Subscription Plans", icon: Megaphone },
+      { to: "/dashboard/financial-overview", label: "Financial Overview", icon: RefreshCw },
     ],
   },
   {
     label: "ACCOUNT",
-    items: [{ to: "/dashboard/profile", label: "My Profile", icon: UserCircle }],
+    items: [{ to: "/dashboard/account-profile", label: "Account Profile", icon: UserCircle }],
   },
 ];
 

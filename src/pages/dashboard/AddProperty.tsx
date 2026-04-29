@@ -1598,7 +1598,7 @@ Providing a unique setting for smaller events or casual gatherings, featuring a 
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-14 px-12 rounded-xl text-lg shadow-xl shadow-blue-500/20"
           onClick={() => {
             alert("Property created successfully! (Mock)");
-            window.location.href = "/dashboard/properties";
+            window.location.href = "/dashboard/venue-portfolio";
           }}
         >
           Complete and Publish
