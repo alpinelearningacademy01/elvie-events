@@ -177,8 +177,8 @@ const Dashboard = () => {
             value={`AED ${(totalRevenue / 1000).toFixed(1)}k`}
             sub="All time earnings"
             trend={12.4}
-            icon={<DollarSign className="w-5 h-5 text-emerald-400" />}
-            gradient="bg-emerald-500"
+            icon={<DollarSign className="w-5 h-5" style={{ color: "hsl(var(--vp-gold))" }} />}
+            gradient="bg-vp-gold"
             delay={0.05}
           />
           <KpiCard
@@ -195,8 +195,8 @@ const Dashboard = () => {
             value={String(inquiries.length)}
             sub={`${inquiries.filter(i => i.status === "New").length} unread`}
             trend={8.2}
-            icon={<MessageSquare className="w-5 h-5 text-violet-400" />}
-            gradient="bg-violet-500"
+            icon={<MessageSquare className="w-5 h-5 text-vp-foreground" />}
+            gradient="bg-vp-surface-elev"
             delay={0.15}
           />
           <KpiCard
@@ -204,8 +204,8 @@ const Dashboard = () => {
             value="4.7"
             sub="Across all venues"
             trend={3.1}
-            icon={<Star className="w-5 h-5 text-amber-400" />}
-            gradient="bg-amber-500"
+            icon={<Star className="w-5 h-5" style={{ color: "hsl(var(--vp-gold))" }} />}
+            gradient="bg-vp-gold"
             delay={0.2}
           />
         </div>
@@ -246,20 +246,20 @@ const Dashboard = () => {
                   <AreaChart data={revenueData}>
                     <defs>
                       <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.35} />
-                        <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                        <stop offset="5%" stopColor="hsl(var(--vp-gold))" stopOpacity={0.35} />
+                        <stop offset="95%" stopColor="hsl(var(--vp-gold))" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="tgtGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2} />
-                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#ffffff" stopOpacity={0.1} />
+                        <stop offset="95%" stopColor="#ffffff" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
                     <XAxis dataKey="month" stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} />
                     <YAxis stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#10b981" strokeWidth={2.5} fill="url(#revGrad)" dot={{ fill: "#10b981", r: 3, strokeWidth: 0 }} />
-                    <Area type="monotone" dataKey="target" name="Target" stroke="#f59e0b" strokeWidth={2} fill="url(#tgtGrad)" dot={false} strokeDasharray="5 4" />
+                    <Area type="monotone" dataKey="revenue" name="Revenue" stroke="hsl(var(--vp-gold))" strokeWidth={2.5} fill="url(#revGrad)" dot={{ fill: "hsl(var(--vp-gold))", r: 3, strokeWidth: 0 }} />
+                    <Area type="monotone" dataKey="target" name="Target" stroke="rgba(255,255,255,0.3)" strokeWidth={2} fill="url(#tgtGrad)" dot={false} strokeDasharray="5 4" />
                   </AreaChart>
                 ) : (
                   <AreaChart data={monthlyViews}>

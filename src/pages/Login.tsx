@@ -18,8 +18,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("demo@elvie.com");
-  const [password, setPassword] = useState("demo123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -33,68 +33,70 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setLoading(true);
-    setTimeout(() => {
-      const ok = login(email, password);
-      setLoading(false);
-      if (ok) {
-        toast.success("Welcome back!");
-        navigate("/dashboard");
-      } else {
-        toast.error("Invalid credentials. Try demo@elvie.com / demo123");
-      }
-    }, 1000);
+    const result = await login(email, password);
+    setLoading(false);
+    
+    if (result.success) {
+      toast.success("Welcome back!");
+      navigate("/dashboard");
+    } else {
+      toast.error(result.message || "Invalid credentials");
+    }
   };
 
   return (
-    <div className="min-h-screen font-montserrat bg-white">
+    <div className="min-h-screen bg-vp-background">
       <VwHeader />
 
       <main className="relative isolate overflow-hidden min-h-[calc(100vh-80px)] flex items-center justify-center py-20 px-4">
-        {/* Background Overlay with Landing Page Assets */}
-        <div className="absolute inset-0 -z-10 bg-elvie-navy-deep">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 -z-10">
           <img 
             src={heroImage} 
             alt="Venue background" 
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 vw-gradient-hero" />
+          <div className="absolute inset-0" style={{ background: "var(--vp-hero-overlay)" }} />
           
-          {/* Landing Page Glow Effects */}
-          <div className="absolute top-1/4 -left-20 w-80 h-80 bg-elvie-gold/20 rounded-full blur-[100px]" />
-          <div className="absolute bottom-20 -right-20 w-80 h-80 bg-elvie-gold/10 rounded-full blur-[100px]" />
+          {/* Subtle Glows */}
+          <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full blur-[100px]" style={{ background: "hsla(var(--vp-gold), 0.15)" }} />
+          <div className="absolute bottom-20 -right-20 w-80 h-80 rounded-full blur-[100px]" style={{ background: "hsla(var(--vp-gold), 0.05)" }} />
         </div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-[440px] bg-white rounded-[32px] shadow-[0_25px_60px_rgba(0,0,0,0.4)] overflow-hidden relative z-10 p-6 md:p-10 border border-blue-50/10 -mt-20"
+          className="w-full max-w-[440px] bg-vp-surface rounded-[32px] shadow-2xl overflow-hidden relative z-10 p-6 md:p-10 border border-vp-border -mt-20"
         >
           <div className="text-center mb-8">
-             <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-elvie-gold/10 text-elvie-gold text-[10px] font-bold uppercase tracking-widest mb-3">
+             <div 
+               className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-3"
+               style={{ background: "hsla(var(--vp-gold), 0.1)", color: "hsl(var(--vp-gold))" }}
+             >
                 <Lock className="w-3 h-3" /> Secure Access
              </div>
-            <h1 className="text-3xl md:text-4xl font-playfair font-bold text-elvie-navy-deep mb-2 capitalize">Welcome Back</h1>
-            <p className="text-gray-500 text-sm font-medium">Log in to manage your venues and inquiries</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-vp-foreground mb-2 capitalize">Welcome Back</h1>
+            <p className="text-vp-muted text-sm font-medium">Log in to manage your venues and inquiries</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email Address */}
             <div className="space-y-1.5">
-               <label className="text-xs font-bold text-elvie-navy-deep uppercase tracking-wider ml-1">Email Address</label>
+               <label className="text-xs font-bold text-vp-foreground uppercase tracking-wider ml-1">Email Address</label>
                <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-vp-muted" />
                   <input
                     type="email"
                     placeholder="you@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`w-full pl-11 pr-5 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-gray-300 ${
-                       errors.email ? "border-red-500 bg-red-50/30" : "border-gray-100 bg-gray-50 focus:bg-white focus:border-elvie-gold focus:ring-1 focus:ring-elvie-gold/20"
+                    className={`w-full pl-11 pr-5 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-vp-muted ${
+                       errors.email ? "border-red-500 bg-red-50/10" : "border-vp-border bg-vp-background focus:border-vp-gold focus:ring-1 focus:ring-vp-gold/20 text-vp-foreground"
                     }`}
                   />
                </div>
@@ -104,24 +106,24 @@ const Login = () => {
             {/* Password */}
             <div className="space-y-1.5">
                <div className="flex justify-between items-center ml-1">
-                  <label className="text-xs font-bold text-elvie-navy-deep uppercase tracking-wider">Password</label>
-                  <button type="button" className="text-xs font-bold text-elvie-navy-deep/60 hover:text-elvie-gold transition-colors">Forgot?</button>
+                  <label className="text-xs font-bold text-vp-foreground uppercase tracking-wider">Password</label>
+                  <button type="button" className="text-xs font-bold text-vp-muted hover:text-vp-gold transition-colors">Forgot?</button>
                </div>
                <div className="relative">
-                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-vp-muted" />
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full pl-11 pr-12 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-gray-300 ${
-                       errors.password ? "border-red-500 bg-red-50/30" : "border-gray-100 bg-gray-50 focus:bg-white focus:border-elvie-gold focus:ring-1 focus:ring-elvie-gold/20"
+                    className={`w-full pl-11 pr-12 py-3 border rounded-2xl text-[15px] outline-none transition-all placeholder:text-vp-muted ${
+                       errors.password ? "border-red-500 bg-red-50/10" : "border-vp-border bg-vp-background focus:border-vp-gold focus:ring-1 focus:ring-vp-gold/20 text-vp-foreground"
                     }`}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-elvie-navy-deep transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-vp-muted hover:text-vp-gold transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -145,8 +147,8 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 rounded-2xl text-elvie-navy-deep font-bold text-lg vw-transition hover:opacity-90 active:scale-[0.98] disabled:opacity-50 shadow-lg"
-              style={{ backgroundColor: "hsl(var(--elvie-gold))" }}
+              className="w-full py-4 rounded-2xl text-vp-gold-foreground font-bold text-lg vw-transition hover:opacity-90 active:scale-[0.98] disabled:opacity-50 shadow-lg"
+              style={{ backgroundColor: "hsl(var(--vp-gold))" }}
             >
               {loading ? "Signing in..." : "Access Dashboard"}
             </button>

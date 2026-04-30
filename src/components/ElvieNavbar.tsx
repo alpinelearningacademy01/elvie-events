@@ -28,9 +28,9 @@ const giftTypes = [
 
 const navLinks = [
   { label: "HOME", href: "/" },
+  { label: "VENUE PARTNER", href: "/venue-partners", authLabel: "DASHBOARD", authHref: "/dashboard" },
   { label: "ABOUT US", href: "/aboutus" },
   { label: "GALLERY", href: "/gallery" },
-  { label: "BOOKING", href: "/booking" },
 ];
 
 const ElvieNavbar = () => {
@@ -92,15 +92,15 @@ const ElvieNavbar = () => {
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              to={link.href}
-              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === link.href
+              to={isAuthenticated && link.authHref ? link.authHref : link.href}
+              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${(location.pathname === link.href || (isAuthenticated && location.pathname === link.authHref))
                 ? "text-primary-foreground"
                 : "text-primary-foreground/90 hover:text-primary-foreground"
                 }`}
             >
-              {link.label}
+              {isAuthenticated && link.authLabel ? link.authLabel : link.label}
               <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${(location.pathname === link.href || (isAuthenticated && location.pathname === link.authHref)) ? "w-3/4" : "w-0 group-hover:w-3/4"
                   }`}
               />
               <span className="ml-4 text-primary-foreground/30">|</span>
@@ -130,6 +130,7 @@ const ElvieNavbar = () => {
               >
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
+              <span className="ml-2 text-primary-foreground/30">|</span>
             </div>
 
             <AnimatePresence>
@@ -157,25 +158,28 @@ const ElvieNavbar = () => {
             </AnimatePresence>
           </div>
 
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="ml-3">
             <Link
-              to={isAuthenticated ? "/dashboard" : "/venue-partners"}
-              className="flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-bold text-xs tracking-wider text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-[0_4px_14px_rgba(200,150,50,0.3)]"
-              style={{ background: "linear-gradient(135deg, hsl(40 80% 55%) 0%, hsl(35 90% 45%) 100%)" }}
+              to="/booking"
+              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/booking"
+                ? "text-primary-foreground"
+                : "text-primary-foreground/90 hover:text-primary-foreground"
+                }`}
             >
-              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
-              {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
+              BOOKING
+              <span
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/booking" ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  }`}
+              />
             </Link>
-          </motion.div>
 
           <motion.a
             href="tel:+971521327081"
-            className="ml-2 flex items-center gap-2 border border-primary-foreground/50 rounded-lg px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
+            className="ml-2 flex items-center gap-2 border border-primary-foreground/50 rounded-lg px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10 transition-colors whitespace-nowrap"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Phone className="w-4 h-4" />
-            BOOK NOW!
+            CALL US NOW!
           </motion.a>
         </div>
 
@@ -199,23 +203,23 @@ const ElvieNavbar = () => {
             {navLinks.map((link, i) => (
               <motion.div key={link.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                 <Link
-                  to={link.href}
+                  to={isAuthenticated && link.authHref ? link.authHref : link.href}
                   className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link.label}
+                  {isAuthenticated && link.authLabel ? link.authLabel : link.label}
                 </Link>
               </motion.div>
             ))}
 
             {/* Mobile Corporate Gifts with Dropdown */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: navLinks.length * 0.05 }}>
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: (navLinks.length + 1) * 0.05 }}>
               <div className="px-6 py-3">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="flex items-center justify-between w-full text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground"
                 >
-                  BUSINESS GIFTS
+                  BUSINESS GIFTS BY TYPE
                   <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                 </button>
                 <AnimatePresence>
@@ -241,22 +245,23 @@ const ElvieNavbar = () => {
               </div>
             </motion.div>
 
-            <Link
-              to={isAuthenticated ? "/dashboard" : "/venue-partners"}
-              onClick={() => setMobileOpen(false)}
-              className="mx-6 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-bold text-sm tracking-wider text-primary-foreground transition-all shadow-[0_4px_14px_rgba(200,150,50,0.3)]"
-              style={{ background: "linear-gradient(135deg, hsl(40 80% 55%) 0%, hsl(35 90% 45%) 100%)" }}
-            >
-              {isAuthenticated ? <LayoutDashboard className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
-              {isAuthenticated ? "DASHBOARD" : "VENUE PARTNERS"}
-            </Link>
+            {/* Mobile Booking */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: (navLinks.length + 2) * 0.05 }}>
+              <Link
+                to="/booking"
+                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
+                onClick={() => setMobileOpen(false)}
+              >
+                BOOKING
+              </Link>
+            </motion.div>
 
             <a
               href="tel:+971521327081"
-              className="mx-6 mt-2 flex items-center justify-center gap-2 border border-primary-foreground/50 rounded px-4 py-2 text-sm font-semibold text-primary-foreground"
+              className="mx-6 mt-4 flex items-center justify-center gap-2 border border-primary-foreground/50 rounded-lg px-4 py-3 text-sm font-semibold text-primary-foreground"
             >
               <Phone className="w-4 h-4" />
-              CALL NOW!
+              CALL US NOW!
             </a>
           </motion.div>
         )}

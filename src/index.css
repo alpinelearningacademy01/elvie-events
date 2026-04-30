@@ -56,39 +56,39 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* ─── Venue Partner scoped tokens (Elvie Theme - LIGHT) ─── */
-    --vp-background: 222 75% 26%;             /* #153170 */
-    --vp-surface: 222 75% 22%;                /* slightly darker/lighter for depth */
-    --vp-surface-alt: 222 75% 24%;          
-    --vp-surface-elev: 222 75% 30%;           
-    --vp-foreground: 210 20% 98%;           /* white text */
-    --vp-muted: 220 20% 75%;                /* soft gray-blue text */
-    --vp-border: 222 40% 35%;               /* visible borders */
-    --vp-border-strong: 222 40% 45%;
-    --vp-gold: 234 43% 56%;                 /* #606abf (accent) */
-    --vp-gold-foreground: 0 0% 100%;        /* white text on accent */
-    --vp-hero-overlay: linear-gradient(160deg, hsla(222,75%,26%,0.65) 0%, hsla(222,75%,26%,0.9) 100%);
-    --vp-ring: 234 43% 56%;
-    --vp-shadow-card: 0 4px 24px -6px hsla(222,75%,10%,0.4);
-    --vp-shadow-soft: 0 12px 40px -10px hsla(222,75%,10%,0.5);
+    /* ─── Venue Partner scoped tokens (Elvie Events Theme - PREMIUM) ─── */
+    --vp-background: 222 75% 15%;             /* Deep Luxury Navy */
+    --vp-surface: 222 75% 18%;                /* Solid Navy Surface */
+    --vp-surface-alt: 222 75% 20%;          
+    --vp-surface-elev: 222 75% 25%;           
+    --vp-foreground: 210 20% 98%;           /* Crisp White */
+    --vp-muted: 220 15% 70%;                /* Sophisticated Muted Gray */
+    --vp-border: 222 30% 25%;               /* Subtle Navy Borders */
+    --vp-border-strong: 222 30% 35%;
+    --vp-gold: 40 80% 55%;                  /* True Gold (#D4AF37) */
+    --vp-gold-foreground: 222 75% 10%;      /* Dark Navy text on Gold */
+    --vp-hero-overlay: linear-gradient(160deg, hsla(222,75%,15%,0.7) 0%, hsla(222,75%,10%,0.95) 100%);
+    --vp-ring: 40 80% 55%;
+    --vp-shadow-card: 0 10px 30px -10px hsla(222,75%,5%,0.6);
+    --vp-shadow-soft: 0 20px 50px -12px hsla(222,75%,5%,0.7);
   }
 
-  /* ─── Venue Partner scoped tokens (DARK mode fallback) ─── */
+  /* ─── Venue Partner DARK mode (Optimized for Deep Navy) ─── */
   .dark {
-    --vp-background: 222 75% 26%;
-    --vp-surface: 222 75% 22%;
-    --vp-surface-alt: 222 75% 24%;
-    --vp-surface-elev: 222 75% 30%;
+    --vp-background: 222 75% 12%;
+    --vp-surface: 222 75% 15%;
+    --vp-surface-alt: 222 75% 18%;
+    --vp-surface-elev: 222 75% 22%;
     --vp-foreground: 210 20% 98%;
-    --vp-muted: 220 20% 75%;
-    --vp-border: 222 40% 35%;
-    --vp-border-strong: 222 40% 45%;
-    --vp-gold: 234 43% 56%;
-    --vp-gold-foreground: 0 0% 100%;
-    --vp-hero-overlay: linear-gradient(160deg, hsla(222,75%,26%,0.65) 0%, hsla(222,75%,26%,0.9) 100%);
-    --vp-ring: 234 43% 56%;
-    --vp-shadow-card: 0 4px 24px -6px hsla(222,75%,10%,0.4);
-    --vp-shadow-soft: 0 12px 40px -10px hsla(222,75%,10%,0.5);
+    --vp-muted: 220 15% 65%;
+    --vp-border: 222 30% 20%;
+    --vp-border-strong: 222 30% 30%;
+    --vp-gold: 40 80% 55%;
+    --vp-gold-foreground: 222 75% 10%;
+    --vp-hero-overlay: linear-gradient(160deg, hsla(222,75%,12%,0.8) 0%, hsla(222,75%,8%,0.98) 100%);
+    --vp-ring: 40 80% 55%;
+    --vp-shadow-card: 0 10px 30px -10px hsla(0,0%,0%,0.8);
+    --vp-shadow-soft: 0 20px 50px -12px hsla(0,0%,0%,0.9);
   }
 }
 

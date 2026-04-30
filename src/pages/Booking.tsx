@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
-import emailjs from "@emailjs/browser";
+import api from "@/lib/api";
 import { toast } from "sonner";
 
 const Booking = () => {
@@ -14,73 +14,55 @@ const Booking = () => {
     designation: "",
     phone: "",
     email: "",
-    contactMethod: [],
+    eventDate: "",
+    guestCount: "",
+    eventType: "Corporate Event",
     message: "",
   });
 
-  const handleCheckbox = (value: string) => {
-    setForm((prev) => ({
-      ...prev,
-      contactMethod: prev.contactMethod.includes(value)
-        ? prev.contactMethod.filter((v) => v !== value)
-        : [...prev.contactMethod, value],
-    }));
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (form.contactMethod.length === 0) {
-      toast.error("Please select at least one preferred method of contact.");
-      return;
-    }
+    setIsSubmitting(true);
 
-    const { firstName, lastName, company, designation, phone, email, message, contactMethod } = form;
-    const fullName = `${firstName} ${lastName}`;
-
-    // Helper to reset form
-    const resetForm = () => {
-      setForm({
-        firstName: "",
-        lastName: "",
-        company: "",
-        designation: "",
-        phone: "",
-        email: "",
-        contactMethod: [],
-        message: "",
-      });
-    };
-
-    // Handle Email Submission
-    if (contactMethod.includes("Email")) {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      const templateParams = {
-        first_name: firstName,
-        last_name: lastName,
-        company: company,
-        designation: designation,
-        phone: phone,
-        email: email,
-        contact_method: "Email",
-        message: message,
-        to_email: "navazsherasiya0@gmail.com",
+    try {
+      const bookingData = {
+        customerName: `${form.firstName} ${form.lastName}`.trim(),
+        customerEmail: form.email,
+        customerPhone: form.phone,
+        customerCompany: form.company,
+        customerDesignation: form.designation,
+        venueId: "65f000000000000000000000", 
+        venueName: "Elvie Events General Enquiry", 
+        eventDate: form.eventDate,
+        guestCount: Number(form.guestCount),
+        eventType: form.eventType,
+        message: form.message,
       };
 
-      toast.promise(
-        emailjs.send(serviceId, templateId, templateParams, publicKey),
-        {
-          loading: "Sending enquiry to email...",
-          success: () => {
-            resetForm();
-            return "Enquiry sent to Email successfully!";
-          },
-          error: "Failed to send enquiry via Email",
-        }
-      );
+      const response = await api.post("/bookings", bookingData);
+
+      if (response.data.success) {
+        toast.success("Enquiry sent successfully! Our team will contact you soon.");
+        setForm({
+          firstName: "",
+          lastName: "",
+          company: "",
+          designation: "",
+          phone: "",
+          email: "",
+          eventDate: "",
+          guestCount: "",
+          eventType: "Corporate Event",
+          message: "",
+        });
+      }
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to send enquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -168,35 +150,62 @@ const Booking = () => {
                   required
                 />
 
-                {/* Preferred Contact */}
-                <div>
-                  <p className="text-sm mb-2">
-                    Preferred method of contact
-                  </p>
-                  <div className="flex gap-6">
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        onChange={() => setForm({ ...form, contactMethod: ["Email"] })}
-                        checked={true}
-                        readOnly
-                      />
-                      Email
-                    </label>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider ml-1">Event Date</label>
+                    <input
+                      type="date"
+                      value={form.eventDate}
+                      onChange={(e) =>
+                        setForm({ ...form, eventDate: e.target.value })
+                      }
+                      className={inputClasses}
+                      required
+                    />
                   </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider ml-1">Guest Count</label>
+                    <input
+                      type="number"
+                      placeholder="e.g. 150"
+                      value={form.guestCount}
+                      onChange={(e) =>
+                        setForm({ ...form, guestCount: e.target.value })
+                      }
+                      className={inputClasses}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider ml-1">Event Type</label>
+                  <select
+                    value={form.eventType}
+                    onChange={(e) =>
+                      setForm({ ...form, eventType: e.target.value })
+                    }
+                    className={inputClasses}
+                  >
+                    <option value="Corporate Event">Corporate Event</option>
+                    <option value="Wedding">Wedding</option>
+                    <option value="Private Party">Private Party</option>
+                    <option value="Conference">Conference</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
 
               {/* RIGHT SIDE */}
-              <div>
+              <div className="flex flex-col h-full">
                 <textarea
-                  placeholder="Your enquiry details"
+                  placeholder="Your enquiry details (Any specific requirements or questions?)"
                   rows={12}
                   value={form.message}
                   onChange={(e) =>
                     setForm({ ...form, message: e.target.value })
                   }
-                  className={`${inputClasses} h-full resize-none`}
+                  className={`${inputClasses} flex-1 resize-none min-h-[300px]`}
                 />
               </div>
             </div>
@@ -204,15 +213,16 @@ const Booking = () => {
             {/* SUBMIT BUTTON */}
             <motion.button
               type="submit"
-              className="w-full py-4 rounded-lg font-bold text-white"
+              disabled={isSubmitting}
+              className="w-full py-4 rounded-lg font-bold text-white shadow-xl transition-all disabled:opacity-50"
               style={{
                 background:
-                  "linear-gradient(135deg, hsl(222 62% 18%) 0%, hsl(222 80% 45%) 100%)",
+                  "linear-gradient(135deg, #153170 0%, #606abf 100%)",
               }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
-              SUBMIT
+              {isSubmitting ? "SENDING ENQUIRY..." : "SUBMIT ENQUIRY"}
             </motion.button>
           </form>
         </div>
