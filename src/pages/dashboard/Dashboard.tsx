@@ -143,7 +143,7 @@ const Dashboard = () => {
   return (
     <DashboardLayout>
       {/* ── full-page dark canvas ── */}
-      <div className="min-h-screen -m-4 lg:-m-8 p-4 lg:p-8 bg-gradient-to-br from-[#070c18] via-[#0d1629] to-[#0a1020]">
+      <div className="min-h-screen -m-4 lg:-m-8 p-4 lg:p-8 bg-vp-background">
         {/* ── hero greeting ── */}
         <motion.div {...fadeUp(0)} className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -153,7 +153,7 @@ const Dashboard = () => {
                 <span className="text-[11px] uppercase tracking-widest text-emerald-400 font-bold">Live Dashboard</span>
               </div>
               <h1 className="text-3xl lg:text-4xl font-black text-white tracking-tight">
-                {greeting()}, <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">{user?.name?.split(" ")[0] ?? "Partner"}</span> 👋
+                {greeting()}, <span style={{ color: "hsl(var(--vp-gold))" }}>{user?.name?.split(" ")[0] ?? "Partner"}</span> 👋
               </h1>
               <p className="text-slate-400 text-sm mt-1">Here's what's happening with your venues today.</p>
             </div>
@@ -161,7 +161,8 @@ const Dashboard = () => {
             <div className="flex items-center gap-3">
               <Link
                 to="/dashboard/subscription-plans"
-                className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] transition-all duration-200"
+                className="flex items-center gap-2 text-white px-4 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:scale-[1.02] transition-all duration-200"
+                style={{ backgroundColor: "hsl(var(--vp-gold))", boxShadow: "0 10px 25px -5px hsla(var(--vp-gold), 0.4)" }}
               >
                 <Sparkles className="w-4 h-4" /> Boost Visibility
               </Link>

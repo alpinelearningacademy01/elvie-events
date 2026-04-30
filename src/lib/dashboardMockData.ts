@@ -200,7 +200,9 @@ export const eventTypeBreakdown = [
   { type: "Wedding", count: 28, color: "#f59e0b" },
   { type: "Conference", count: 19, color: "#8b5cf6" },
   { type: "Launch Event", count: 16, color: "#10b981" },
-  { type: "Other", count: 11, color: "#6b7280" },
+  { type: "Government Event", count: 14, color: "#06b6d4" },
+  { type: "Outdoor Event", count: 9, color: "#ec4899" },
+  { type: "Other", count: 6, color: "#6b7280" },
 ];
 
 export const recentActivity = [
