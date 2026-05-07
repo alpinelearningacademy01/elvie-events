@@ -28,7 +28,7 @@ const giftTypes = [
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  { label: "VENUE PARTNER", href: "/venue-partners", authLabel: "DASHBOARD", authHref: "/dashboard" },
+  { label: "VENUE PARTNERS", href: "/venue-partners", authLabel: "DASHBOARD", authHref: "/dashboard" },
   { label: "ABOUT US", href: "/aboutus" },
   { label: "GALLERY", href: "/gallery" },
 ];

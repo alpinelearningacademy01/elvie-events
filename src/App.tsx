@@ -25,6 +25,7 @@ import Plans from "./pages/dashboard/Plans";
 import Transactions from "./pages/dashboard/Transactions";
 import Profile from "./pages/dashboard/Profile";
 import AddProperty from "./pages/dashboard/AddProperty";
+import AddEditClient from "./pages/dashboard/AddEditClient";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import ProtectedRoute from "./components/dashboard/ProtectedRoute";
@@ -100,6 +101,14 @@ const App = () => (
                 element={
                   <ProtectedRoute>
                     <Contacts />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/client-directory/add"
+                element={
+                  <ProtectedRoute>
+                    <AddEditClient />
                   </ProtectedRoute>
                 }
               />

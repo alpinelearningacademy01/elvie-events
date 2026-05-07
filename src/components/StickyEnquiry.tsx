@@ -42,7 +42,8 @@ const StickyEnquiry = () => {
   const isVenuePartnerPage =
     location.pathname === "/venue-partners" ||
     location.pathname === "/login" ||
-    location.pathname === "/signup";
+    location.pathname === "/signup" ||
+    location.pathname.startsWith("/dashboard");
 
   useEffect(() => {
     openGlobalEnquiry = () => setIsOpen(true);

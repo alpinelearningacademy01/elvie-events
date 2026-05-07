@@ -26,7 +26,7 @@ export const VwHeader = () => {
             V
           </div>
           <span className="font-playfair font-bold text-sm leading-none tracking-tight text-vp-foreground">
-            VENUE<br />PARTNER
+            VENUE<br />PARTNERS
           </span>
         </Link>
 
@@ -119,7 +119,7 @@ export const VwFooter = () => (
         <div>
           <h4 className="text-xs font-bold uppercase tracking-widest text-vp-muted">Platform</h4>
           <ul className="mt-4 space-y-3 text-sm">
-            <li><Link to="/venue-partners#explore" className="hover:text-vp-gold transition-colors">Explore venues</Link></li>
+            <li><Link to="/venue-partners#explore" className="hover:text-vp-gold transition-colors">Explore Venues</Link></li>
             <li><Link to="/venue-partners#advisor" className="hover:text-vp-gold transition-colors">Ask a venue advisor</Link></li>
             <li><Link to="/signup" className="hover:text-vp-gold transition-colors">Create an account</Link></li>
           </ul>
