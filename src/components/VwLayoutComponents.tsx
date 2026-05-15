@@ -20,12 +20,12 @@ export const VwHeader = () => {
         {/* Logo */}
         <Link to="/venue-partners" className="flex items-center gap-2.5 shrink-0" aria-label="Venue Partner home">
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-md font-playfair font-bold text-lg text-vp-gold-foreground"
+            className="flex h-10 w-10 items-center justify-center rounded-md font-outfit font-black text-lg text-vp-gold-foreground"
             style={{ background: "hsl(var(--vp-gold))", clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0 100%)" }}
           >
             V
           </div>
-          <span className="font-playfair font-bold text-sm leading-none tracking-tight text-vp-foreground">
+          <span className="font-outfit font-bold text-sm leading-none tracking-tight text-vp-foreground">
             VENUE<br />PARTNERS
           </span>
         </Link>
@@ -107,7 +107,7 @@ export const VwFooter = () => (
     <div className="vw-container py-16">
       <div className="grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
-          <h3 className="font-playfair font-bold text-3xl md:text-4xl">
+          <h3 className="font-outfit font-bold text-3xl md:text-4xl tracking-tight">
             Find your <span style={{ color: "hsl(var(--vp-gold))" }}>perfect venue</span>.
           </h3>
           <p className="mt-4 max-w-md text-sm text-vp-muted">

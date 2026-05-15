@@ -179,7 +179,6 @@ export const addProperty = async (formData: any) => {
 
     const response = await axios.post(API_URL, data, {
         headers: {
-            'Content-Type': 'multipart/form-data',
             ...getAuthHeaders()
         }
     });
@@ -192,7 +191,6 @@ export const updateProperty = async (id: string, formData: any) => {
 
     const response = await axios.put(`${API_URL}/${id}`, data, {
         headers: {
-            'Content-Type': 'multipart/form-data',
             ...getAuthHeaders()
         }
     });

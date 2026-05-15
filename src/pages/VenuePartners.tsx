@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -14,9 +14,13 @@ import {
   Building2,
   CheckCircle2,
   TrendingUp,
+  Heart,
+  ThumbsUp,
+  Loader2,
 } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
 import { VwHeader, VwFooter } from "@/components/VwLayoutComponents";
+import { getProperties } from "@/services/propertyService";
 
 /* ─── Venue images (already in src/assets) ─── */
 import venue1 from "@/assets/venue-1.jpg";
@@ -79,60 +83,186 @@ const PARTNER_BENEFITS = [
 ];
 
 /* ─── Venue Card ─── */
-const VenueCard = ({ venue }: { venue: (typeof VENUES)[0] }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.5 }}
-    className="group relative overflow-hidden rounded-2xl border border-vp-border bg-vp-surface-elev transition-all duration-300 hover:-translate-y-1"
-    style={{ boxShadow: "var(--vp-shadow-card)" }}
-  >
-    <div className="relative aspect-[4/3] overflow-hidden">
-      <img
-        src={venue.image}
-        alt={venue.name}
-        loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-vp-surface/95 px-2.5 py-1 text-xs font-semibold text-vp-foreground backdrop-blur">
-        <Star className="h-3 w-3 fill-current" style={{ color: "hsl(var(--vp-gold))" }} />
-        {venue.rating}
+const VenueCard = ({ venue }: { venue: (typeof VENUES)[0] }) => {
+  const stars = Math.round(venue.rating);
+  const reviews = Math.floor(venue.capacity * 0.4) + 12; // Mock reviews
+  const originalPrice = Math.round(venue.priceFrom * 1.15);
+  const distance = (venue.capacity % 15 + 1.2).toFixed(1); // Mock distance
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
+      className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md"
+    >
+      <Link to={`/venue/${venue.id}`} className="block">
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <img
+            src={venue.image}
+            alt={venue.name}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <button 
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            className="absolute right-3 top-3 rounded-full bg-white p-2 text-gray-400 shadow-sm transition-colors hover:text-red-500 z-10"
+          >
+            <Heart className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="flex flex-1 flex-col p-4 text-left">
+          <div className="mb-1 flex flex-wrap items-center gap-1 text-xs text-gray-600">
+            <span>{venue.type}</span>
+            <div className="flex items-center text-yellow-400">
+              {Array(stars)
+                .fill(0)
+                .map((_, i) => (
+                  <svg key={i} className="h-3 w-3 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                  </svg>
+                ))}
+            </div>
+            <span className="ml-1 flex items-center gap-1 rounded bg-[#003b95] px-1.5 py-0.5 text-[10px] font-bold text-white">
+              <ThumbsUp className="h-3 w-3" /> Genius
+            </span>
+          </div>
+
+          <h3 className="mb-1 line-clamp-2 font-bold leading-tight text-[#0071c2] sm:text-lg">
+            {venue.name}
+          </h3>
+
+          <div className="mb-2 text-xs text-[#0071c2]">
+            {venue.city}, {venue.country}
+          </div>
+
+          <div className="mb-3 flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded-t-md rounded-br-md rounded-bl-none bg-[#003b95] text-sm font-bold text-white">
+              {venue.rating.toFixed(1)}
+            </div>
+            <div className="flex flex-col text-xs">
+              <span className="font-bold text-gray-900">
+                {venue.rating >= 4.8 ? "Exceptional" : venue.rating >= 4.5 ? "Excellent" : "Very Good"}
+              </span>
+              <span className="text-gray-500">{reviews} reviews</span>
+            </div>
+          </div>
+
+          <div className="mb-4 flex items-center gap-1 text-xs text-gray-600">
+            <MapPin className="h-3 w-3" />
+            {distance} km from center
+          </div>
+        </div>
+      </Link>
+
+      <div className="mt-auto flex items-center justify-between border-t border-gray-100 p-4">
+        <div className="flex flex-col">
+          <span className="text-[10px] font-bold uppercase text-gray-500">Starting from</span>
+          <span className="text-lg font-bold text-gray-900">AED {venue.priceFrom.toLocaleString()}</span>
+        </div>
+        <div className="flex gap-2">
+          <button 
+             onClick={(e) => {
+               e.preventDefault();
+               e.stopPropagation();
+               // Handle quick inquiry
+             }}
+             className="rounded-lg border border-[#0071c2] px-3 py-2 text-xs font-bold text-[#0071c2] transition-colors hover:bg-blue-50"
+          >
+            Quick Inquiry
+          </button>
+          <Link
+            to={`/venue/${venue.id}`}
+            className="rounded-lg bg-[#003b95] px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-[#005999]"
+          >
+            View Details
+          </Link>
+        </div>
       </div>
-      <div
-        className="absolute right-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-vp-gold-foreground"
-        style={{ background: "hsl(var(--vp-gold))" }}
-      >
-        {venue.type}
-      </div>
-    </div>
-    <div className="p-5">
-      <div className="flex items-center gap-1 text-xs text-vp-muted">
-        <MapPin className="h-3 w-3" />
-        {venue.city}, {venue.country}
-      </div>
-      <h3 className="mt-1 font-playfair font-bold text-lg leading-tight text-vp-foreground">{venue.name}</h3>
-      <div className="mt-3 flex items-center justify-between border-t border-vp-border pt-3">
-        <span className="flex items-center gap-1 text-xs text-vp-muted">
-          <Users className="h-3 w-3" /> Up to {venue.capacity}
-        </span>
-        <span className="text-sm font-bold text-vp-foreground">
-          AED {venue.priceFrom.toLocaleString()}
-          <span className="text-xs font-medium text-vp-muted"> /event</span>
-        </span>
-      </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 /* ─── Main Page ─── */
 const VenuePartners = () => {
   const [where, setWhere] = useState("");
   const [eventType, setEventType] = useState("");
   const [guests, setGuests] = useState("");
+  const [venues, setVenues] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchVenues = async () => {
+      try {
+        setLoading(true);
+        const response = await getProperties();
+        if (response.success) {
+          // Map backend properties to the frontend venue structure
+          const mappedVenues = response.data.map((prop: any) => {
+            // Find max capacity among all sub-venues
+            const maxCapacity = prop.venues?.reduce((max: number, v: any) =>
+              Math.max(max, parseInt(v.layouts?.reception || v.layouts?.theater || "0")), 0) || 100;
+
+            // Find minimum price among all sub-venues
+            const minPrice = prop.venues?.reduce((min: number, v: any) => {
+              const price = parseInt(v.pricing?.startingPrice || "0");
+              return price > 0 ? (min === 0 ? price : Math.min(min, price)) : min;
+            }, 0) || 5000;
+
+            return {
+              id: prop._id,
+              name: prop.propertyName,
+              city: prop.address?.city || "Unknown",
+              country: prop.address?.country || "UAE",
+              type: prop.propertyType || "Venue",
+              capacity: maxCapacity,
+              priceFrom: minPrice,
+              rating: 4.5 + Math.random() * 0.5, // Mock rating since not in schema yet
+              image: prop.heroImage || venue1, // fallback to static if none
+            };
+          });
+
+          // Combine with static venues if needed, or just use dynamic ones
+          // For now, let's show both but prioritize dynamic
+          setVenues(mappedVenues.length > 0 ? mappedVenues : VENUES);
+        } else {
+          setVenues(VENUES);
+        }
+      } catch (err) {
+        console.error("Failed to fetch venues:", err);
+        setError("Could not load venues. Showing featured list instead.");
+        setVenues(VENUES);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVenues();
+  }, []);
+
+  const UNIQUE_EVENT_TYPES = Array.from(new Set([...VENUES, ...venues].map(v => v.type)));
+
+  const filteredVenues = venues.filter((venue) => {
+    const matchWhere =
+      where === "" ||
+      venue.city.toLowerCase().includes(where.toLowerCase()) ||
+      venue.country.toLowerCase().includes(where.toLowerCase()) ||
+      venue.name.toLowerCase().includes(where.toLowerCase());
+    const matchEventType =
+      eventType === "" || venue.type.toLowerCase().includes(eventType.toLowerCase());
+    const matchGuests = guests === "" || venue.capacity >= parseInt(guests, 10);
+    return matchWhere && matchEventType && matchGuests;
+  });
 
   return (
-    <div className="min-h-screen bg-vp-background text-vp-foreground font-montserrat transition-colors">
+    <div className="min-h-screen bg-vp-background text-vp-foreground font-plus-jakarta transition-colors">
       <VwHeader />
 
       {/* ═══ HERO ═══ */}
@@ -158,7 +288,7 @@ const VenuePartners = () => {
               Elvie Events – Premium Venue Partnerships
             </div>
 
-            <h1 className="font-playfair font-bold text-3xl md:text-5xl lg:text-6xl text-balance leading-[1.1]">
+            <h1 className="font-outfit font-black text-3xl md:text-5xl lg:text-6xl text-balance leading-tight tracking-tight">
               Elvie Events –{" "}
               <span style={{ color: "hsl(var(--vp-gold))" }}>Curated Venue Partnerships</span>{" "}
               for Premium Brands & Experiences
@@ -199,7 +329,7 @@ const VenuePartners = () => {
                   className="w-full mt-1 bg-transparent text-sm text-vp-foreground outline-none"
                 >
                   <option value="" className="bg-vp-surface text-vp-foreground">Enter the preferred event type</option>
-                  {EVENT_TYPES.map((t) => (
+                  {UNIQUE_EVENT_TYPES.map((t) => (
                     <option key={t} value={t} className="bg-vp-surface text-vp-foreground">{t}</option>
                   ))}
                 </select>
@@ -255,7 +385,7 @@ const VenuePartners = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="font-playfair font-bold text-4xl md:text-5xl text-vp-foreground">{s.value}</div>
+              <div className="font-outfit font-bold text-4xl md:text-5xl text-vp-foreground tracking-tight">{s.value}</div>
               <div className="mt-1 text-xs uppercase tracking-widest text-vp-muted">{s.label}</div>
             </motion.div>
           ))}
@@ -267,7 +397,7 @@ const VenuePartners = () => {
         <div className="vw-container">
           <div className="flex items-end justify-between">
             <div>
-              <h2 className="font-playfair font-bold text-4xl md:text-5xl text-vp-foreground text-balance">
+              <h2 className="font-outfit font-black text-4xl md:text-5xl text-vp-foreground text-balance tracking-tight">
                 Browse by category
               </h2>
               <p className="mt-2 max-w-md text-vp-muted">
@@ -283,22 +413,35 @@ const VenuePartners = () => {
           </div>
 
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-            {CATEGORIES.map((c, i) => (
-              <motion.a
-                key={c.label}
-                href="#explore"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group rounded-2xl border border-vp-border bg-vp-surface p-5 transition-all hover:border-[hsl(var(--vp-gold))] hover:-translate-y-1"
-                style={{ boxShadow: "var(--vp-shadow-card)" }}
-              >
-                <div className="font-playfair font-bold text-xl text-vp-foreground">{c.label}</div>
-                <div className="mt-1 text-xs text-vp-muted">{c.count} venues</div>
-                <ChevronRight className="mt-3 h-4 w-4 text-vp-muted transition-transform group-hover:translate-x-1 group-hover:text-[hsl(var(--vp-gold))]" />
-              </motion.a>
-            ))}
+            {CATEGORIES.map((c, i) => {
+              // Map UI categories to actual venue types
+              const typeMapping: Record<string, string> = {
+                "Weddings": "Weddings",
+                "Conferences": "Conferences",
+                "Galas": "Galas",
+                "Brand activations": "Brand",
+                "Outdoor": "Outdoor",
+                "Rooftops": "Networking"
+              };
+
+              return (
+                <motion.a
+                  key={c.label}
+                  href="#explore"
+                  onClick={() => setEventType(typeMapping[c.label] || c.label)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="group rounded-2xl border border-vp-border bg-vp-surface p-5 transition-all hover:border-[hsl(var(--vp-gold))] hover:-translate-y-1"
+                  style={{ boxShadow: "var(--vp-shadow-card)" }}
+                >
+                  <div className="font-outfit font-black text-xl text-vp-foreground">{c.label}</div>
+                  <div className="mt-1 text-xs text-vp-muted">{c.count} venues</div>
+                  <ChevronRight className="mt-3 h-4 w-4 text-vp-muted transition-transform group-hover:translate-x-1 group-hover:text-[hsl(var(--vp-gold))]" />
+                </motion.a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -314,7 +457,7 @@ const VenuePartners = () => {
               >
                 Hand-picked
               </span>
-              <h2 className="mt-3 font-playfair font-bold text-4xl md:text-5xl text-vp-foreground text-balance">
+              <h2 className="mt-3 font-outfit font-black text-4xl md:text-5xl text-vp-foreground text-balance tracking-tight">
                 Featured venues
               </h2>
             </div>
@@ -326,8 +469,27 @@ const VenuePartners = () => {
             </a>
           </div>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {VENUES.map((v) => <VenueCard key={v.id} venue={v} />)}
+          <div className="mt-8">
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-20">
+                <Loader2 className="h-12 w-12 animate-spin text-[hsl(var(--vp-gold))]" />
+                <p className="mt-4 text-vp-muted font-medium">Discovering premium venues...</p>
+              </div>
+            ) : error ? (
+              <div className="rounded-2xl border border-red-200 bg-red-50 p-6 text-center text-red-600">
+                {error}
+              </div>
+            ) : (
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredVenues.length > 0 ? (
+                  filteredVenues.map((v) => <VenueCard key={v.id} venue={v} />)
+                ) : (
+                  <div className="col-span-full py-10 text-center text-vp-muted">
+                    No venues found matching your criteria. Try adjusting your search filters.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -346,7 +508,7 @@ const VenuePartners = () => {
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "hsl(var(--vp-gold))" }}>
               The advisor advantage
             </span>
-            <h2 className="mt-3 font-playfair font-bold text-5xl md:text-6xl text-balance">
+            <h2 className="mt-3 font-outfit font-black text-5xl md:text-6xl text-balance tracking-tight">
               Need help finding the{" "}
               <span style={{ color: "hsl(var(--vp-gold))" }}>perfect venue?</span>
             </h2>
@@ -387,7 +549,7 @@ const VenuePartners = () => {
                   <f.icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-playfair font-bold text-xl text-white">{f.title}</h3>
+                  <h3 className="font-outfit font-black text-xl text-white">{f.title}</h3>
                   <p className="mt-1 text-sm text-white/70">{f.desc}</p>
                 </div>
               </motion.div>
@@ -403,7 +565,7 @@ const VenuePartners = () => {
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "hsl(var(--vp-gold))" }}>
               Simple process
             </span>
-            <h2 className="mt-3 font-playfair font-bold text-4xl md:text-5xl text-vp-foreground text-balance">
+            <h2 className="mt-3 font-outfit font-black text-4xl md:text-5xl text-vp-foreground text-balance tracking-tight">
               How it works
             </h2>
             <p className="mt-4 text-vp-muted">
@@ -428,12 +590,12 @@ const VenuePartners = () => {
                 style={{ boxShadow: "var(--vp-shadow-card)" }}
               >
                 <div
-                  className="font-playfair font-bold text-4xl"
+                  className="font-outfit font-bold text-4xl"
                   style={{ color: "hsl(var(--vp-gold))" }}
                 >
                   {s.n}
                 </div>
-                <h3 className="mt-3 font-playfair font-bold text-xl text-vp-foreground">{s.title}</h3>
+                <h3 className="mt-3 font-outfit font-black text-xl text-vp-foreground">{s.title}</h3>
                 <p className="mt-2 text-sm text-vp-muted">{s.desc}</p>
               </motion.div>
             ))}
@@ -462,7 +624,7 @@ const VenuePartners = () => {
                 <TrendingUp className="h-3 w-3" style={{ color: "hsl(var(--vp-gold))" }} />
                 For venue owners
               </div>
-              <h2 className="mt-4 font-playfair font-bold text-4xl md:text-5xl text-balance">
+              <h2 className="mt-4 font-outfit font-black text-4xl md:text-5xl text-balance tracking-tight">
                 Are you a venue owner?{" "}
                 <span style={{ color: "hsl(var(--vp-gold))" }}>Partner with us.</span>
               </h2>

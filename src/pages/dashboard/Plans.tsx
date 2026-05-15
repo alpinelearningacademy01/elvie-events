@@ -31,7 +31,7 @@ const Plans = () => {
               )}
               <h3 className="text-xl font-bold text-white">{p.name}</h3>
               <div className="mt-4 mb-6">
-                <span className="text-4xl font-bold text-white">AED {p.price}</span>
+                <span className="text-4xl font-bold text-white font-display">AED {p.price}</span>
                 <span className="text-sm text-slate-400 ml-1">
                   /mo
                 </span>

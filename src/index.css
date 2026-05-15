@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Archivo+Black&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -98,7 +98,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground font-plus-jakarta leading-relaxed;
   }
 
   img {
@@ -106,7 +106,7 @@
   }
 
   h1, h2, h3, h4 {
-    @apply font-montserrat font-bold tracking-wide;
+    @apply font-outfit font-black tracking-tight leading-tight;
   }
 }
 
@@ -138,8 +138,8 @@
   .vw-shadow-card { box-shadow: 0 4px 24px -6px hsl(0 0% 0% / 0.12); }
   .vw-shadow-glow { box-shadow: 0 0 60px hsl(70 95% 52% / 0.35); }
   .vw-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-  .vw-font-display { font-family: 'Archivo Black', 'Archivo', sans-serif; letter-spacing: -0.02em; line-height: 0.95; }
-  .vw-font-body { font-family: 'Archivo', system-ui, sans-serif; }
+  .vw-font-display { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; line-height: 1.1; }
+  .vw-font-body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
   .vw-container { margin-inline: auto; width: 100%; max-width: 1400px; padding-inline: 1.25rem; }
   @media (min-width: 768px) { .vw-container { padding-inline: 2rem; } }
 }

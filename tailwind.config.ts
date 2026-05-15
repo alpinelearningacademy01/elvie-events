@@ -14,6 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
+        sans: ["'Plus Jakarta Sans'", "sans-serif"],
+        display: ["Outfit", "sans-serif"],
+        outfit: ["Outfit", "sans-serif"],
+        "plus-jakarta": ["'Plus Jakarta Sans'", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
         archivo: ["Archivo", "system-ui", "sans-serif"],

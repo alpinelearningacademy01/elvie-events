@@ -23,7 +23,8 @@ import {
   Star,
   ChevronLeft,
   Image as ImageIcon,
-  Loader2
+  Loader2,
+  Video
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -933,7 +934,7 @@ const AddProperty = () => {
       {/* Video Section */}
       <div className="space-y-6">
         <h3 className="text-xl font-bold text-white">Video</h3>
-        <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-8 space-y-6">
+        <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label className="text-slate-400 text-xs uppercase tracking-wider font-bold">Video Title</Label>
@@ -953,44 +954,68 @@ const AddProperty = () => {
                 onChange={(e) => setFormData({ ...formData, videoDescription: e.target.value })}
               />
             </div>
+          </div>
 
-            <div className="relative py-4">
-              <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/[0.05]"></span></div>
-              <div className="relative flex justify-center text-xs uppercase"><span className="bg-[#070c18] px-4 text-slate-500 font-bold">OR</span></div>
-            </div>
+          <div className="space-y-2">
+            <Label className="text-slate-400 text-xs uppercase tracking-wider font-bold">Video Link (YouTube/Vimeo)</Label>
+            <Input
+              placeholder="Paste Video Link"
+              className="bg-transparent border-0 border-b border-white/[0.1] rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-500 text-white placeholder:text-slate-600"
+              value={formData.videoUrl}
+              onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
+            />
+          </div>
 
-            <div className="space-y-2">
-              <Label className="text-slate-400 text-xs uppercase tracking-wider font-bold">Video Link (YouTube/Vimeo)</Label>
-              <Input
-                placeholder="Paste Video Link"
-                className="bg-transparent border-0 border-b border-white/[0.1] rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-500 text-white placeholder:text-slate-600"
-                value={formData.videoUrl}
-                onChange={(e) => setFormData({ ...formData, videoUrl: e.target.value })}
-              />
-            </div>
+          <div className="relative py-2">
+            <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/[0.05]"></span></div>
+            <div className="relative flex justify-center text-xs uppercase"><span className="bg-[#0f172a] px-4 text-slate-500 font-bold">OR UPLOAD VIDEO</span></div>
+          </div>
 
-            <div className="relative py-4">
-              <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-white/[0.05]"></span></div>
-              <div className="relative flex justify-center text-xs uppercase"><span className="bg-[#070c18] px-4 text-slate-500 font-bold">OR</span></div>
-            </div>
-
-            <div
-              className="border-2 border-dashed border-white/[0.1] rounded-2xl p-8 flex items-center justify-center gap-4 hover:bg-white/[0.02] transition-colors cursor-pointer group"
-              onClick={() => document.getElementById('video-upload')?.click()}
-            >
-              {formData.videoPreview ? (
-                <div className="flex items-center gap-2">
-                  <Video className="w-5 h-5 text-blue-500" />
-                  <span className="text-sm text-white">Video selected</span>
+          <div
+            className="border-2 border-dashed border-white/[0.1] rounded-2xl p-8 flex flex-col items-center justify-center gap-4 hover:bg-white/[0.02] transition-colors cursor-pointer group"
+            onClick={() => !formData.videoPreview && document.getElementById('video-upload')?.click()}
+          >
+            {formData.videoPreview ? (
+              <div className="relative w-full max-w-xl aspect-video rounded-xl overflow-hidden border border-white/[0.1]">
+                <video src={formData.videoPreview} controls className="w-full h-full object-contain bg-black" />
+                <div className="absolute top-2 right-2">
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    className="rounded-full w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFormData({ ...formData, videoFile: null, videoPreview: "" });
+                      const el = document.getElementById('video-upload') as HTMLInputElement;
+                      if (el) el.value = '';
+                    }}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
                 </div>
-              ) : (
-                <>
-                  <Upload className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
-                  <p className="text-white font-bold">Select and upload the video</p>
-                </>
-              )}
-              <input id="video-upload" type="file" className="hidden" accept="video/*" onChange={handleVideoChange} />
-            </div>
+              </div>
+            ) : formData.videoUrl ? (
+              <div className="flex flex-col items-center gap-2 py-8">
+                <Video className="w-12 h-12 text-blue-500" />
+                <span className="text-sm text-slate-300">Using external video link</span>
+                <span className="text-xs text-slate-500">{formData.videoUrl}</span>
+                <span className="text-xs text-blue-400 hover:underline mt-2" onClick={(e) => {
+                  e.stopPropagation();
+                  document.getElementById('video-upload')?.click();
+                }}>Upload a file instead</span>
+              </div>
+            ) : (
+              <div className="py-8 flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-white/[0.05] flex items-center justify-center text-slate-400 group-hover:text-white transition-colors mb-4">
+                  <Upload className="w-8 h-8" />
+                </div>
+                <div className="text-center">
+                  <p className="text-white font-bold text-lg">Upload Video File</p>
+                  <p className="text-xs text-slate-500 mt-1">Supported Formats: MP4, WebM, MOV. Max 50MB.</p>
+                </div>
+              </div>
+            )}
+            <input id="video-upload" type="file" className="hidden" accept="video/*" onChange={handleVideoChange} />
           </div>
 
           <div className="flex justify-end">
@@ -1164,7 +1189,36 @@ const AddProperty = () => {
         <h3 className="text-xl font-bold text-white">Map Location</h3>
         <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-8 space-y-6">
           <div className="space-y-2">
-            <Label className="text-slate-400 text-xs uppercase tracking-wider font-bold">Google Maps Link / Coordinates</Label>
+            <div className="flex items-center justify-between">
+              <Label className="text-slate-400 text-xs uppercase tracking-wider font-bold">Google Maps Link / Coordinates</Label>
+              <button 
+                type="button"
+                onClick={async () => {
+                  const address = `${formData.streetAddress}, ${formData.city}, ${formData.country}`;
+                  try {
+                    toast({ title: "Smart Pinning...", description: "Locating your property on the map." });
+                    const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`);
+                    const data = await res.json();
+                    if (data && data[0]) {
+                      const { lat, lon, display_name } = data[0];
+                      const link = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+                      setFormData({ ...formData, mapLink: link });
+                      toast({ title: "Location Pinned!", description: `Found: ${display_name.split(',')[0]}` });
+                    } else {
+                      const fallbackLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+                      setFormData({ ...formData, mapLink: fallbackLink });
+                      toast({ title: "Map link generated", description: "Could not find exact coordinates, using address search." });
+                    }
+                  } catch (e) {
+                    const fallbackLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+                    setFormData({ ...formData, mapLink: fallbackLink });
+                  }
+                }}
+                className="text-[10px] text-blue-400 hover:text-blue-300 font-bold uppercase tracking-tighter flex items-center gap-1"
+              >
+                <Zap className="w-3 h-3" /> Smart Pin from Address
+              </button>
+            </div>
             <Input
               placeholder="Paste Google Maps Link or Latitude, Longitude"
               className="bg-transparent border-0 border-b border-white/[0.1] rounded-none px-0 focus-visible:ring-0 focus-visible:border-blue-500 text-white placeholder:text-slate-600"
@@ -1173,16 +1227,37 @@ const AddProperty = () => {
             />
           </div>
 
-          <div className="w-full h-80 bg-white/[0.05] border border-white/[0.1] rounded-2xl flex items-center justify-center relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[url('https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/54.3666,24.4667,12/800x400?access_token=pk.eyJ1IjoiZGVtbyIsImEiOiJjbWFsdnZ4YmcwMDRzMmtzNHR4eHR4eHR4In0=')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity" />
-            <div className="relative z-10 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center mx-auto shadow-xl shadow-blue-500/50 group-hover:scale-110 transition-transform">
-                <MapPin className="w-8 h-8 text-white" />
+          <div className="w-full h-96 bg-white/[0.05] border border-white/[0.1] rounded-2xl relative overflow-hidden group">
+            {formData.mapLink || formData.streetAddress || formData.city ? (
+              <iframe
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{ border: 0, opacity: 0.8 }}
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                  formData.mapLink || `${formData.streetAddress}, ${formData.city}, ${formData.country}`
+                )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto">
+                    <MapPin className="w-8 h-8 text-blue-500" />
+                  </div>
+                  <p className="text-slate-400 text-sm">Enter address or paste link above to preview map</p>
+                </div>
               </div>
-              <div className="space-y-1">
-                <p className="text-white font-bold text-lg">Pin your exact location</p>
-                <p className="text-xs text-slate-400">Click on the map to set the property coordinates</p>
-              </div>
+            )}
+            <div className="absolute bottom-4 left-4 z-10 flex gap-2">
+               <a 
+                href={formData.mapLink || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${formData.streetAddress} ${formData.city} ${formData.country}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] px-3 py-1.5 rounded-full flex items-center gap-2 hover:bg-white/20 transition-all font-bold uppercase"
+               >
+                 <MapPin className="w-3 h-3" /> View Large Map
+               </a>
             </div>
           </div>
 

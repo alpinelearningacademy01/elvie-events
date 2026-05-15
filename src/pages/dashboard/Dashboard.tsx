@@ -109,8 +109,8 @@ const KpiCard = ({ label, value, sub, trend, icon, gradient, delay = 0 }: KpiCar
     <div className={`absolute -top-6 -right-6 w-28 h-28 rounded-full blur-2xl opacity-20 group-hover:opacity-35 transition-opacity ${gradient}`} />
     <div className="relative flex items-start justify-between gap-3">
       <div>
-        <p className="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">{label}</p>
-        <p className="text-3xl font-black text-white mt-1 tracking-tight">{value}</p>
+        <p className="text-[11px] uppercase tracking-widest text-slate-400 font-bold">{label}</p>
+        <p className="text-3xl font-black text-white mt-1 tracking-tight font-display">{value}</p>
         <p className="text-xs text-slate-400 mt-0.5">{sub}</p>
       </div>
       <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${gradient} bg-opacity-20`}>
@@ -152,7 +152,7 @@ const Dashboard = () => {
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[11px] uppercase tracking-widest text-emerald-400 font-bold">Live Dashboard</span>
               </div>
-              <h1 className="text-3xl lg:text-4xl font-black text-white tracking-tight">
+              <h1 className="text-3xl lg:text-4xl font-black text-white tracking-tight font-display">
                 {greeting()}, <span style={{ color: "hsl(var(--vp-gold))" }}>{user?.name?.split(" ")[0] ?? "Partner"}</span> 👋
               </h1>
               <p className="text-slate-400 text-sm mt-1">Here's what's happening with your venues today.</p>
@@ -220,7 +220,7 @@ const Dashboard = () => {
           >
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="text-white font-bold text-base">Performance Trends</h2>
+                <h2 className="text-white font-black text-base font-display">Performance Trends</h2>
                 <p className="text-slate-400 text-xs mt-0.5">6-month overview</p>
               </div>
               <div className="flex gap-1.5 bg-white/5 border border-white/8 rounded-xl p-1">
@@ -286,7 +286,7 @@ const Dashboard = () => {
             {...fadeUp(0.3)}
             className="rounded-2xl border border-white/8 bg-white/5 backdrop-blur-sm p-5 flex flex-col"
           >
-            <h2 className="text-white font-bold text-base mb-1">Event Types</h2>
+            <h2 className="text-white font-black text-base mb-1 font-display">Event Types</h2>
             <p className="text-slate-400 text-xs mb-4">Inquiry breakdown</p>
             <div className="h-36 mx-auto w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -336,7 +336,7 @@ const Dashboard = () => {
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/8">
               <div>
-                <h2 className="text-white font-bold text-base">Latest Inquiries</h2>
+                <h2 className="text-white font-black text-base font-display">Latest Inquiries</h2>
                 <p className="text-slate-400 text-xs mt-0.5">
                   <span className="text-blue-400 font-semibold">{inquiries.filter(i => i.status === "New").length} new</span> awaiting your reply
                 </p>
@@ -396,7 +396,7 @@ const Dashboard = () => {
             >
               <div className="flex items-center gap-2 mb-4">
                 <Activity className="w-4 h-4 text-violet-400" />
-                <h2 className="text-white font-bold text-sm">Live Activity</h2>
+                <h2 className="text-white font-black text-sm font-display">Live Activity</h2>
               </div>
               <div className="space-y-3">
                 {recentActivity.map((a, i) => {
@@ -441,7 +441,7 @@ const Dashboard = () => {
                   </div>
                   <span className="text-[11px] uppercase tracking-widest text-amber-400 font-bold">Premium Feature</span>
                 </div>
-                <h3 className="text-white font-black text-base leading-snug mb-2">
+                <h3 className="text-white font-black text-base leading-snug mb-2 font-display">
                   Get 10× more visibility with Featured Listing
                 </h3>
                 <p className="text-slate-400 text-xs leading-relaxed mb-4">
@@ -462,7 +462,7 @@ const Dashboard = () => {
         <motion.div {...fadeUp(0.5)} className="mt-5 rounded-2xl border border-white/8 bg-white/5 backdrop-blur-sm overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-white/8">
             <div>
-              <h2 className="text-white font-bold text-base">My Venues</h2>
+              <h2 className="text-white font-black text-base font-display">My Venues</h2>
               <p className="text-slate-400 text-xs mt-0.5">Your listed properties</p>
             </div>
             <Link to="/dashboard/venue-portfolio" className="text-xs font-bold text-slate-400 hover:text-white flex items-center gap-1 transition-colors">
@@ -503,7 +503,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <p className="text-lg font-black text-white">AED {(p.revenue / 1000).toFixed(1)}k</p>
+                  <p className="text-lg font-black text-white font-display">AED {(p.revenue / 1000).toFixed(1)}k</p>
                   <p className="text-[10px] text-slate-400">Total revenue</p>
                 </div>
               </motion.div>

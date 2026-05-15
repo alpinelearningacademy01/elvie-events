@@ -21,21 +21,21 @@ const Transactions = () => {
                <ArrowUpRight className="w-16 h-16 text-blue-500" />
             </div>
             <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2">Total Spent</p>
-            <p className="text-3xl font-bold text-white">AED {total}</p>
+            <p className="text-3xl font-bold text-white font-display">AED {total}</p>
           </div>
           <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/[0.05] p-6 relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                <ArrowDownLeft className="w-16 h-16 text-emerald-500" />
             </div>
             <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2">Transactions</p>
-            <p className="text-3xl font-bold text-white">{transactions.length}</p>
+            <p className="text-3xl font-bold text-white font-display">{transactions.length}</p>
           </div>
           <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 backdrop-blur-xl rounded-2xl border border-blue-500/20 p-6 relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-30 transition-opacity">
                <CreditCard className="w-16 h-16 text-blue-400" />
             </div>
             <p className="text-[10px] text-blue-300 uppercase tracking-wider font-bold mb-2">Next Billing</p>
-            <p className="text-3xl font-bold text-white">May 1, 2025</p>
+            <p className="text-3xl font-bold text-white font-display">May 1, 2025</p>
           </div>
         </div>
 
