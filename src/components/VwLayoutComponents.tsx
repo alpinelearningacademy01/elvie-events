@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, Mail, Phone, Instagram, Linkedin, X as XIcon, Menu, X } from "lucide-react";
+import { Search, Mail, Phone, Instagram, Linkedin, X as XIcon, Menu, X, Heart } from "lucide-react";
 import { useState } from "react";
 
 import { useAuth } from "@/context/AuthContext";
@@ -54,6 +54,13 @@ export const VwHeader = () => {
 
         {/* Actions */}
         <div className="ml-auto flex items-center gap-2 md:gap-3">
+          <Link
+            to="/saved-venues"
+            className="flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold text-vp-foreground/80 hover:bg-vp-surface-alt hover:text-red-500 transition-colors"
+          >
+            <Heart className="h-4 w-4" />
+            <span className="hidden sm:inline">Saved</span>
+          </Link>
 
           <Link
             to={isAuthenticated ? "/dashboard" : "/login"}
@@ -87,6 +94,13 @@ export const VwHeader = () => {
                 {n.label}
               </Link>
             ))}
+            <Link
+              to="/saved-venues"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 px-3 py-3 rounded-lg text-sm font-semibold text-vp-foreground hover:bg-vp-surface-alt"
+            >
+              <Heart className="h-4 w-4" /> Saved Venues
+            </Link>
             <Link
               to={isAuthenticated ? "/dashboard" : "/login"}
               onClick={() => setOpen(false)}

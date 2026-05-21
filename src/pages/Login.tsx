@@ -13,6 +13,14 @@ import { toast } from "sonner";
 import { VwHeader, VwFooter } from "@/components/VwLayoutComponents";
 import heroImage from "@/assets/hero-venue.jpg";
 import ScrollToTop from "@/components/ScrollToTop";
+import api from "@/lib/api";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,6 +30,77 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Forgot password state
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [forgotStep, setForgotStep] = useState<1 | 2>(1);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [resetCode, setResetCode] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [forgotLoading, setForgotLoading] = useState(false);
+
+  const handleRequestCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!forgotEmail) {
+      toast.error("Please enter your email address");
+      return;
+    }
+    setForgotLoading(true);
+    try {
+      const response = await api.post("/venue-partner/forgot-password", { email: forgotEmail });
+      if (response.data.success) {
+        toast.success(response.data.message || "Reset code sent to your email!");
+        setForgotStep(2);
+      } else {
+        toast.error(response.data.message || "Failed to send reset code");
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to request code. Please check your email and try again.");
+    } finally {
+      setForgotLoading(false);
+    }
+  };
+
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetCode) {
+      toast.error("Please enter the 6-digit verification code");
+      return;
+    }
+    if (!newPassword || newPassword.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+    if (newPassword !== confirmNewPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    setForgotLoading(true);
+    try {
+      const response = await api.post("/venue-partner/reset-password", {
+        email: forgotEmail,
+        code: resetCode,
+        password: newPassword
+      });
+      if (response.data.success) {
+        toast.success(response.data.message || "Password reset successful!");
+        setShowForgotModal(false);
+        setForgotStep(1);
+        setForgotEmail("");
+        setResetCode("");
+        setNewPassword("");
+        setConfirmNewPassword("");
+      } else {
+        toast.error(response.data.message || "Failed to reset password");
+      }
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to reset password. Please check the code and try again.");
+    } finally {
+      setForgotLoading(false);
+    }
+  };
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -107,7 +186,7 @@ const Login = () => {
             <div className="space-y-1.5">
                <div className="flex justify-between items-center ml-1">
                   <label className="text-xs font-bold text-vp-foreground uppercase tracking-wider">Password</label>
-                  <button type="button" className="text-xs font-bold text-vp-muted hover:text-vp-gold transition-colors">Forgot?</button>
+                  <button type="button" onClick={() => setShowForgotModal(true)} className="text-xs font-bold text-vp-muted hover:text-vp-gold transition-colors">Forgot?</button>
                </div>
                <div className="relative">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-vp-muted" />
@@ -157,7 +236,7 @@ const Login = () => {
             <div className="text-center pt-2">
                <p className="text-sm text-gray-500">
                   New to Venue Partner?{" "}
-                  <Link to="/signup" className="text-elvie-navy-deep font-bold hover:text-elvie-gold transition-colors underline underline-offset-4 decoration-elvie-gold/30">
+                  <Link to="/signup" className="font-bold transition-colors underline underline-offset-4" style={{ color: "hsl(var(--vp-gold))" }}>
                      Create account
                   </Link>
                </p>
@@ -165,6 +244,131 @@ const Login = () => {
           </form>
         </motion.div>
       </main>
+
+      {/* Forgot Password Modal */}
+      <Dialog open={showForgotModal} onOpenChange={(open) => {
+        if (!open) {
+          setShowForgotModal(false);
+          setForgotStep(1);
+          setResetCode("");
+          setNewPassword("");
+          setConfirmNewPassword("");
+        }
+      }}>
+        <DialogContent className="max-w-md bg-[#070c18] border border-slate-800 text-white rounded-[32px] p-6 md:p-8">
+          <DialogHeader className="text-left">
+            <DialogTitle className="text-2xl font-bold text-white flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[hsl(var(--vp-gold))]" />
+              Reset Password
+            </DialogTitle>
+            <DialogDescription className="text-slate-400 text-sm font-medium mt-1.5">
+              {forgotStep === 1 
+                ? "Enter your registered email address to receive a 6-digit verification code."
+                : "Enter the code received in your email and create a strong new password."}
+            </DialogDescription>
+          </DialogHeader>
+
+          {forgotStep === 1 ? (
+            <form onSubmit={handleRequestCode} className="space-y-5 mt-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input
+                    type="email"
+                    placeholder="you@company.com"
+                    value={forgotEmail}
+                    onChange={(e) => setForgotEmail(e.target.value)}
+                    required
+                    className="w-full pl-11 pr-5 py-3 border border-slate-850 rounded-2xl text-[15px] outline-none transition-all placeholder:text-slate-600 bg-slate-950 focus:border-[hsl(var(--vp-gold))] focus:ring-1 focus:ring-[hsl(var(--vp-gold))]/20 text-white"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={forgotLoading}
+                className="w-full bg-[hsl(var(--vp-gold))] text-vp-gold-foreground py-3.5 rounded-2xl font-bold transition-all hover:bg-[hsl(var(--vp-gold))]/90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-[15px] mt-2 shadow-lg shadow-[hsl(var(--vp-gold))]/10"
+              >
+                {forgotLoading ? (
+                  <span className="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
+                ) : (
+                  "Send Reset Code"
+                )}
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleResetPassword} className="space-y-4 mt-4">
+              {/* Reset Code */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Verification Code (6-digits)</label>
+                <input
+                  type="text"
+                  placeholder="Enter 6-digit code"
+                  value={resetCode}
+                  onChange={(e) => setResetCode(e.target.value)}
+                  maxLength={6}
+                  required
+                  className="w-full px-5 py-3 border border-slate-850 rounded-2xl text-[15px] outline-none transition-all placeholder:text-slate-600 bg-slate-950 focus:border-[hsl(var(--vp-gold))] focus:ring-1 focus:ring-[hsl(var(--vp-gold))]/20 text-white font-mono tracking-[4px] text-center"
+                />
+              </div>
+
+              {/* New Password */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">New Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input
+                    type="password"
+                    placeholder="••••••••"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                    className="w-full pl-11 pr-5 py-3 border border-slate-850 rounded-2xl text-[15px] outline-none transition-all placeholder:text-slate-600 bg-slate-950 focus:border-[hsl(var(--vp-gold))] focus:ring-1 focus:ring-[hsl(var(--vp-gold))]/20 text-white"
+                  />
+                </div>
+              </div>
+
+              {/* Confirm New Password */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">Confirm New Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input
+                    type="password"
+                    placeholder="••••••••"
+                    value={confirmNewPassword}
+                    onChange={(e) => setConfirmNewPassword(e.target.value)}
+                    required
+                    className="w-full pl-11 pr-5 py-3 border border-slate-850 rounded-2xl text-[15px] outline-none transition-all placeholder:text-slate-600 bg-slate-950 focus:border-[hsl(var(--vp-gold))] focus:ring-1 focus:ring-[hsl(var(--vp-gold))]/20 text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setForgotStep(1)}
+                  className="flex-1 py-3.5 border border-slate-800 hover:bg-slate-900 rounded-2xl font-bold transition-all text-[15px]"
+                >
+                  Back
+                </button>
+                <button
+                  type="submit"
+                  disabled={forgotLoading}
+                  className="flex-[2] bg-[hsl(var(--vp-gold))] text-vp-gold-foreground py-3.5 rounded-2xl font-bold transition-all hover:bg-[hsl(var(--vp-gold))]/90 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-[15px] shadow-lg shadow-[hsl(var(--vp-gold))]/10"
+                >
+                  {forgotLoading ? (
+                    <span className="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
+                  ) : (
+                    "Reset Password"
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <VwFooter />
       <ScrollToTop />

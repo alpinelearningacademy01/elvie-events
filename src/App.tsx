@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import VenuePartners from "./pages/VenuePartners";
 import VenueDetail from "./pages/VenueDetail";
+import SavedVenues from "./pages/SavedVenues";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Inbox from "./pages/dashboard/Inbox";
 import Properties from "./pages/dashboard/Properties";
@@ -56,6 +57,7 @@ const App = () => (
               <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/venue-partners" element={<VenuePartners />} />
               <Route path="/venue/:id" element={<VenueDetail />} />
+              <Route path="/saved-venues" element={<SavedVenues />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route

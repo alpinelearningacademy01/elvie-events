@@ -55,6 +55,24 @@ const VenueDetail = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [showInquiryModal, setShowInquiryModal] = useState(false);
   const [selectedVenueForLayout, setSelectedVenueForLayout] = useState<any>(null);
+  const [isFavorite, setIsFavorite] = useState(() => {
+    if (!id) return false;
+    try {
+      const saved = localStorage.getItem(`venue-fav-${id}`);
+      return saved ? JSON.parse(saved) : false;
+    } catch {
+      return false;
+    }
+  });
+
+  const toggleFavorite = () => {
+    if (!id) return;
+    const newState = !isFavorite;
+    setIsFavorite(newState);
+    try {
+      localStorage.setItem(`venue-fav-${id}`, JSON.stringify(newState));
+    } catch {}
+  };
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -160,8 +178,13 @@ const VenueDetail = () => {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-4">
-              <button className="flex items-center gap-2 text-[#0071c2] hover:bg-blue-50 px-3 py-2 rounded-lg transition-all font-bold">
-                <Heart className="h-5 w-5" /> Save
+              <button 
+                onClick={toggleFavorite}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all font-bold ${
+                  isFavorite ? "text-red-500 bg-red-50" : "text-[#0071c2] hover:bg-blue-50"
+                }`}
+              >
+                <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} /> {isFavorite ? "Saved" : "Save"}
               </button>
               <button className="flex items-center gap-2 text-[#0071c2] hover:bg-blue-50 px-3 py-2 rounded-lg transition-all font-bold">
                 <Share2 className="h-5 w-5" /> Share

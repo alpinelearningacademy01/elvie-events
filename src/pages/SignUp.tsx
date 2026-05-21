@@ -309,7 +309,7 @@ const SignUp = () => {
                 />
               </div>
               <label htmlFor="terms" className="text-[13px] text-gray-500 font-medium">
-                I agree to the <Link to="/terms-and-conditions" className="text-elvie-navy-deep font-bold hover:text-elvie-gold transition-colors">Terms & Conditions</Link> and <Link to="/privacy-policy" className="text-elvie-navy-deep font-bold hover:text-elvie-gold transition-colors">Privacy Policy</Link>
+                I agree to the <Link to="/terms-and-conditions" className="font-bold transition-colors" style={{ color: "hsl(var(--vp-gold))" }}>Terms & Conditions</Link> and <Link to="/privacy-policy" className="font-bold transition-colors" style={{ color: "hsl(var(--vp-gold))" }}>Privacy Policy</Link>
               </label>
             </div>
             {errors.agreeToTerms && <p className="text-[11px] text-red-500 font-bold -mt-4 ml-1">{errors.agreeToTerms}</p>}
@@ -328,7 +328,7 @@ const SignUp = () => {
             <div className="text-center pt-4">
               <p className="text-sm text-gray-500">
                 Already have an account?{" "}
-                <Link to="/login" className="text-elvie-navy-deep font-bold hover:text-elvie-gold transition-colors underline underline-offset-4 decoration-elvie-gold/30">
+                <Link to="/login" className="font-bold transition-colors underline underline-offset-4" style={{ color: "hsl(var(--vp-gold))" }}>
                   Sign In
                 </Link>
               </p>

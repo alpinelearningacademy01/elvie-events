@@ -84,6 +84,25 @@ const PARTNER_BENEFITS = [
 
 /* ─── Venue Card ─── */
 const VenueCard = ({ venue }: { venue: (typeof VENUES)[0] }) => {
+  const [isFavorite, setIsFavorite] = useState(() => {
+    try {
+      const saved = localStorage.getItem(`venue-fav-${venue.id}`);
+      return saved ? JSON.parse(saved) : false;
+    } catch {
+      return false;
+    }
+  });
+
+  const toggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newState = !isFavorite;
+    setIsFavorite(newState);
+    try {
+      localStorage.setItem(`venue-fav-${venue.id}`, JSON.stringify(newState));
+    } catch { }
+  };
+
   const stars = Math.round(venue.rating);
   const reviews = Math.floor(venue.capacity * 0.4) + 12; // Mock reviews
   const originalPrice = Math.round(venue.priceFrom * 1.15);
@@ -105,15 +124,13 @@ const VenueCard = ({ venue }: { venue: (typeof VENUES)[0] }) => {
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <button 
+          <button
             type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            className="absolute right-3 top-3 rounded-full bg-white p-2 text-gray-400 shadow-sm transition-colors hover:text-red-500 z-10"
+            onClick={toggleFavorite}
+            className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm transition-colors z-10 ${isFavorite ? "text-red-500" : "text-gray-400 hover:text-red-500"
+              }`}
           >
-            <Heart className="h-5 w-5" />
+            <Heart className={`h-5 w-5 ${isFavorite ? "fill-current" : ""}`} />
           </button>
         </div>
 
@@ -167,13 +184,13 @@ const VenueCard = ({ venue }: { venue: (typeof VENUES)[0] }) => {
           <span className="text-lg font-bold text-gray-900">AED {venue.priceFrom.toLocaleString()}</span>
         </div>
         <div className="flex gap-2">
-          <button 
-             onClick={(e) => {
-               e.preventDefault();
-               e.stopPropagation();
-               // Handle quick inquiry
-             }}
-             className="rounded-lg border border-[#0071c2] px-3 py-2 text-xs font-bold text-[#0071c2] transition-colors hover:bg-blue-50"
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              // Handle quick inquiry
+            }}
+            className="rounded-lg border border-[#0071c2] px-3 py-2 text-xs font-bold text-[#0071c2] transition-colors hover:bg-blue-50"
           >
             Quick Inquiry
           </button>
