@@ -38,6 +38,8 @@ const venuePartnerSchema = new mongoose.Schema({
         type: String,
         default: 'partner'
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
     createdAt: {
         type: Date,
         default: Date.now
@@ -45,9 +47,9 @@ const venuePartnerSchema = new mongoose.Schema({
 });
 
 // Encrypt password using bcrypt
-venuePartnerSchema.pre('save', async function(next) {
+venuePartnerSchema.pre('save', async function() {
     if (!this.isModified('password')) {
-        next();
+        return;
     }
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);

@@ -91,7 +91,7 @@ exports.getInquiries = async (req, res) => {
         // If user is a partner, only show inquiries for their properties
         // This logic depends on your auth implementation
         const inquiries = await Inquiry.find().populate('property', 'propertyName').sort('-createdAt');
-        
+
         res.status(200).json({
             success: true,
             count: inquiries.length,
