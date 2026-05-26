@@ -7,6 +7,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const propertyRoutes = require('./routes/propertyRoutes');
 const clientDirectoryRoutes = require('./routes/clientDirectoryRoutes');
 const inquiryRoutes = require('./routes/inquiryRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Load env vars
 dotenv.config();
@@ -28,6 +29,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/client-directory', clientDirectoryRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');
