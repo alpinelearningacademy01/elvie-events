@@ -43,7 +43,8 @@ const StickyEnquiry = () => {
     location.pathname === "/venue-partners" ||
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
-    location.pathname.startsWith("/dashboard");
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/admin");
 
   useEffect(() => {
     openGlobalEnquiry = () => setIsOpen(true);
