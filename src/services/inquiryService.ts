@@ -52,3 +52,31 @@ export const updateInquiryStatus = async (id: string, status: string) => {
         };
     }
 };
+
+export const requestInquiryAccess = async (id: string) => {
+    try {
+        const response = await axios.post(`${API_URL}/${id}/request`, {}, {
+            headers: getAuthHeaders()
+        });
+        return response.data;
+    } catch (error: any) {
+        return {
+            success: false,
+            message: error.response?.data?.message || 'Failed to request access'
+        };
+    }
+};
+
+export const unlockInquiry = async (id: string) => {
+    try {
+        const response = await axios.post(`${API_URL}/${id}/unlock`, {}, {
+            headers: getAuthHeaders()
+        });
+        return response.data;
+    } catch (error: any) {
+        return {
+            success: false,
+            message: error.response?.data?.message || 'Failed to unlock inquiry'
+        };
+    }
+};

@@ -205,6 +205,73 @@ const PartnersTab = () => {
   );
 };
 
+/* ─── Requests Tab ───────────────────────────── */
+const RequestsTab = () => {
+  const [requests, setRequests] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchRequests = () => {
+    setLoading(true);
+    adminApi.get("/requests")
+      .then(({ data }) => { if (data.success) setRequests(data.data); })
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchRequests();
+  }, []);
+
+  const handleApprove = async (partnerId: string, inquiryId: string) => {
+    try {
+      const { data } = await adminApi.post("/approve-request", { partnerId, inquiryId });
+      if (data.success) {
+        setRequests(prev => prev.filter(r => !(r.partnerId === partnerId && r.inquiry._id === inquiryId)));
+      }
+    } catch { /* ignore */ }
+  };
+
+  if (loading) return (
+    <div className="flex flex-col items-center justify-center py-32 gap-3">
+      <div className="w-8 h-8 border-2 border-vp-gold border-t-transparent rounded-full animate-spin" />
+      <p className="text-vp-muted text-sm">Loading requests…</p>
+    </div>
+  );
+
+  return (
+    <div className="bg-vp-surface border border-vp-border rounded-2xl overflow-hidden shadow-sm">
+      <div className="grid grid-cols-[1fr_1fr_130px] gap-4 px-5 py-3 border-b border-vp-border bg-vp-surface-alt">
+        {["Partner", "Requested Inquiry", "Actions"].map(h => (
+          <span key={h} className="text-[10px] uppercase tracking-widest font-bold text-vp-muted">{h}</span>
+        ))}
+      </div>
+      <div className="divide-y divide-vp-border">
+        {requests.length === 0 ? (
+          <div className="py-12 text-center text-vp-muted text-sm">No access requests pending.</div>
+        ) : (
+          requests.map(r => (
+            <div key={`${r.partnerId}-${r.inquiry._id}`} className="grid grid-cols-[1fr_1fr_130px] gap-4 px-5 py-4 hover:bg-vp-surface-alt transition-colors items-center group">
+              <div>
+                <p className="text-vp-foreground text-sm font-bold group-hover:text-vp-gold transition-colors">{r.partnerName}</p>
+                <p className="text-[10px] text-vp-muted">{r.partnerEmail}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-vp-foreground text-xs font-semibold truncate">{r.inquiry.fullName} - {r.inquiry.eventType}</p>
+                <p className="text-[10px] text-vp-muted truncate">{r.inquiry.property?.propertyName} · {format(new Date(r.inquiry.eventDate), "MMM dd, yyyy")}</p>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <button onClick={() => handleApprove(r.partnerId, r.inquiry._id)}
+                  className="flex items-center gap-1.5 w-full py-2 bg-[hsl(var(--vp-gold))]/10 text-[hsl(var(--vp-gold))] border border-vp-gold/30 rounded-xl text-xs font-bold hover:bg-vp-gold/20 transition-colors justify-center">
+                  <CheckCircle className="w-3.5 h-3.5" /> Approve
+                </button>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
+
 /* ─── Main Dashboard ─────────────────────────── */
 const AdminDashboard = () => {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -220,7 +287,7 @@ const AdminDashboard = () => {
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingInq, setLoadingInq] = useState(true);
   const [selected, setSelected] = useState<Inquiry | null>(null);
-  const [activeTab, setActiveTab] = useState<"dashboard" | "inquiries" | "partners">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "inquiries" | "partners" | "requests">("dashboard");
 
   /* fetch stats */
   const fetchStats = async () => {
@@ -293,7 +360,7 @@ const AdminDashboard = () => {
             <span className="text-[11px] uppercase tracking-widest text-vp-gold font-bold">Live Admin View</span>
           </div>
           <h1 className="text-2xl lg:text-3xl font-black text-vp-foreground tracking-tight">
-            {activeTab === "dashboard" ? "Dashboard" : activeTab === "inquiries" ? "All Inquiries" : "Venue Partners"}
+            {activeTab === "dashboard" ? "Dashboard" : activeTab === "requests" ? "Access Requests" : activeTab === "inquiries" ? "All Inquiries" : "Venue Partners"}
           </h1>
           <p className="text-sm text-vp-muted mt-1">Manage system-wide records and monitor activity.</p>
         </div>
@@ -513,6 +580,9 @@ const AdminDashboard = () => {
 
         {/* ── PARTNERS TAB ── */}
         {activeTab === "partners" && <PartnersTab />}
+
+        {/* ── REQUESTS TAB ── */}
+        {activeTab === "requests" && <RequestsTab />}
       </div>
 
       {/* ── Detail Modal ── */}

@@ -19,8 +19,8 @@ import logoImg from "@/assets/Logo.webp";
 
 interface AdminDashboardLayoutProps {
   children: ReactNode;
-  activeTab: "dashboard" | "inquiries" | "partners";
-  setActiveTab: (tab: "dashboard" | "inquiries" | "partners") => void;
+  activeTab: "dashboard" | "inquiries" | "partners" | "requests";
+  setActiveTab: (tab: "dashboard" | "inquiries" | "partners" | "requests") => void;
   onRefresh?: () => void;
   stats?: any;
 }
@@ -40,6 +40,7 @@ const AdminDashboardLayout = ({ children, activeTab, setActiveTab, onRefresh, st
       label: "ADMIN PANEL",
       items: [
         { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+        { id: "requests", label: "Access Requests", icon: Bell },
         { id: "inquiries", label: "All Inquiries", icon: MessageSquare, badge: stats?.totalInquiries },
         { id: "partners", label: "Venue Partners", icon: Building2, badge: stats?.totalPartners },
       ],
@@ -128,7 +129,7 @@ const AdminDashboardLayout = ({ children, activeTab, setActiveTab, onRefresh, st
                     return (
                       <li key={item.id}>
                         <button
-                          onClick={() => { setActiveTab(item.id as "dashboard" | "inquiries" | "partners"); setMobileOpen(false); }}
+                          onClick={() => { setActiveTab(item.id as "dashboard" | "inquiries" | "partners" | "requests"); setMobileOpen(false); }}
                           className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 group border ${
                             isActive
                               ? "bg-vp-gold/15 border-vp-gold/30 text-vp-foreground shadow-sm"
