@@ -192,3 +192,68 @@ exports.getAllPartners = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+// ─────────────────────────────────────
+// @desc    Get all requested inquiries
+// @route   GET /api/admin/requests
+// @access  Private (Admin)
+// ─────────────────────────────────────
+exports.getRequestedInquiries = async (req, res) => {
+    try {
+        // Find partners that have requested inquiries
+        const partners = await VenuePartner.find({
+            requestedInquiries: { $exists: true, $not: { $size: 0 } }
+        }).populate({
+            path: 'requestedInquiries',
+            select: 'fullName eventType eventDate status property venue budget budgetCurrency createAt',
+            populate: { path: 'property', select: 'propertyName' }
+        }).lean();
+
+        let requests = [];
+        partners.forEach(p => {
+            if (p.requestedInquiries) {
+                p.requestedInquiries.forEach(inq => {
+                    requests.push({
+                        partnerId: p._id,
+                        partnerName: p.name,
+                        partnerEmail: p.email,
+                        inquiry: inq,
+                        requestDate: new Date() // just as fallback
+                    });
+                });
+            }
+        });
+
+        res.status(200).json({ success: true, data: requests });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// ─────────────────────────────────────
+// @desc    Approve access to an inquiry
+// @route   POST /api/admin/approve-request
+// @access  Private (Admin)
+// ─────────────────────────────────────
+exports.approveInquiryRequest = async (req, res) => {
+    try {
+        const { partnerId, inquiryId } = req.body;
+        
+        const partner = await VenuePartner.findById(partnerId);
+        if (!partner) return res.status(404).json({ success: false, message: 'Partner not found' });
+        
+        // Remove from requestedInquiries
+        partner.requestedInquiries = partner.requestedInquiries.filter(id => id.toString() !== inquiryId.toString());
+        
+        // Add to unlockedInquiries
+        if (!partner.unlockedInquiries.includes(inquiryId)) {
+            partner.unlockedInquiries.push(inquiryId);
+        }
+        
+        await partner.save();
+        
+        res.status(200).json({ success: true, message: 'Request approved successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};

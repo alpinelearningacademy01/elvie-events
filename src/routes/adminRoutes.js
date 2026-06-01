@@ -8,6 +8,8 @@ const {
     updateInquiry,
     deleteInquiry,
     getAllPartners,
+    getRequestedInquiries,
+    approveInquiryRequest
 } = require('../controllers/adminController');
 const { protectAdmin } = require('../utils/adminMiddleware');
 
@@ -22,5 +24,9 @@ router.get('/inquiries/:id',    protectAdmin, getInquiryById);
 router.put('/inquiries/:id',    protectAdmin, updateInquiry);
 router.delete('/inquiries/:id', protectAdmin, deleteInquiry);
 router.get('/partners',         protectAdmin, getAllPartners);
+
+// ── Requests routes ───────────────────
+router.get('/requests',         protectAdmin, getRequestedInquiries);
+router.post('/approve-request', protectAdmin, approveInquiryRequest);
 
 module.exports = router;

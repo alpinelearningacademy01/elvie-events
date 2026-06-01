@@ -38,6 +38,14 @@ const venuePartnerSchema = new mongoose.Schema({
         type: String,
         default: 'partner'
     },
+    unlockedInquiries: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Inquiry'
+    }],
+    requestedInquiries: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Inquiry'
+    }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     createdAt: {
