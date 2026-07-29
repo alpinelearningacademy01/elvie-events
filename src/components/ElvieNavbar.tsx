@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, ChevronDown, LogIn, LayoutDashboard, Building2 } from "lucide-react";
+import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
-import { useAuth } from "@/context/AuthContext";
 
 const giftTypes = [
   "Employee Welcome Kits",
@@ -28,7 +27,6 @@ const giftTypes = [
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  { label: "VENUE PARTNERS", href: "/venue-partners", authLabel: "DASHBOARD", authHref: "/dashboard" },
   { label: "ABOUT US", href: "/aboutus" },
   { label: "GALLERY", href: "/gallery" },
 ];
@@ -40,7 +38,6 @@ const ElvieNavbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -92,16 +89,12 @@ const ElvieNavbar = () => {
           {navLinks.map((link) => (
             <Link
               key={link.label}
-              to={isAuthenticated && link.authHref ? link.authHref : link.href}
-              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${(location.pathname === link.href || (isAuthenticated && location.pathname === link.authHref))
-                ? "text-primary-foreground"
-                : "text-primary-foreground/90 hover:text-primary-foreground"
-                }`}
+              to={link.href}
+              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === link.href ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground" }`}
             >
-              {isAuthenticated && link.authLabel ? link.authLabel : link.label}
+              {link.label}
               <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${(location.pathname === link.href || (isAuthenticated && location.pathname === link.authHref)) ? "w-3/4" : "w-0 group-hover:w-3/4"
-                  }`}
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4" }`}
               />
               <span className="ml-4 text-primary-foreground/30">|</span>
             </Link>
@@ -203,11 +196,11 @@ const ElvieNavbar = () => {
             {navLinks.map((link, i) => (
               <motion.div key={link.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                 <Link
-                  to={isAuthenticated && link.authHref ? link.authHref : link.href}
+                  to={link.href}
                   className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {isAuthenticated && link.authLabel ? link.authLabel : link.label}
+                  {link.label}
                 </Link>
               </motion.div>
             ))}
@@ -271,4 +264,3 @@ const ElvieNavbar = () => {
 };
 
 export default ElvieNavbar;
-

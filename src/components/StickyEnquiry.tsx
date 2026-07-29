@@ -40,10 +40,6 @@ const StickyEnquiry = () => {
 
   // Hide on Venue Partner specific pages
   const isVenuePartnerPage =
-    location.pathname === "/venue-partners" ||
-    location.pathname === "/login" ||
-    location.pathname === "/signup" ||
-    location.pathname.startsWith("/dashboard") ||
     location.pathname.startsWith("/admin");
 
   useEffect(() => {

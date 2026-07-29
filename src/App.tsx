@@ -13,28 +13,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 import StickyEnquiry from "./components/StickyEnquiry";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import VenuePartners from "./pages/VenuePartners";
-import VenueDetail from "./pages/VenueDetail";
-import SavedVenues from "./pages/SavedVenues";
-import Dashboard from "./pages/dashboard/Dashboard";
-import Inbox from "./pages/dashboard/Inbox";
-import Properties from "./pages/dashboard/Properties";
-import Inquiries from "./pages/dashboard/Inquiries";
-import Contacts from "./pages/dashboard/Contacts";
-import Plans from "./pages/dashboard/Plans";
-import Transactions from "./pages/dashboard/Transactions";
-import Profile from "./pages/dashboard/Profile";
-import AddProperty from "./pages/dashboard/AddProperty";
-import AddEditClient from "./pages/dashboard/AddEditClient";
-import { AuthProvider } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
-import ProtectedRoute from "./components/dashboard/ProtectedRoute";
-import { AdminAuthProvider } from "./context/AdminAuthContext";
-import AdminProtectedRoute from "./components/admin/AdminProtectedRoute";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -45,10 +24,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <AdminAuthProvider>
-            <AuthProvider>
-              <StickyEnquiry />
-              <Routes>
+          <StickyEnquiry />
+          <Routes>
                 {/* ── Public routes ── */}
                 <Route path="/" element={<Index />} />
                 <Route path="/aboutus" element={<AboutUs />} />
@@ -61,40 +38,10 @@ const App = () => (
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-                <Route path="/venue-partners" element={<VenuePartners />} />
-                <Route path="/venue/:id" element={<VenueDetail />} />
-                <Route path="/saved-venues" element={<SavedVenues />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-
-                {/* ── Venue-partner dashboard ── */}
-                <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                <Route path="/dashboard/communications" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
-                <Route path="/dashboard/venue-portfolio" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
-                <Route path="/dashboard/venue-portfolio/add" element={<ProtectedRoute><AddProperty /></ProtectedRoute>} />
-                <Route path="/dashboard/opportunities" element={<ProtectedRoute><Inquiries /></ProtectedRoute>} />
-                <Route path="/dashboard/client-directory" element={<ProtectedRoute><Contacts /></ProtectedRoute>} />
-                <Route path="/dashboard/client-directory/add" element={<ProtectedRoute><AddEditClient /></ProtectedRoute>} />
-                <Route path="/dashboard/subscription-plans" element={<ProtectedRoute><Plans /></ProtectedRoute>} />
-                <Route path="/dashboard/financial-overview" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
-                <Route path="/dashboard/account-profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-
-                {/* ── Admin panel ── */}
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route
-                  path="/admin/dashboard"
-                  element={
-                    <AdminProtectedRoute>
-                      <AdminDashboard />
-                    </AdminProtectedRoute>
-                  }
-                />
 
                 {/* ── 404 ── */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
-            </AuthProvider>
-          </AdminAuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

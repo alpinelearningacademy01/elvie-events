@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const ADMIN_STORAGE_KEY = 'elvie_admin_user';
-const API_URL = 'http://localhost:5000/api/admin';
+const API_URL = 'http://localhost:5001/api/admin';
 
 const adminApi = axios.create({
   baseURL: API_URL,

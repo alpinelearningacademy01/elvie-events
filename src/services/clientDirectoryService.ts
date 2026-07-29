@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/client-directory';
+const API_URL = 'http://localhost:5001/api/client-directory';
 
 const getAuthHeaders = () => {
     const storedUser = localStorage.getItem('elvie_auth_user');
