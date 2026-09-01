@@ -25,19 +25,20 @@ const giftTypes = [
   "Professional Laptop Bags"
 ];
 
-const navLinks = [
-  { label: "HOME", href: "/" },
-  { label: "ABOUT US", href: "/aboutus" },
-  { label: "GALLERY", href: "/gallery" },
+const eventsList = [
+  { name: "SBG Event", href: "/events" },
 ];
 
 const ElvieNavbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [eventsDropdownOpen, setEventsDropdownOpen] = useState(false);
+  const [mobileEventsOpen, setMobileEventsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const eventsDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -49,11 +50,14 @@ const ElvieNavbar = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Close dropdown on click outside
+  // Close dropdowns on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
+      }
+      if (eventsDropdownRef.current && !eventsDropdownRef.current.contains(event.target as Node)) {
+        setEventsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -86,71 +90,102 @@ const ElvieNavbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.href}
-              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === link.href ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
-            >
-              {link.label}
-              <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
-              />
-              <span className="ml-4 text-primary-foreground/30">|</span>
-            </Link>
-          ))}
+          {/* HOME */}
+          <Link
+            to="/"
+            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
+          >
+            HOME
+            <span
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/" ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
+            />
+            <span className="ml-4 text-primary-foreground/30">|</span>
+          </Link>
 
-          {/* Corporate Gifts Split Link / Dropdown */}
-          {/* <div className="relative group" ref={dropdownRef}>
+          {/* ABOUT US */}
+          <Link
+            to="/aboutus"
+            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/aboutus" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
+          >
+            ABOUT US
+            <span
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/aboutus" ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
+            />
+            <span className="ml-4 text-primary-foreground/30">|</span>
+          </Link>
+
+          {/* EVENTS Dropdown */}
+          <div
+            className="relative group"
+            ref={eventsDropdownRef}
+            onMouseEnter={() => setEventsDropdownOpen(true)}
+            onMouseLeave={() => setEventsDropdownOpen(false)}
+          >
             <div className="flex items-center">
               <Link
-                to="/corporate"
-                className={`pl-4 pr-1 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname.startsWith("/corporate")
+                to="/events"
+                className={`pl-4 pr-1 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname.startsWith("/events")
                   ? "text-primary-foreground"
                   : "text-primary-foreground/90 hover:text-primary-foreground"
                   }`}
               >
-                BUSINESS GIFTS BY TYPE
+                EVENTS
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname.startsWith("/corporate") ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname.startsWith("/events") ? "w-3/4" : "w-0 group-hover:w-3/4"
                     }`}
                 />
               </Link>
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => setEventsDropdownOpen(!eventsDropdownOpen)}
                 className="p-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                aria-label="Toggle Gifts Dropdown"
+                aria-label="Toggle Events Dropdown"
               >
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${eventsDropdownOpen ? "rotate-180" : ""}`} />
               </button>
               <span className="ml-2 text-primary-foreground/30">|</span>
             </div>
 
             <AnimatePresence>
-              {dropdownOpen && (
+              {eventsDropdownOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-xl shadow-2xl overflow-hidden z-50 max-h-[70vh] overflow-y-auto custom-scrollbar"
+                  className="absolute top-full left-0 mt-1 w-56 bg-card border border-border rounded-xl shadow-2xl overflow-hidden z-50"
                 >
                   <div className="py-2">
-                    {giftTypes.map((type) => (
+                    {eventsList.map((eventItem) => (
                       <button
-                        key={type}
-                        onClick={() => handleCategoryClick(type)}
+                        key={eventItem.name}
+                        onClick={() => {
+                          setEventsDropdownOpen(false);
+                          navigate(eventItem.href);
+                        }}
                         className="w-full text-left px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-0"
                       >
-                        {type}
+                        {eventItem.name}
                       </button>
                     ))}
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div> */}
+          </div>
 
+          {/* GALLERY */}
+          <Link
+            to="/gallery"
+            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/gallery" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
+          >
+            GALLERY
+            <span
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/gallery" ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
+            />
+            <span className="ml-4 text-primary-foreground/30">|</span>
+          </Link>
+
+          {/* BOOKING */}
           <Link
             to="/booking"
             className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/booking"
@@ -184,6 +219,7 @@ const ElvieNavbar = () => {
         </button>
       </div>
 
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -193,43 +229,55 @@ const ElvieNavbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {navLinks.map((link, i) => (
-              <motion.div key={link.label} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
-                <Link
-                  to={link.href}
-                  className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+              <Link
+                to="/"
+                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
+                onClick={() => setMobileOpen(false)}
+              >
+                HOME
+              </Link>
+            </motion.div>
 
-            {/* Mobile Corporate Gifts with Dropdown */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: (navLinks.length + 1) * 0.05 }}>
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+              <Link
+                to="/aboutus"
+                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
+                onClick={() => setMobileOpen(false)}
+              >
+                ABOUT US
+              </Link>
+            </motion.div>
+
+            {/* Mobile EVENTS Dropdown */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <div className="px-6 py-3">
                 <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  onClick={() => setMobileEventsOpen(!mobileEventsOpen)}
                   className="flex items-center justify-between w-full text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground"
                 >
-                  BUSINESS GIFTS BY TYPE
-                  <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                  EVENTS
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileEventsOpen ? "rotate-180" : ""}`} />
                 </button>
                 <AnimatePresence>
-                  {dropdownOpen && (
+                  {mobileEventsOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden bg-primary-foreground/5 rounded-lg mt-2"
                     >
-                      {giftTypes.map((type) => (
+                      {eventsList.map((eventItem) => (
                         <button
-                          key={type}
-                          onClick={() => handleCategoryClick(type)}
+                          key={eventItem.name}
+                          onClick={() => {
+                            setMobileEventsOpen(false);
+                            setMobileOpen(false);
+                            navigate(eventItem.href);
+                          }}
                           className="w-full text-left px-4 py-2 text-[13px] text-primary-foreground/70 hover:text-primary-foreground border-b border-primary-foreground/5 last:border-0"
                         >
-                          {type}
+                          {eventItem.name}
                         </button>
                       ))}
                     </motion.div>
@@ -238,8 +286,17 @@ const ElvieNavbar = () => {
               </div>
             </motion.div>
 
-            {/* Mobile Booking */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: (navLinks.length + 2) * 0.05 }}>
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+              <Link
+                to="/gallery"
+                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
+                onClick={() => setMobileOpen(false)}
+              >
+                GALLERY
+              </Link>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <Link
                 to="/booking"
                 className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"

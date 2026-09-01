@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Facebook, Instagram, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
@@ -31,7 +31,7 @@ const ElvieFooter = () => {
 
   const companyLinks = [
     { name: "About Us", path: "/aboutus" },
-    { name: "Events", path: "/corporate-gifts" },
+    { name: "Events", path: "/events" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact", path: "/booking" },
   ];
@@ -131,27 +131,53 @@ const ElvieFooter = () => {
             </form>
 
             {/* Social Icons */}
-            <div className="flex gap-3 mt-6">
+            <div className="flex flex-wrap gap-3 mt-6">
               <a
-                href="https://www.facebook.com/share/18DRgYP4em/?mibextid=wwXIfr"
+                href="https://www.facebook.com/share/1DFwYfYLZL/"
                 target="_blank"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:text-blue-400 transition-colors"
               >
                 <Facebook size={18} />
               </a>
 
               <a
-                href="https://www.instagram.com/elvieevents"
+                href="https://www.instagram.com/elvieevents.ae?igsi=MXZvdGQ2c2Nnb3dvcg=="
                 target="_blank"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:text-pink-400 transition-colors"
               >
                 <Instagram size={18} />
               </a>
 
               <a
+                href="https://www.linkedin.com/company/elvie-events/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:text-blue-300 transition-colors"
+              >
+                <Linkedin size={18} />
+              </a>
+
+              <a
+                href="https://www.youtube.com/@elvieeeventsvlogs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:text-red-400 transition-colors"
+              >
+                <Youtube size={18} />
+              </a>
+
+              <a
                 href="https://wa.me/971521327081"
                 target="_blank"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:text-green-400 transition-colors"
               >
                 <MessageCircle size={18} />
               </a>
