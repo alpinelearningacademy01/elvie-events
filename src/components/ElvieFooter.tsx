@@ -1,48 +1,32 @@
 import { motion } from "framer-motion";
 import { Facebook, Instagram, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
+import { createElvieInquiry } from "@/services/inquiryService";
 
 const ElvieFooter = () => {
   const [email, setEmail] = useState("");
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+    const response = await createElvieInquiry({
+      formType: "Newsletter Subscription",
+      name: "Newsletter Subscriber",
+      email,
+      message: "New newsletter subscription",
+      sourcePage: "Footer newsletter",
+    });
 
-    if (serviceId === "YOUR_SERVICE_ID" || !publicKey) {
-      toast.info("Subscribing to newsletter...");
-      setTimeout(() => {
-        toast.success("Thank you for subscribing to our newsletter!");
-        setEmail("");
-      }, 1000);
-      return;
+    if (response.success) {
+      toast.success("Thank you for subscribing!");
+      setEmail("");
+    } else {
+      toast.error(response.message || "Failed to subscribe. Please try again later.");
     }
-
-    const templateParams = {
-      from_email: email,
-      message: "New Newsletter Subscription",
-      to_email: "navazsherasiya0@gmail.com",
-    };
-
-    toast.promise(
-      emailjs.send(serviceId, templateId, templateParams, publicKey),
-      {
-        loading: 'Subscribing...',
-        success: () => {
-          setEmail("");
-          return 'Thank you for subscribing!';
-        },
-        error: 'Failed to subscribe. Please try again later.',
-      }
-    );
   };
 
   const companyLinks = [

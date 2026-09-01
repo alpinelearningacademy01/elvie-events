@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5001/api/inquiries';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api';
+const API_URL = `${API_BASE_URL}/inquiries`;
 
 const getAuthHeaders = () => {
     const storedUser = localStorage.getItem('elvie_auth_user');
@@ -16,6 +17,18 @@ const getAuthHeaders = () => {
 export const createInquiry = async (inquiryData: any) => {
     try {
         const response = await axios.post(API_URL, inquiryData);
+        return response.data;
+    } catch (error: any) {
+        return {
+            success: false,
+            message: error.response?.data?.message || 'Failed to send inquiry'
+        };
+    }
+};
+
+export const createElvieInquiry = async (inquiryData: any) => {
+    try {
+        const response = await axios.post(`${API_URL}/elvie`, inquiryData);
         return response.data;
     } catch (error: any) {
         return {

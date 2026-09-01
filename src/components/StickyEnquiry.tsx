@@ -9,6 +9,7 @@ import {
 import { toast } from "sonner";
 import { ChevronDown, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { createElvieInquiry } from "@/services/inquiryService";
 
 // Global trigger to open modal from anywhere
 let openGlobalEnquiry: () => void = () => { };
@@ -69,27 +70,43 @@ const StickyEnquiry = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Thank you! Your inquiry has been received.");
-      setForm({
-        name: "",
-        phone: "",
-        countryCode: "+971",
-        email: "",
-        lookingFor: "",
-        quantity: "",
-        companyName: "",
-        details: ""
+    try {
+      const response = await createElvieInquiry({
+        formType: "Quick Enquiry",
+        name: form.name,
+        email: form.email,
+        phone: `${form.countryCode} ${form.phone}`.trim(),
+        companyName: form.companyName,
+        giftType: form.lookingFor,
+        quantity: form.quantity,
+        message: form.details,
+        sourcePage: "Quick enquiry modal",
       });
-      setIsOpen(false);
-      setIsDropdownOpen(false);
-    }, 1500);
+
+      if (response.success) {
+        toast.success("Thank you! Your inquiry has been received.");
+        setForm({
+          name: "",
+          phone: "",
+          countryCode: "+971",
+          email: "",
+          lookingFor: "",
+          quantity: "",
+          companyName: "",
+          details: ""
+        });
+        setIsOpen(false);
+        setIsDropdownOpen(false);
+      } else {
+        toast.error(response.message || "Failed to send inquiry. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedCountry = countries.find(c => c.code === form.countryCode) || countries[0];
@@ -98,25 +115,6 @@ const StickyEnquiry = () => {
 
   return (
     <>
-      {/* Sticky Button - Updated to Website Theme (Navy) */}
-      <motion.button
-        onClick={() => setIsOpen(true)}
-        className="fixed right-0 top-[40%] -translate-y-1/2 z-50 bg-elvie-navy text-white font-medium py-10 px-2 rounded-l-md shadow-lg border-y border-l border-elvie-gold/30 group transition-all"
-        initial={{ x: 10 }}
-        animate={{ x: 0 }}
-        whileHover={{ x: -5 }}
-      >
-        <span
-          className="uppercase tracking-[0.2em] whitespace-nowrap block text-[11px] font-bold text-elvie-gold"
-          style={{
-            writingMode: 'vertical-rl',
-            transform: 'rotate(180deg)',
-          }}
-        >
-          Request a Quote
-        </span>
-      </motion.button>
-
       {/* Modal - Website Theme (Navy & Gold) */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-[420px] bg-white border-none rounded-none p-0 shadow-2xl">

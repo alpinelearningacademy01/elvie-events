@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
-import api from "@/lib/api";
 import { toast } from "sonner";
+import api from "@/lib/api";
 
 const Booking = () => {
   const [form, setForm] = useState({
@@ -29,13 +29,15 @@ const Booking = () => {
 
     try {
       const bookingData = {
+        customerFirstName: form.firstName,
+        customerLastName: form.lastName,
         customerName: `${form.firstName} ${form.lastName}`.trim(),
         customerEmail: form.email,
         customerPhone: form.phone,
         customerCompany: form.company,
         customerDesignation: form.designation,
-        venueId: "65f000000000000000000000", 
-        venueName: "Elvie Events General Enquiry", 
+        venueId: import.meta.env.VITE_ELVIE_BOOKING_VENUE_ID || "65f000000000000000000000",
+        venueName: "Elvie Events General Enquiry",
         eventDate: form.eventDate,
         guestCount: Number(form.guestCount),
         eventType: form.eventType,
@@ -58,6 +60,8 @@ const Booking = () => {
           eventType: "Corporate Event",
           message: "",
         });
+      } else {
+        toast.error(response.data.message || "Failed to send enquiry. Please try again.");
       }
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Failed to send enquiry. Please try again.");

@@ -90,18 +90,18 @@ const ElvieNavbar = () => {
             <Link
               key={link.label}
               to={link.href}
-              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === link.href ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground" }`}
+              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === link.href ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
             >
               {link.label}
               <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4" }`}
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === link.href ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
               />
               <span className="ml-4 text-primary-foreground/30">|</span>
             </Link>
           ))}
 
           {/* Corporate Gifts Split Link / Dropdown */}
-          <div className="relative group" ref={dropdownRef}>
+          {/* <div className="relative group" ref={dropdownRef}>
             <div className="flex items-center">
               <Link
                 to="/corporate"
@@ -149,21 +149,21 @@ const ElvieNavbar = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </div> */}
 
-            <Link
-              to="/booking"
-              className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/booking"
-                ? "text-primary-foreground"
-                : "text-primary-foreground/90 hover:text-primary-foreground"
+          <Link
+            to="/booking"
+            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/booking"
+              ? "text-primary-foreground"
+              : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
+          >
+            BOOKING
+            <span
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/booking" ? "w-3/4" : "w-0 group-hover:w-3/4"
                 }`}
-            >
-              BOOKING
-              <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/booking" ? "w-3/4" : "w-0 group-hover:w-3/4"
-                  }`}
-              />
-            </Link>
+            />
+          </Link>
 
           <motion.a
             href="tel:+971521327081"

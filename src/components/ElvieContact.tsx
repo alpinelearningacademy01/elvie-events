@@ -1,50 +1,32 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import newsletterBg from "@/assets/newsletter-bg.jpg";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import { createElvieInquiry } from "@/services/inquiryService";
 
 const ElvieContact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
-
-    if (serviceId === "YOUR_SERVICE_ID" || !publicKey) {
-      // Fallback for demonstration if keys are not set
-      toast.info("Connecting to email service...");
-      setTimeout(() => {
-        toast.success("Thank you for your message! We will get back to you soon.");
-        setForm({ name: "", email: "", phone: "", message: "" });
-      }, 1000);
-      return;
-    }
-
-    const templateParams = {
-      from_name: form.name,
-      from_email: form.email,
+    const response = await createElvieInquiry({
+      formType: "Contact Form",
+      name: form.name,
+      email: form.email,
       phone: form.phone,
       message: form.message,
-      to_email: "navazsherasiya0@gmail.com",
-    };
+      sourcePage: "Homepage contact section",
+    });
 
-    toast.promise(
-      emailjs.send(serviceId, templateId, templateParams, publicKey),
-      {
-        loading: 'Sending your message...',
-        success: () => {
-          setForm({ name: "", email: "", phone: "", message: "" });
-          return 'Thank you! Your message has been sent successfully.';
-        },
-        error: 'Failed to send message. Please try again later.',
-      }
-    );
+    if (response.success) {
+      toast.success("Thank you! Your message has been sent successfully.");
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } else {
+      toast.error(response.message || "Failed to send message. Please try again later.");
+    }
   };
 
   return (

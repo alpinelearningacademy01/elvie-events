@@ -24,7 +24,7 @@ const Footer = () => (
         <div>
           <h4 className="text-xs font-bold uppercase tracking-widest text-white/50">Contact</h4>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> support@venuepartner.com</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> support@venuepartner.ae</li>
             <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +971 52 137 7986</li>
           </ul>
           <div className="mt-6 flex gap-3">

@@ -12,8 +12,8 @@ import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieFooter from "@/components/ElvieFooter";
 import ScrollToTop from "@/components/ScrollToTop";
 import { triggerEnquiry } from "@/components/StickyEnquiry";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
+import { createElvieInquiry } from "@/services/inquiryService";
 // Import Modular Components and Data
 import {
   allModularGifts,
@@ -331,6 +331,7 @@ const CorporateGifts = () => {
     message: "",
     contactMethod: ["Email"],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCheckbox = (value: string) => {
     setForm((prev) => ({
@@ -341,7 +342,7 @@ const CorporateGifts = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (form.contactMethod.length === 0) {
@@ -349,9 +350,8 @@ const CorporateGifts = () => {
       return;
     }
 
-    const { name, email, phone, company, giftType, quantity, budget, message, contactMethod } = form;
+    const { name, email, phone, company, giftType, quantity, budget, message, contactMethod, countryCode } = form;
 
-    // Helper to reset form
     const resetForm = () => {
       setForm({
         name: "",
@@ -367,36 +367,30 @@ const CorporateGifts = () => {
       });
     };
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = "template_jl4sw5m"; // Fixed template ID as requested
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    // Handle Email Submission
-    if (contactMethod.includes("Email")) {
-      const templateParams = {
+    try {
+      setIsSubmitting(true);
+      const response = await createElvieInquiry({
+        formType: "Corporate Gifts Inquiry",
         name,
         email,
-        phone,
+        phone: `${countryCode} ${phone}`.trim(),
         company,
-        gift_type: giftType,
+        giftType,
         quantity,
         budget,
         message,
-        contact_method: "Email",
-        to_email: "navazsherasiya0@gmail.com",
-      };
+        contactMethod,
+        sourcePage: "Corporate gifts page",
+      });
 
-      toast.promise(
-        emailjs.send(serviceId, templateId, templateParams, publicKey),
-        {
-          loading: "Sending inquiry to email...",
-          success: () => {
-            resetForm();
-            return "Inquiry sent to Email successfully!";
-          },
-          error: "Failed to send inquiry via Email",
-        }
-      );
+      if (response.success) {
+        toast.success("Inquiry sent successfully!");
+        resetForm();
+      } else {
+        toast.error(response.message || "Failed to send inquiry. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -991,12 +985,13 @@ const CorporateGifts = () => {
                 </div>
                 <motion.button
                   type="submit"
-                  className="w-full py-4 rounded-lg font-bold text-sm tracking-wider text-primary-foreground transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full py-4 rounded-lg font-bold text-sm tracking-wider text-primary-foreground transition-colors disabled:opacity-70"
                   style={{ background: "linear-gradient(135deg, hsl(222 62% 18%) 0%, hsl(222 80% 35%) 50%, hsl(222 80% 45%) 100%)" }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Submit Inquiry
+                  {isSubmitting ? "Sending..." : "Submit Inquiry"}
                 </motion.button>
               </motion.form>
             </AnimatedSection>
