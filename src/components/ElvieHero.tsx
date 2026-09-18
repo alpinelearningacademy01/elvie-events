@@ -103,20 +103,34 @@
 
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import logoImg from "@/assets/Logo.webp";
 
 const ElvieHero = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.load();
+    const playPromise = video.play();
+    playPromise?.catch(() => undefined);
+  }, []);
+
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
 
       {/* Background Video */}
       <motion.video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         poster={heroBg}
         // className="absolute inset-0 w-full h-full object-cover"
         className="absolute inset-0 w-full h-full object-cover object-top"

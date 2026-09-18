@@ -13,6 +13,7 @@ import FAQ from "./pages/FAQ";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
+import ThreeDWalkthrough from "./pages/3DWalkthrough";
 import StickyEnquiry from "./components/StickyEnquiry";
 import { ThemeProvider } from "./context/ThemeContext";
 
@@ -31,6 +32,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/events" element={<Events />} />
+                <Route path="/3d-walkthrough" element={<ThreeDWalkthrough />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/booking" element={<Booking />} />
                 <Route path="/corporate" element={<CorporateGifts />} />

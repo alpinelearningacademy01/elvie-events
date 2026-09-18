@@ -26,7 +26,7 @@ const giftTypes = [
 ];
 
 const eventsList = [
-  { name: "SBG Event", href: "/events" },
+  { name: 'SB Girls "Get Get Aww" Concert at Etihad Arena, Abu Dhabi', href: "/events" },
 ];
 
 const ElvieNavbar = () => {
@@ -185,6 +185,18 @@ const ElvieNavbar = () => {
             <span className="ml-4 text-primary-foreground/30">|</span>
           </Link>
 
+          {/* 3D WALKTHROUGH */}
+          <Link
+            to="/3d-walkthrough"
+            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/3d-walkthrough" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
+          >
+            3D WALKTHROUGH
+            <span
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname === "/3d-walkthrough" ? "w-3/4" : "w-0 group-hover:w-3/4"}`}
+            />
+            <span className="ml-4 text-primary-foreground/30">|</span>
+          </Link>
+
           {/* BOOKING */}
           <Link
             to="/booking"
@@ -293,6 +305,16 @@ const ElvieNavbar = () => {
                 onClick={() => setMobileOpen(false)}
               >
                 GALLERY
+              </Link>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+              <Link
+                to="/3d-walkthrough"
+                className="block px-6 py-3 text-sm font-medium tracking-wider text-primary-foreground/90 hover:text-primary-foreground whitespace-nowrap"
+                onClick={() => setMobileOpen(false)}
+              >
+                3D WALKTHROUGH
               </Link>
             </motion.div>
 
