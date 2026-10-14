@@ -248,6 +248,7 @@ import ElvieNavbar from "@/components/ElvieNavbar";
 import PageHeader from "@/components/PageHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import galleryHero from "@/assets/gallery-hero.webp";
+import etihadThumbnail from "@/assets/etihad_arena_original_thumbnail.jpg";
 
 const imageModules = import.meta.glob("@/assets/SBG_Event/*.{jpg,jpeg,png,webp}", {
   eager: true,
@@ -259,11 +260,35 @@ const videoModules = import.meta.glob("@/assets/SBG_Event/*.{mp4,webm,mov}", {
   import: "default",
 }) as Record<string, string>;
 
+
 type EventMedia = {
   src: string;
   title: string;
   type: "image" | "video";
+  thumbnail?: string;
 };
+
+// Remote S3-hosted SB Girls event videos
+const remoteVideos: EventMedia[] = [
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/1.mp4",
+    title: "SB Girls Event Video 1",
+    type: "video",
+    thumbnail: etihadThumbnail,
+  },
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/2.mp4",
+    title: "SB Girls Event Video 2",
+    type: "video",
+    thumbnail: etihadThumbnail,
+  },
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/3.mp4",
+    title: "SB Girls Event Video 3",
+    type: "video",
+    thumbnail: etihadThumbnail,
+  },
+];
 
 const mediaTitle = (path: string) => {
   const fileName = path.split(/[\\/]/).pop() || "Event media";
@@ -307,7 +332,7 @@ const Events = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const images = useMemo(() => toMedia(imageModules, "image"), []);
-  const videos = useMemo(() => toMedia(videoModules, "video"), []);
+  const videos = useMemo(() => [...toMedia(videoModules, "video"), ...remoteVideos], []);
   const media = useMemo(() => [...images, ...videos], [images, videos]);
   const visibleMedia = filter === "all" ? media : media.filter((item) => item.type === filter);
 
@@ -519,7 +544,7 @@ const Events = () => {
                         className="h-full w-full object-cover"
                         controls
                         preload="metadata"
-                        poster={item.src.replace(/\.[^.]+$/, ".jpg")}
+                        poster={item.thumbnail ?? etihadThumbnail}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                     </div>

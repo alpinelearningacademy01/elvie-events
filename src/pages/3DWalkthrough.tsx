@@ -22,9 +22,28 @@ const videoTitle = (path: string) => {
   return fileName.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
 };
 
-const videos: WalkthroughVideo[] = Object.entries(videoModules)
-  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-  .map(([path, src]) => ({ src, title: videoTitle(path) }));
+// Remote S3-hosted 3D walkthrough videos
+const remoteVideos: WalkthroughVideo[] = [
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/3d_walkthrough/Govardhan+_+Walkthrough.mp4",
+    title: "Govardhan Walkthrough",
+  },
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/3d_walkthrough/SALKAR+Hotel+_+Walkthrough.mp4",
+    title: "SALKAR Hotel Walkthrough",
+  },
+  {
+    src: "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos/3d_walkthrough/Sun+Flora.mp4",
+    title: "Sun Flora",
+  },
+];
+
+const videos: WalkthroughVideo[] = [
+  ...Object.entries(videoModules)
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([path, src]) => ({ src, title: videoTitle(path) })),
+  ...remoteVideos,
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
