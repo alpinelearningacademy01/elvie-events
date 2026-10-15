@@ -2,6 +2,7 @@ import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieHero from "@/components/ElvieHero";
 import ElvieAbout from "@/components/ElvieAbout";
 import ElvieClients from "@/components/ElvieClients";
+import ElvieEventVideos from "@/components/ElvieEventVideos";
 import ElvieServices from "@/components/ElvieServices";
 import ElvieStats from "@/components/ElvieStats";
 import ElvieCTA from "@/components/ElvieCTA";
@@ -16,6 +17,7 @@ const Index = () => {
       <ElvieHero />
       <ElvieAbout />
       <ElvieClients />
+      <ElvieEventVideos />
       <ElvieServices />
       <ElvieStats />
       <ElvieCTA />
