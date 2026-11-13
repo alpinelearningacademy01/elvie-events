@@ -243,12 +243,14 @@
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Image, Play, X, ChevronLeft, ChevronRight, Calendar, MapPin, Users, Sparkles, Music, Heart } from "lucide-react";
 import { useMemo, useRef, useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import ElvieFooter from "@/components/ElvieFooter";
 import ElvieNavbar from "@/components/ElvieNavbar";
 import PageHeader from "@/components/PageHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import galleryHero from "@/assets/gallery-hero.webp";
 import etihadThumbnail from "@/assets/etihad_arena_original_thumbnail.jpg";
+import { pressConferenceEvent } from "@/data/eventVideos";
 
 const imageModules = import.meta.glob("@/assets/SBG_Event/*.{jpg,jpeg,png,webp}", {
   eager: true,
@@ -260,6 +262,10 @@ const videoModules = import.meta.glob("@/assets/SBG_Event/*.{mp4,webm,mov}", {
   import: "default",
 }) as Record<string, string>;
 
+const pressConferenceImageModules = import.meta.glob("@/assets/SBG_Press_Conference/*.jpeg", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
 
 type EventMedia = {
   src: string;
@@ -301,6 +307,18 @@ const toMedia = (modules: Record<string, string>, type: EventMedia["type"]) =>
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
     .map(([path, src]) => ({ src, title: mediaTitle(path), type }));
 
+const concertMedia: EventMedia[] = [...toMedia(imageModules, "image"), ...toMedia(videoModules, "video"), ...remoteVideos];
+const pressConferenceImages = toMedia(pressConferenceImageModules, "image");
+const pressConferenceMedia: EventMedia[] = [
+  {
+    src: pressConferenceEvent.videoUrl,
+    title: pressConferenceEvent.title,
+    type: "video",
+    thumbnail: pressConferenceImages[0]?.src,
+  },
+  ...pressConferenceImages,
+];
+
 // Animation variants with strict Framer Motion types
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -325,15 +343,13 @@ const itemVariants: Variants = {
   },
 };
 
-const Events = () => {
+const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState<number | null>(null);
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [isLoading, setIsLoading] = useState(true);
 
-  const images = useMemo(() => toMedia(imageModules, "image"), []);
-  const videos = useMemo(() => [...toMedia(videoModules, "video"), ...remoteVideos], []);
-  const media = useMemo(() => [...images, ...videos], [images, videos]);
+  const media = isPressConference ? pressConferenceMedia : concertMedia;
   const visibleMedia = filter === "all" ? media : media.filter((item) => item.type === filter);
 
   const imageOnlyIndexes = useMemo(
@@ -374,12 +390,27 @@ const Events = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
-      <ElvieNavbar />
-      <PageHeader title="Events" backgroundImage={galleryHero} />
-
+    <>
       <section className="relative bg-background py-16 md:py-24" ref={gridRef}>
         <div className="container mx-auto px-4">
+          <nav aria-label="Event galleries" className="mb-8 flex flex-wrap gap-2">
+            {[
+              { to: "/events", title: "SB Girls Concert", active: !isPressConference },
+              { to: `/events?event=${pressConferenceEvent.id}`, title: pressConferenceEvent.title, active: isPressConference },
+            ].map(({ to, title, active }) => (
+              <Link
+                key={to}
+                to={to}
+                aria-current={active ? "page" : undefined}
+                className={`rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${active
+                  ? "border-elvie-blue-light/40 bg-elvie-blue-light/10 text-foreground"
+                  : "border-border/50 bg-card/50 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                  }`}
+              >
+                {title}
+              </Link>
+            ))}
+          </nav>
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -388,7 +419,11 @@ const Events = () => {
             className="mb-12"
           >
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
+              {isPressConference ? (
+                <h1 className="max-w-4xl font-display text-3xl font-light leading-tight text-foreground md:text-5xl lg:text-6xl">
+                  {pressConferenceEvent.title}
+                </h1>
+              ) : <div>
                 <div className="flex items-center gap-3">
                   <Sparkles className="h-5 w-5 text-elvie-blue-light" />
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-elvie-blue-light">
@@ -405,7 +440,7 @@ const Events = () => {
                 <p className="mt-3 text-lg text-muted-foreground md:text-xl">
                   Etihad Arena, Abu Dhabi • A Historic Night of Filipino Talent
                 </p>
-              </div>
+              </div>}
 
               {/* Filter Buttons */}
               <div className="flex w-full gap-2 rounded-2xl border border-border/50 bg-card/50 p-1.5 backdrop-blur-sm md:w-auto">
@@ -418,6 +453,7 @@ const Events = () => {
                     key={option.value}
                     type="button"
                     onClick={() => setFilter(option.value as typeof filter)}
+                    aria-pressed={filter === option.value}
                     className={`flex items-center gap-2 flex-1 rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 md:flex-none ${filter === option.value
                       ? "bg-gradient-to-r from-elvie-navy to-elvie-blue-light text-primary-foreground shadow-lg shadow-elvie-blue-light/20"
                       : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
@@ -431,6 +467,7 @@ const Events = () => {
             </div>
           </motion.div>
 
+          {!isPressConference && <>
           {/* Stats Cards */}
           <motion.div
             variants={containerVariants}
@@ -492,6 +529,8 @@ const Events = () => {
             </div>
           </motion.div>
 
+          </>}
+
           {/* Media Grid */}
           {isLoading ? (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -524,7 +563,7 @@ const Events = () => {
                     >
                       <img
                         src={item.src}
-                        alt="SBG Event"
+                        alt={isPressConference ? item.title : "SBG Event"}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy"
                       />
@@ -541,6 +580,7 @@ const Events = () => {
                     <div className="relative h-full w-full">
                       <video
                         src={item.src}
+                        aria-label={item.title}
                         className="h-full w-full object-cover"
                         controls
                         preload="metadata"
@@ -637,7 +677,7 @@ const Events = () => {
             <motion.img
               key={activeItem.src}
               src={activeItem.src}
-              alt="SBG Event"
+              alt={isPressConference ? activeItem.title : "SBG Event"}
               className="max-h-[84vh] max-w-[92vw] rounded-xl object-contain shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -659,7 +699,7 @@ const Events = () => {
               </span>
               <div className="h-4 w-px bg-white/20" />
               <span className="text-sm font-medium text-white/80">
-                SB Girls Concert
+                {isPressConference ? pressConferenceEvent.title : "SB Girls Concert"}
               </span>
             </motion.div>
 
@@ -671,6 +711,19 @@ const Events = () => {
         )}
       </AnimatePresence>
 
+    </>
+  );
+};
+
+const Events = () => {
+  const [searchParams] = useSearchParams();
+  const isPressConference = searchParams.get("event") === pressConferenceEvent.id;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
+      <ElvieNavbar />
+      <PageHeader title="Events" backgroundImage={galleryHero} />
+      <EventGallery key={isPressConference ? pressConferenceEvent.id : "concert"} isPressConference={isPressConference} />
       <ElvieFooter />
       <ScrollToTop />
     </div>

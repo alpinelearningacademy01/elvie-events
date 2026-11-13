@@ -16,6 +16,22 @@ export interface EventVideoItem {
 
 const eventVideoBase = "https://elvie-events.s3.eu-north-1.amazonaws.com/elvie-events-videos";
 
+export const showMomentsVideo: EventVideoItem = {
+  id: "sbg-show-moments",
+  title: "Show Moments",
+  category: "Concert",
+  location: "UAE",
+  videoUrl: `${eventVideoBase}/3.mp4`,
+  posterUrl: sbgPosterB,
+  description: "Selected moments from the stage, audience and live event experience.",
+};
+
+export const pressConferenceEvent = {
+  id: "sbg-press-conference",
+  title: "SBG Girls Press Conference and Meet & Greet",
+  videoUrl: "/events/sbg-press-conference/highlights.mp4",
+};
+
 export const eventVideos: EventVideoItem[] = [
   {
     id: "sb-girls-etihad-arena",
@@ -35,15 +51,7 @@ export const eventVideos: EventVideoItem[] = [
     posterUrl: sbgPosterA,
     description: "A closer look at the lighting, movement and atmosphere behind the show.",
   },
-  {
-    id: "sbg-show-moments",
-    title: "Show Moments",
-    category: "Concert",
-    location: "UAE",
-    videoUrl: `${eventVideoBase}/3.mp4`,
-    posterUrl: sbgPosterB,
-    description: "Selected moments from the stage, audience and live event experience.",
-  },
+  showMomentsVideo,
 ];
 
 export const eventVideoCategories: EventVideoCategory[] = ["All", "Concert", "Production"];

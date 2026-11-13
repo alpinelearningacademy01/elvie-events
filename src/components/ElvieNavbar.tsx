@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../assets/Logo.webp";
+import { pressConferenceEvent } from "@/data/eventVideos";
 
 const giftTypes = [
   "Employee Welcome Kits",
@@ -27,6 +28,7 @@ const giftTypes = [
 
 const eventsList = [
   { name: 'SB Girls "Get Get Aww" Concert at Etihad Arena, Abu Dhabi', href: "/events" },
+  { name: pressConferenceEvent.title, href: `/events?event=${pressConferenceEvent.id}` },
 ];
 
 const ElvieNavbar = () => {

@@ -103,43 +103,66 @@
 
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import logoImg from "@/assets/Logo.webp";
+import { showMomentsVideo } from "@/data/eventVideos";
+
+const heroVideos = [
+  { title: showMomentsVideo.title, src: showMomentsVideo.videoUrl, poster: showMomentsVideo.posterUrl },
+  { title: "Elvie Events", src: "/hero-video.mp4", poster: heroBg },
+];
+
+const arrowClass = "absolute top-[72%] z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/40 p-2.5 text-white backdrop-blur-sm transition hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-1/2 sm:p-3";
 
 const ElvieHero = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeVideo = heroVideos[activeIndex];
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.muted = true;
-    video.load();
     const playPromise = video.play();
     playPromise?.catch(() => undefined);
-  }, []);
+  }, [activeVideo.src]);
+
+  const changeVideo = (direction: number) => {
+    setActiveIndex(index => (index + direction + heroVideos.length) % heroVideos.length);
+  };
 
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
 
       {/* Background Video */}
       <motion.video
+        key={activeVideo.src}
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        poster={heroBg}
+        poster={activeVideo.poster}
         // className="absolute inset-0 w-full h-full object-cover"
         className="absolute inset-0 w-full h-full object-cover object-top"
         initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
         transition={{ duration: 8, ease: "easeOut" }}
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src={activeVideo.src} type="video/mp4" />
       </motion.video>
+
+      <button type="button" className={`${arrowClass} left-3 md:left-8`} onClick={() => changeVideo(-1)} aria-label="Previous hero video">
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+      </button>
+      <button type="button" className={`${arrowClass} right-3 md:right-8`} onClick={() => changeVideo(1)} aria-label="Next hero video">
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+      </button>
+      <span className="sr-only" aria-live="polite">{activeVideo.title}</span>
 
       {/* <div className="absolute inset-0 elvie-overlay" /> */}
 
