@@ -45,14 +45,14 @@ const ElvieCTA = () => {
       </motion.div>
 
       <motion.div
-        className="pb-14 pt-6"
+        className="px-4 pb-14 pt-6"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
         <motion.a
           href="tel:+9715029137212"
-          className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-elvie-navy px-16 py-4 rounded-lg font-bold text-sm tracking-wider hover:bg-primary-foreground/90 transition-colors min-w-[280px] shadow-lg"
+          className="inline-flex w-full max-w-[280px] items-center justify-center gap-2 rounded-lg bg-primary-foreground px-6 py-4 text-sm font-bold tracking-wider text-elvie-navy shadow-lg transition-colors hover:bg-primary-foreground/90"
           whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(255,255,255,0.2)" }}
           whileTap={{ scale: 0.95 }}
         >

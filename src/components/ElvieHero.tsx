@@ -115,7 +115,7 @@ const heroVideos = [
   { title: "Elvie Events", src: "/hero-video.mp4", poster: heroBg },
 ];
 
-const arrowClass = "absolute top-[72%] z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/40 p-2.5 text-white backdrop-blur-sm transition hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-1/2 sm:p-3";
+const arrowClass = "absolute top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:h-12 sm:w-12";
 
 const ElvieHero = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -135,7 +135,7 @@ const ElvieHero = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-svh items-center justify-center overflow-hidden py-20 [@media(max-height:500px)]:pb-6 [@media(max-height:500px)]:pt-24">
 
       {/* Background Video */}
       <motion.video
@@ -183,7 +183,7 @@ const ElvieHero = () => {
       ))}
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 -mt-12 md:-mt-20">
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-14 text-center sm:px-20 md:-mt-12 [@media(max-height:500px)]:mt-0">
 
         {/* Logo */}
         <motion.div
@@ -194,7 +194,7 @@ const ElvieHero = () => {
           <motion.img
             src={logoImg}
             alt="Elvie Events Logo"
-            className="w-[260px] md:w-[400px] lg:w-[520px] xl:w-[580px] mx-auto object-contain"
+            className="mx-auto w-[260px] max-w-full object-contain md:w-[400px] lg:w-[520px] xl:w-[580px] [@media(max-height:500px)]:max-h-[38svh] [@media(max-height:500px)]:w-auto"
             // className="w-48 md:w-64 lg:w-80 xl:w-96 mx-auto object-contain"
             draggable={false}
             initial={{ scale: 0.85, opacity: 0 }}
@@ -205,7 +205,7 @@ const ElvieHero = () => {
 
         {/* Buttons */}
         <motion.div
-          className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+          className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 md:mt-8 [@media(max-height:500px)]:mt-3"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}

@@ -71,7 +71,7 @@ const Booking = () => {
   };
 
   const inputClasses =
-    "w-full border rounded-lg px-4 py-3 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-blue-500";
+    "w-full min-w-0 rounded-lg border bg-background px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm";
 
   return (
     <div className="min-h-screen bg-background">
@@ -154,7 +154,7 @@ const Booking = () => {
                   required
                 />
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider ml-1">Event Date</label>
                     <input
@@ -204,12 +204,12 @@ const Booking = () => {
               <div className="flex flex-col h-full">
                 <textarea
                   placeholder="Your enquiry details (Any specific requirements or questions?)"
-                  rows={12}
+                  rows={6}
                   value={form.message}
                   onChange={(e) =>
                     setForm({ ...form, message: e.target.value })
                   }
-                  className={`${inputClasses} flex-1 resize-none min-h-[300px]`}
+                  className={`${inputClasses} min-h-40 flex-1 resize-y md:min-h-[300px]`}
                 />
               </div>
             </div>

@@ -29,9 +29,9 @@ const AboutUs = () => {
       <div className="elvie-gradient-diagonal h-28" />
 
       {/* Team + Features */}
-      <section className="py-20 bg-background" ref={featRef}>
+      <section className="overflow-x-clip bg-background py-14 md:py-20" ref={featRef}>
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
             {/* Team Image */}
             <motion.div
               className="relative group"
@@ -48,11 +48,11 @@ const AboutUs = () => {
             </motion.div>
 
             {/* 6 Feature Cards */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6">
               {features.map((f, i) => (
                 <motion.div
                   key={f.title}
-                  className="group p-5 rounded-xl border border-border bg-card hover:border-elvie-blue-light/50 transition-all duration-300"
+                  className="group rounded-xl border border-border bg-card p-3 transition-all duration-300 hover:border-elvie-blue-light/50 sm:p-5"
                   initial={{ opacity: 0, y: 30 }}
                   animate={featInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.1 }}

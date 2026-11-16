@@ -45,21 +45,21 @@ const ElvieEventVideos = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {filteredVideos.map((video, index) => (
             <motion.button
               key={video.id}
               type="button"
               onClick={() => setActiveVideo(video)}
               className={`group relative overflow-hidden rounded-lg border border-border bg-card text-left shadow-sm transition focus:outline-none focus:ring-2 focus:ring-elvie-blue-light ${
-                index === 0 ? "md:col-span-2 md:row-span-2" : ""
+                index === 0 ? "sm:col-span-2 xl:row-span-2" : ""
               }`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45, delay: Math.min(index * 0.06, 0.24) }}
             >
-              <div className={index === 0 ? "aspect-[16/10] md:aspect-[4/3]" : "aspect-[4/3]"}>
+              <div className={index === 0 ? "aspect-[16/10] min-h-56 xl:aspect-[4/3]" : "aspect-[4/3] min-h-52"}>
                 <img
                   src={video.posterUrl}
                   alt={video.title}
@@ -69,12 +69,12 @@ const ElvieEventVideos = () => {
               </div>
 
               <div className="absolute inset-0 bg-gradient-to-t from-elvie-navy/85 via-elvie-navy/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground">
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary-foreground/15 backdrop-blur-sm transition group-hover:bg-elvie-blue-light">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground sm:p-5">
+                <div className="mb-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary-foreground/15 backdrop-blur-sm transition group-hover:bg-elvie-blue-light sm:mb-4">
                   <Play className="ml-0.5 h-5 w-5 fill-current" />
                 </div>
                 <p className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground/75">
-                  <MapPin className="h-3.5 w-3.5" />
+                  <MapPin className="h-3.5 w-3.5 shrink-0" />
                   {video.location}
                 </p>
                 <h3 className="text-xl text-primary-foreground md:text-2xl">{video.title}</h3>

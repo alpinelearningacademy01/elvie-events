@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Play, X, ChevronLeft, ChevronRight, Maximize2, Volume2 } from "lucide-react";
 import { useState, useRef } from "react";
 import ElvieFooter from "@/components/ElvieFooter";
@@ -53,7 +53,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -214,14 +214,14 @@ const ThreeDWalkthrough = () => {
       <AnimatePresence>
         {activeVideo && activeIndex !== null && (
           <motion.div
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/98 backdrop-blur-xl"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-2 bg-black/98 px-3 pb-16 pt-20 backdrop-blur-xl sm:px-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             {/* Top bar */}
-            <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-black/80 to-transparent z-20">
-              <div>
+            <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between gap-3 bg-gradient-to-b from-black/80 to-transparent p-3 sm:px-6 sm:py-4">
+              <div className="min-w-0">
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-elvie-blue-light">
                   3D Walkthrough
                 </p>
@@ -232,7 +232,7 @@ const ThreeDWalkthrough = () => {
               <motion.button
                 type="button"
                 onClick={closeModal}
-                className="rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
                 aria-label="Close"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -247,7 +247,7 @@ const ThreeDWalkthrough = () => {
                 <motion.button
                   type="button"
                   onClick={() => moveTo(-1)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+                  className="absolute bottom-2 left-3 z-20 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:bottom-auto sm:left-4 sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Previous video"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -257,7 +257,7 @@ const ThreeDWalkthrough = () => {
                 <motion.button
                   type="button"
                   onClick={() => moveTo(1)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+                  className="absolute bottom-2 right-3 z-20 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:bottom-auto sm:right-4 sm:top-1/2 sm:-translate-y-1/2"
                   aria-label="Next video"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -270,7 +270,7 @@ const ThreeDWalkthrough = () => {
             {/* Video player */}
             <motion.div
               key={activeIndex}
-              className="w-full max-w-6xl px-4 sm:px-16"
+              className="min-h-0 w-full max-w-6xl"
               initial={{ scale: 0.93, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.93, opacity: 0 }}
@@ -279,7 +279,7 @@ const ThreeDWalkthrough = () => {
               <video
                 key={activeVideo.src}
                 src={activeVideo.src}
-                className="w-full rounded-2xl shadow-2xl"
+                className="mx-auto max-h-[calc(100dvh-9rem)] w-full rounded-2xl object-contain shadow-2xl"
                 controls
                 autoPlay
                 playsInline
@@ -288,7 +288,7 @@ const ThreeDWalkthrough = () => {
 
             {/* Bottom counter */}
             <motion.div
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/10 px-7 py-2.5 shadow-2xl"
+              className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-black/70 px-4 py-2 text-sm shadow-2xl backdrop-blur-xl sm:bottom-6 sm:px-7 sm:py-2.5"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}

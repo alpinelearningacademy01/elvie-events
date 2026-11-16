@@ -117,10 +117,10 @@ const StickyEnquiry = () => {
     <>
       {/* Modal - Website Theme (Navy & Gold) */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[420px] bg-white border-none rounded-none p-0 shadow-2xl">
-          <div className="p-6 relative">
+        <DialogContent aria-describedby={undefined} className="w-[calc(100%-2rem)] overflow-hidden border-none bg-white p-0 shadow-2xl sm:max-w-[420px]">
+          <div className="relative max-h-[calc(100dvh-2rem)] min-w-0 overflow-y-auto overscroll-contain p-4 sm:p-6">
             <DialogHeader className="mb-4">
-              <DialogTitle className="text-[11px] font-black text-elvie-gold uppercase tracking-[0.15em] border-b border-gray-100 pb-4">
+              <DialogTitle className="border-b border-gray-100 pb-4 pr-9 text-[11px] font-black uppercase tracking-[0.15em] text-elvie-gold">
                 Get in touch with us
               </DialogTitle>
             </DialogHeader>
@@ -140,7 +140,7 @@ const StickyEnquiry = () => {
                 <div className="flex border border-gray-300 focus-within:border-elvie-navy transition-colors relative">
                   <div
                     ref={dropdownRef}
-                    className="flex items-center gap-2 px-3 bg-gray-50 border-r border-gray-300 h-10 min-w-[100px] cursor-pointer hover:bg-gray-100 transition-colors"
+                    className="flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-r border-gray-300 bg-gray-50 px-2 transition-colors hover:bg-gray-100 sm:px-3"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   >
                     <div className="w-5 h-3.5 overflow-hidden shadow-sm flex-shrink-0">
@@ -160,7 +160,7 @@ const StickyEnquiry = () => {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 mt-1 w-[300px] bg-white border border-gray-200 shadow-xl z-[60] py-1 max-h-[300px] overflow-y-auto rounded-sm"
+                          className="absolute inset-x-0 top-full z-[60] mt-1 max-h-[min(300px,40dvh)] overflow-y-auto rounded-sm border border-gray-200 bg-white py-1 shadow-xl"
                         >
                           {countries.map((c) => (
                             <div
@@ -198,7 +198,7 @@ const StickyEnquiry = () => {
                     type="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="flex-1 px-4 py-2.5 text-sm outline-none"
+                    className="min-w-0 flex-1 px-3 py-2.5 text-base outline-none sm:text-sm"
                     placeholder="Enter Phone Number"
                   />
                 </div>
@@ -221,7 +221,7 @@ const StickyEnquiry = () => {
                   placeholder="I am looking for"
                 />
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-4 min-[400px]:grid-cols-2">
                   {/* Quantity */}
                   <input
                     type="number"

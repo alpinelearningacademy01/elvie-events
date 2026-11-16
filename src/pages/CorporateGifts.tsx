@@ -394,7 +394,7 @@ const CorporateGifts = () => {
     }
   };
 
-  const inputClasses = "w-full border border-border rounded-lg px-4 py-3 text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-shadow";
+  const inputClasses = "w-full min-w-0 rounded-lg border border-border bg-background px-4 py-3 text-base text-foreground transition-shadow focus:outline-none focus:ring-2 focus:ring-accent sm:text-sm";
 
   if (selectedProduct) {
     return (
@@ -403,7 +403,7 @@ const CorporateGifts = () => {
         <div className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             {/* Breadcrumb based on image */}
-            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-6 select-none border-b border-border pb-4">
+            <div className="mb-6 flex select-none flex-wrap items-center gap-2 break-words border-b border-border pb-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
               <span className="cursor-pointer hover:text-elvie-navy transition-colors" onClick={() => navigate('/corporate')}>Home</span>
               <span className="text-slate-300">/</span>
               <span className="cursor-pointer hover:text-elvie-navy transition-colors" onClick={() => navigate('/corporate')}>Corporate Gifting</span>
@@ -481,7 +481,7 @@ const CorporateGifts = () => {
 
             {/* Recommendations */}
             <div className="border-t border-border pt-20 mb-10">
-              <div className="flex items-end justify-between mb-12">
+              <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-bold text-elvie-navy mb-2">You may also like</h2>
                   <div className="w-12 h-1 bg-elvie-gold rounded-full" />
@@ -497,7 +497,7 @@ const CorporateGifts = () => {
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4">
                 {allGifts.filter(g => g.title !== selectedProduct.title).slice(0, 4).map((gift, i) => (
                   <motion.div
                     key={i}
@@ -542,7 +542,7 @@ const CorporateGifts = () => {
       <ElvieNavbar />
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-40 md:pt-48 pb-20">
+      <section className="relative flex min-h-svh items-center overflow-hidden pb-14 pt-24 sm:pb-20 sm:pt-32 lg:pt-40 xl:pt-48">
         <img src={heroImg} alt="Corporate Gifts" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(222,72%,8%,0.92)] via-[hsl(222,62%,18%,0.8)] to-transparent" />
         <div className="relative z-10 container mx-auto px-4">
@@ -788,7 +788,7 @@ const CorporateGifts = () => {
       {/* ═══════════ INQUIRY FORM (mid-page like FNP) ═══════════ */}
       <section id="inquiry" className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-12">
             <AnimatedSection>
               <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-widest text-accent border border-accent/30 mb-4">
                 GET A QUOTE
@@ -812,9 +812,9 @@ const CorporateGifts = () => {
                   <div className="w-10 h-10 rounded-full elvie-gradient flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-primary-foreground" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-muted-foreground">Email Us</p>
-                    <a href="mailto: elvieevents@gmail.com" className="font-semibold text-foreground hover:text-accent transition-colors">elvieevents@gmail.com</a>
+                    <a href="mailto:elvieevents@gmail.com" className="break-all font-semibold text-foreground transition-colors hover:text-accent">elvieevents@gmail.com</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 rounded-lg bg-card border border-border">
@@ -830,8 +830,8 @@ const CorporateGifts = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.15}>
-              <motion.form onSubmit={handleSubmit} className="space-y-4 bg-card p-8 rounded-2xl border border-border shadow-lg">
-                <div className="grid sm:grid-cols-2 gap-4">
+              <motion.form onSubmit={handleSubmit} className="min-w-0 space-y-4 rounded-2xl border border-border bg-card p-4 shadow-lg sm:p-6 xl:p-8">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Name <span className="text-destructive">*</span></label>
                     <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClasses} placeholder="Your name" />
@@ -841,12 +841,12 @@ const CorporateGifts = () => {
                     <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClasses} placeholder="your@email.com" />
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Phone <span className="text-destructive">*</span></label>
                     <div className="flex border border-border rounded-lg bg-background focus-within:ring-2 focus-within:ring-accent/20 transition-all h-[46px] relative">
                       <div 
-                        className="relative border-r border-border min-w-[100px] cursor-pointer rounded-l-lg" 
+                        className="shrink-0 cursor-pointer rounded-l-lg border-r border-border"
                         ref={dropdownRef}
                         onClick={(e) => {
                           e.preventDefault();
@@ -874,7 +874,7 @@ const CorporateGifts = () => {
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 10 }}
-                              className="absolute top-full left-0 mt-1 w-[300px] bg-white border border-gray-200 shadow-xl z-50 py-1 max-h-[250px] overflow-y-auto rounded-lg"
+                              className="absolute inset-x-0 top-full z-50 mt-1 max-h-[min(250px,45dvh)] overflow-y-auto rounded-lg border border-gray-200 bg-white py-1 shadow-xl"
                             >
                               {countries.map((c) => (
                                 <div
@@ -911,7 +911,7 @@ const CorporateGifts = () => {
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
                         placeholder="Phone Number"
-                        className="flex-1 px-4 py-2 text-sm bg-transparent outline-none"
+                        className="min-w-0 flex-1 bg-transparent px-3 py-2 text-base outline-none sm:text-sm"
                       />
                     </div>
                   </div>
@@ -920,7 +920,7 @@ const CorporateGifts = () => {
                     <input type="text" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Company name" className={inputClasses} />
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Gift Type</label>
                     <select value={form.giftType} onChange={(e) => setForm({ ...form, giftType: e.target.value })} className={inputClasses}>
@@ -952,7 +952,7 @@ const CorporateGifts = () => {
                     </select>
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Budget Range</label>
                     <select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className={inputClasses}>

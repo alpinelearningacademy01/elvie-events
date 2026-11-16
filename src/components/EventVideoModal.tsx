@@ -40,7 +40,7 @@ const EventVideoModal = ({ video, onClose }: EventVideoModalProps) => {
     <AnimatePresence>
       {video && (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-elvie-navy/95 px-4 py-8 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-elvie-navy/95 p-3 backdrop-blur-sm sm:p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby="event-video-title"
@@ -52,7 +52,7 @@ const EventVideoModal = ({ video, onClose }: EventVideoModalProps) => {
           }}
         >
           <motion.div
-            className="w-full max-w-6xl overflow-hidden rounded-lg border border-primary-foreground/15 bg-elvie-navy-deep shadow-2xl"
+            className="max-h-[calc(100dvh-1.5rem)] w-full max-w-[min(72rem,calc((100dvh-7rem)*16/9))] overflow-y-auto rounded-lg border border-primary-foreground/15 bg-elvie-navy-deep shadow-2xl"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
@@ -61,7 +61,7 @@ const EventVideoModal = ({ video, onClose }: EventVideoModalProps) => {
             <div className="flex items-center justify-between gap-4 border-b border-primary-foreground/10 px-4 py-3 md:px-6">
               <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-wider text-elvie-blue-light">{video.category}</p>
-                <h2 id="event-video-title" className="truncate text-lg text-primary-foreground md:text-2xl">
+                <h2 id="event-video-title" className="break-words text-lg text-primary-foreground md:text-2xl">
                   {video.title}
                 </h2>
               </div>

@@ -418,7 +418,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
               {isPressConference ? (
                 <h1 className="max-w-4xl font-display text-3xl font-light leading-tight text-foreground md:text-5xl lg:text-6xl">
                   {pressConferenceEvent.title}
@@ -443,7 +443,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
               </div>}
 
               {/* Filter Buttons */}
-              <div className="flex w-full gap-2 rounded-2xl border border-border/50 bg-card/50 p-1.5 backdrop-blur-sm md:w-auto">
+              <div className="grid w-full max-w-sm shrink-0 grid-cols-3 gap-1 rounded-2xl border border-border/50 bg-card/50 p-1.5 backdrop-blur-sm sm:gap-2 xl:w-auto">
                 {[
                   { label: "All Media", value: "all", icon: null },
                   { label: "Images", value: "image", icon: Image },
@@ -454,7 +454,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
                     type="button"
                     onClick={() => setFilter(option.value as typeof filter)}
                     aria-pressed={filter === option.value}
-                    className={`flex items-center gap-2 flex-1 rounded-xl px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 md:flex-none ${filter === option.value
+                    className={`flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-1.5 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:px-5 ${filter === option.value
                       ? "bg-gradient-to-r from-elvie-navy to-elvie-blue-light text-primary-foreground shadow-lg shadow-elvie-blue-light/20"
                       : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                       }`}
@@ -650,7 +650,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
                     e.stopPropagation();
                     moveLightbox(-1);
                   }}
-                  className="absolute left-6 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 transition hover:bg-white/20 z-20"
+                  className="absolute left-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-black/45 transition hover:bg-white/20 sm:left-6 sm:h-12 sm:w-12"
                   aria-label="Previous image"
                   whileHover={{ scale: 1.1, x: -2 }}
                   whileTap={{ scale: 0.9 }}
@@ -663,7 +663,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
                     e.stopPropagation();
                     moveLightbox(1);
                   }}
-                  className="absolute right-6 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 transition hover:bg-white/20 z-20"
+                  className="absolute right-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-black/45 transition hover:bg-white/20 sm:right-6 sm:h-12 sm:w-12"
                   aria-label="Next image"
                   whileHover={{ scale: 1.1, x: 2 }}
                   whileTap={{ scale: 0.9 }}
@@ -678,7 +678,7 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
               key={activeItem.src}
               src={activeItem.src}
               alt={isPressConference ? activeItem.title : "SBG Event"}
-              className="max-h-[84vh] max-w-[92vw] rounded-xl object-contain shadow-2xl"
+              className="max-h-[calc(100dvh-8rem)] max-w-full rounded-xl object-contain shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -688,17 +688,17 @@ const EventGallery = ({ isPressConference }: { isPressConference: boolean }) => 
 
             {/* Bottom Info Bar - Counter Badge without file name */}
             <motion.div
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/10 px-8 py-3 shadow-2xl"
+              className="absolute inset-x-4 bottom-4 mx-auto flex w-fit items-center gap-2 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-center shadow-2xl backdrop-blur-xl sm:bottom-8 sm:gap-4 sm:px-8 sm:py-3"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <span className="text-sm font-semibold text-white tracking-wide">
+              <span className="shrink-0 whitespace-nowrap text-xs font-semibold tracking-wide text-white sm:text-sm">
                 {imageOnlyIndexes.indexOf(activeImage) + 1} / {imageOnlyIndexes.length}
               </span>
-              <div className="h-4 w-px bg-white/20" />
-              <span className="text-sm font-medium text-white/80">
+              <div className="h-4 w-px shrink-0 bg-white/20" />
+              <span className="text-xs font-medium text-white/80 sm:text-sm">
                 {isPressConference ? pressConferenceEvent.title : "SB Girls Concert"}
               </span>
             </motion.div>

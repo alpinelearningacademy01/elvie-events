@@ -56,7 +56,7 @@ const ElvieFooter = () => {
       <div className="relative z-10 container mx-auto px-6 py-16">
 
         {/* Top Section */}
-        <div className="grid md:grid-cols-4 gap-10 mb-14">
+        <div className="mb-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
 
           {/* Logo & Info */}
           <div className="flex flex-col gap-4">
@@ -76,7 +76,7 @@ const ElvieFooter = () => {
               Dubai, UAE
             </p>
 
-            <div className="mt-4 text-sm text-white/70">
+            <div className="mt-4 break-words text-sm text-white/70">
               <p>Email: elvieevents@gmail.com</p>
               <p>Contact: +971 52 132 7081</p>
             </div>
@@ -123,9 +123,9 @@ const ElvieFooter = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="bg-transparent px-4 py-3 text-sm outline-none flex-1"
+                className="min-w-0 flex-1 bg-transparent px-4 py-3 text-base outline-none sm:text-sm"
               />
-              <button type="submit" className="bg-blue-500 px-4 py-3 hover:bg-blue-600 transition">
+              <button type="submit" aria-label="Subscribe to offers and news" className="shrink-0 self-stretch bg-blue-500 px-4 py-3 transition hover:bg-blue-600">
                 →
               </button>
             </form>
@@ -189,7 +189,7 @@ const ElvieFooter = () => {
         <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row justify-between text-sm text-white/60">
           <p>© 2026 Elvie Events. All Rights Reserved.</p>
 
-          <div className="mt-3 md:mt-0 text-right">
+          <div className="mt-3 md:mt-0 md:text-right">
             <p>VAT Registration Number: 100509225700003</p>
             <p>Trade License Number: 2100876</p>
             <p>CorporateTax Reg. Number: COR-98456123</p>

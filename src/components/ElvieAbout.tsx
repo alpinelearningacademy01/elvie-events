@@ -105,9 +105,9 @@ const ElvieAbout = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about-us" className="py-24 bg-background" ref={ref}>
+    <section id="about-us" className="overflow-x-clip bg-background py-16 md:py-24" ref={ref}>
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16 items-stretch">
+        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:gap-16">
 
           {/* Text */}
           <motion.div

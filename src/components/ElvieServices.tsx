@@ -27,7 +27,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
   return (
     <motion.div
       ref={ref}
-      className="relative overflow-hidden rounded-xl h-52 md:h-56 group cursor-default"
+      className="group relative min-h-52 cursor-default overflow-hidden rounded-xl md:min-h-56"
       initial={{ opacity: 0, x: service.imagePosition === "left" ? -80 : 80 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.08, ease: "easeOut" }}
@@ -45,7 +45,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
           className="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-500"
         />
       </div>
-      <div className={`relative z-10 flex flex-col justify-center h-full px-8 transition-all duration-500 ${service.imagePosition === "left" ? "ml-[35%] md:ml-[30%] group-hover:ml-[42%] md:group-hover:ml-[38%]" : "mr-[35%] md:mr-[30%] group-hover:mr-[42%] md:group-hover:mr-[38%]"}`}>
+      <div className={`relative z-10 flex min-h-52 flex-col justify-center px-4 py-5 transition-all duration-500 sm:px-8 md:min-h-56 ${service.imagePosition === "left" ? "ml-[35%] md:ml-[30%] md:group-hover:ml-[38%]" : "mr-[35%] md:mr-[30%] md:group-hover:mr-[38%]"}`}>
         <h3 className="text-lg md:text-xl font-bold text-primary-foreground group-hover:text-elvie-blue-light transition-colors duration-300">
           {service.title}
         </h3>
@@ -64,7 +64,7 @@ const ElvieServices = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="gallery" className="py-24 bg-background" ref={ref}>
+    <section id="gallery" className="overflow-x-clip bg-background py-16 md:py-24" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-2xl md:text-3xl font-bold text-foreground tracking-wider uppercase text-center mb-14"

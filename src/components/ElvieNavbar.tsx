@@ -35,6 +35,7 @@ const ElvieNavbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileGiftingOpen, setMobileGiftingOpen] = useState(false);
   const [eventsDropdownOpen, setEventsDropdownOpen] = useState(false);
   const [mobileEventsOpen, setMobileEventsOpen] = useState(false);
   const location = useLocation();
@@ -68,6 +69,7 @@ const ElvieNavbar = () => {
 
   const handleCategoryClick = (type: string) => {
     setDropdownOpen(false);
+    setMobileGiftingOpen(false);
     setMobileOpen(false);
     const slug = type.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-').replace(/[^\w-]/g, '');
     navigate(`/corporate/${slug}`);
@@ -75,23 +77,23 @@ const ElvieNavbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || location.pathname.startsWith('/corporate') ? "elvie-gradient-dark shadow-2xl backdrop-blur-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${mobileOpen || scrolled || location.pathname.startsWith('/corporate') ? "elvie-gradient-dark shadow-2xl backdrop-blur-md" : "bg-transparent"
         }`}
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
+      <div className="container mx-auto flex items-center justify-between px-4 py-2 sm:py-3 xl:px-8 xl:py-4">
         <Link to="/" className="flex items-center">
           <img
             src={logoImg}
             alt="Elvie Events Logo"
-            className="h-16 md:h-18 lg:h-20 w-auto object-contain"
+            className="h-12 w-auto object-contain sm:h-16 xl:h-20"
             draggable={false}
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-1">
           {/* HOME */}
           <Link
             to="/"
@@ -190,7 +192,7 @@ const ElvieNavbar = () => {
           {/* 3D WALKTHROUGH */}
           <Link
             to="/3d-walkthrough"
-            className={`px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/3d-walkthrough" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
+            className={`whitespace-nowrap px-4 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname === "/3d-walkthrough" ? "text-primary-foreground" : "text-primary-foreground/90 hover:text-primary-foreground"}`}
           >
             3D WALKTHROUGH
             <span
@@ -198,6 +200,61 @@ const ElvieNavbar = () => {
             />
             <span className="ml-4 text-primary-foreground/30">|</span>
           </Link>
+
+          {/* GIFTING */}
+          <div className="relative group" ref={dropdownRef}>
+            <div className="flex items-center">
+              <Link
+                to="/corporate"
+                onClick={() => setDropdownOpen(false)}
+                className={`pl-4 pr-1 py-2 text-sm font-medium tracking-wider relative group transition-colors ${location.pathname.startsWith("/corporate")
+                  ? "text-primary-foreground"
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+                  }`}
+              >
+                GIFTING
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-elvie-blue-light rounded-full transition-all duration-300 ${location.pathname.startsWith("/corporate") ? "w-3/4" : "w-0 group-hover:w-3/4"
+                    }`}
+                />
+              </Link>
+              <button
+                type="button"
+                onClick={() => setDropdownOpen(open => !open)}
+                className="p-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                aria-label="Toggle gifting categories"
+                aria-expanded={dropdownOpen}
+              >
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+              <span className="ml-2 text-primary-foreground/30">|</span>
+            </div>
+
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-2 w-64 bg-card border border-border rounded-xl shadow-2xl z-50 max-h-[70vh] overflow-y-auto custom-scrollbar"
+                >
+                  <div className="py-2">
+                    {giftTypes.map(type => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => handleCategoryClick(type)}
+                        className="w-full text-left px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-0"
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* BOOKING */}
           <Link
@@ -226,8 +283,12 @@ const ElvieNavbar = () => {
         </div>
 
         <button
+          type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-primary-foreground"
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
+          className="grid h-11 w-11 place-items-center text-primary-foreground xl:hidden"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -237,7 +298,8 @@ const ElvieNavbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="md:hidden elvie-gradient-dark border-t border-primary-foreground/10 pb-4 max-h-[85vh] overflow-y-auto"
+            id="mobile-navigation"
+            className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-primary-foreground/10 pb-4 elvie-gradient-dark sm:max-h-[calc(100dvh-5.5rem)] xl:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -318,6 +380,47 @@ const ElvieNavbar = () => {
               >
                 3D WALKTHROUGH
               </Link>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
+              <div className="px-6 py-3">
+                <div className="flex items-center justify-between text-sm font-medium tracking-wider text-primary-foreground/90">
+                  <Link to="/corporate" className="hover:text-primary-foreground" onClick={() => {
+                    setMobileGiftingOpen(false);
+                    setMobileOpen(false);
+                  }}>GIFTING</Link>
+                  <button
+                    type="button"
+                    onClick={() => setMobileGiftingOpen(open => !open)}
+                    aria-label="Toggle mobile gifting categories"
+                    aria-expanded={mobileGiftingOpen}
+                    className="p-2 -my-2 -mr-2 hover:text-primary-foreground"
+                  >
+                    <ChevronDown className={`w-4 h-4 transition-transform ${mobileGiftingOpen ? "rotate-180" : ""}`} />
+                  </button>
+                </div>
+                <AnimatePresence>
+                  {mobileGiftingOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden bg-primary-foreground/5 rounded-lg mt-2"
+                    >
+                      {giftTypes.map(type => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => handleCategoryClick(type)}
+                          className="w-full text-left px-4 py-2 text-[13px] text-primary-foreground/70 hover:text-primary-foreground border-b border-primary-foreground/5 last:border-0"
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>

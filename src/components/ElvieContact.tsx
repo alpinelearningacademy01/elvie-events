@@ -30,9 +30,9 @@ const ElvieContact = () => {
   };
 
   return (
-    <section id="booking" className="py-24 bg-background" ref={ref}>
+    <section id="booking" className="overflow-x-clip bg-background py-16 md:py-24" ref={ref}>
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 lg:gap-12">
           {/* Newsletter */}
           <motion.div
             className="relative rounded-xl overflow-hidden h-full min-h-[380px] group"
@@ -66,12 +66,12 @@ const ElvieContact = () => {
           {/* Contact Form */}
           <motion.form
             onSubmit={handleSubmit}
-            className="space-y-5"
+            className="min-w-0 space-y-5"
             initial={{ opacity: 0, x: 60 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1">Name *</label>
                 <input
