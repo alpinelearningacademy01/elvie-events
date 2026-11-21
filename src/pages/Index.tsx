@@ -1,5 +1,6 @@
 import ElvieNavbar from "@/components/ElvieNavbar";
 import ElvieHero from "@/components/ElvieHero";
+import ElvieGiftingBanner from "@/components/ElvieGiftingBanner";
 import ElvieAbout from "@/components/ElvieAbout";
 import ElvieClients from "@/components/ElvieClients";
 import ElvieEventVideos from "@/components/ElvieEventVideos";
@@ -15,6 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <ElvieNavbar />
       <ElvieHero />
+      <ElvieGiftingBanner />
       <ElvieAbout />
       <ElvieClients />
       <ElvieEventVideos />

@@ -1,0 +1,37 @@
+@keyframes gifting-marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.gifting-marquee {
+  overflow: hidden;
+}
+
+.gifting-marquee-track {
+  animation: gifting-marquee-scroll 32s linear infinite;
+}
+
+.gifting-marquee[data-paused="true"] .gifting-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) {
+  .gifting-marquee:hover .gifting-marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gifting-marquee {
+    overflow-x: auto;
+  }
+
+  .gifting-marquee-track {
+    animation: none;
+  }
+
+  .gifting-marquee-copy {
+    display: none;
+  }
+}
